@@ -39,5 +39,6 @@
     <string name="empty_friends_label">Add Friends to Begin!</string>
     <string name="content_desc_user_avatar">User Avatar</string>
     <string name="content_desc_user_checkmark">User Checkmark</string>
+    <string name="empty_inbox_label">You don\'t have any messages!</string>
 
 </resources>
