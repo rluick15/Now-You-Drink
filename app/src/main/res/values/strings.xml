@@ -26,5 +26,8 @@
     <string name="login_error_message">Please make sure you enter a username and password.</string>
     <string name="signup_error_title">Error</string>
     <string name="signup_error_message">Please make sure you enter a username, password, email address, and first and last name.</string>
+    <string name="menu_logout_label">Logout</string>
+    <string name="menu_create_group_label">Create Group</string>
+    <string name="menu_profile_label">Profile</string>
 
 </resources>
