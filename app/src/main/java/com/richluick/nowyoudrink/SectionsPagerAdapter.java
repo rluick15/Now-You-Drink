@@ -1,8 +1,9 @@
 package com.richluick.nowyoudrink;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.support.v13.app.FragmentPagerAdapter;
+import android.content.Context;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.Locale;
 
@@ -12,37 +13,52 @@ import java.util.Locale;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    private MainActivity mainActivity;
+    protected Context mContext;
 
-    public SectionsPagerAdapter(MainActivity mainActivity, FragmentManager fm) {
+    public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
-        this.mainActivity = mainActivity;
+        mContext = context;
     }
 
     @Override
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return MainActivity.PlaceholderFragment.newInstance(position + 1);
+
+//        switch (position) {
+//            case 0:
+                return new GroupsFragment();
+//            case 1:
+//                return new FriendsFragment();
+//        }
+
+        //return null;
     }
 
     @Override
-    public int getCount() {
-        // Show 3 total pages.
-        return 3;
-    }
+    public int getCount() { return 3; }
 
     @Override
     public CharSequence getPageTitle(int position) {
         Locale l = Locale.getDefault();
         switch (position) {
             case 0:
-                return mainActivity.getString(R.string.title_section1).toUpperCase(l);
+                return mContext.getString(R.string.title_groups).toUpperCase(l);
             case 1:
-                return mainActivity.getString(R.string.title_section2).toUpperCase(l);
+                return mContext.getString(R.string.title_inbox).toUpperCase(l);
             case 2:
-                return mainActivity.getString(R.string.title_section3).toUpperCase(l);
+                return mContext.getString(R.string.title_friends).toUpperCase(l);
         }
         return null;
     }
+
+//    public int getIcon(int position) {
+//        switch (position) {
+//            case 0:
+//                return R.drawable.ic_tab_inbox;
+//            case 1:
+//                return R.drawable.ic_tab_friends;
+//        }
+//        return R.drawable.ic_tab_inbox;
+//    }
 }

@@ -1,30 +1,18 @@
 package com.richluick.nowyoudrink;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-//aSAasaASasdsad
-public class MainActivity extends Activity implements ActionBar.TabListener {
+public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v13.app.FragmentStatePagerAdapter}.
-     */
+    public static final String TAG = MainActivity.class.getSimpleName();
+
     SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     ViewPager mViewPager;
 
     @Override
@@ -38,7 +26,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(this, getFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
