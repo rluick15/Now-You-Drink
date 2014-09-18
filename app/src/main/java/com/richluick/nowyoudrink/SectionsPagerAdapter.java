@@ -25,14 +25,16 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
 
-//        switch (position) {
-//            case 0:
+        switch (position) {
+            case 0:
                 return new GroupsFragment();
-//            case 1:
-//                return new FriendsFragment();
-//        }
+            case 1:
+                return new InboxFragment();
+            case 2:
+                return new FriendsFragment();
+        }
 
-        //return null;
+        return null;
     }
 
     @Override
