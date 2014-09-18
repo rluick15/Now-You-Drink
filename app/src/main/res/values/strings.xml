@@ -13,5 +13,18 @@
     <string name="login_button_label">SIGN IN</string>
     <string name="password_hint">Password</string>
     <string name="username_hint">Username</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="email_hint">Email</string>
+    <string name="first_name_hint">First Name</string>
+    <string name="last_name_hint">Last Name</string>
+    <string name="hometown_hint">Hometown(Optional)</string>
+    <string name="website_hint">Website(Optional)</string>
+    <string name="sign_up_button_label">SIGN UP</string>
+    <string name="cancel_button_label">CANCEL</string>
+    <string name="content_desc_button_divider">Button Divider</string>
+    <string name="login_error_title">Error</string>
+    <string name="login_error_message">Please make sure you enter a username and password.</string>
+    <string name="signup_error_title">Error</string>
+    <string name="signup_error_message">Please make sure you enter a username, password, email address, and first and last name.</string>
 
 </resources>
