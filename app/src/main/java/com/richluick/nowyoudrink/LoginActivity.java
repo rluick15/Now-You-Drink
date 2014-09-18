@@ -50,14 +50,14 @@ public class LoginActivity extends Activity {
         });
 
         //Navigate to Forgot Password when link is clicked
-//        mForgotPasswordTextView = (TextView) findViewById(R.id.forgotPasswordText);
-//        mForgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        mForgotPasswordTextView = (TextView) findViewById(R.id.forgotPasswordText);
+        mForgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mUsername = (EditText) findViewById(R.id.usernameField);
         mPassword = (EditText) findViewById(R.id.passwordField);

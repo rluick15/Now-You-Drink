@@ -29,5 +29,11 @@
     <string name="menu_logout_label">Logout</string>
     <string name="menu_create_group_label">Create Group</string>
     <string name="menu_profile_label">Profile</string>
+    <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
+    <string name="reset_password_button_label">RESET PASSWORD</string>
+    <string name="forgot_password_error_message">Please make sure you enter a valid email.</string>
+    <string name="forgot_password_success_title">Success!</string>
+    <string name="forgot_password_success_message">An email was successfully sent to the address entered. Please follow the instructions in the email to reset your password.</string>
+    <string name="menu_edit_friends">Edit Friends</string>
 
 </resources>

@@ -90,6 +90,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             ParseUser.logOut();
             navigateToLogin();
         }
+
         return super.onOptionsItemSelected(item);
     }
 
