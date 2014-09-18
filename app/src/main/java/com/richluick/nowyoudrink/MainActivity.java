@@ -90,6 +90,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             ParseUser.logOut();
             navigateToLogin();
         }
+        else if (id == R.id.action_profile) {
+            Intent intent = new Intent(this, PersonalProfileActivity.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }

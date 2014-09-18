@@ -43,6 +43,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.LoginActivity" />
         </activity>
+        <activity
+            android:name=".PersonalProfileActivity"
+            android:label="@string/title_activity_personal_profile"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.richluick.nowyoudrink.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

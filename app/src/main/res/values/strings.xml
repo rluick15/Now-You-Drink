@@ -35,5 +35,6 @@
     <string name="forgot_password_success_title">Success!</string>
     <string name="forgot_password_success_message">An email was successfully sent to the address entered. Please follow the instructions in the email to reset your password.</string>
     <string name="menu_edit_friends">Edit Friends</string>
+    <string name="title_activity_personal_profile">PersonalProfileActivity</string>
 
 </resources>
