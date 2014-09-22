@@ -49,6 +49,7 @@ public class EditFriendsActivity extends ListActivity {
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.orderByAscending(ParseConstants.KEY_USERNAME);
+        query.whereNotEqualTo(ParseConstants.KEY_USERNAME, mCurrentUser.getUsername());
         query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
