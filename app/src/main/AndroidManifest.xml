@@ -38,15 +38,26 @@
         <activity
             android:name=".ForgotPasswordActivity"
             android:label="@string/title_activity_forgot_password"
-            android:parentActivityName=".LoginActivity" >
+            android:parentActivityName=".LoginActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.LoginActivity" />
         </activity>
         <activity
             android:name=".PersonalProfileActivity"
-            android:label="@string/title_activity_personal_profile"
-            android:parentActivityName=".MainActivity" >
+            android:label="@string/title_user_profile"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.richluick.nowyoudrink.MainActivity" />
+        </activity>
+        <activity
+            android:name=".EditFriendsActivity"
+            android:label="@string/title_edit_friends"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />
