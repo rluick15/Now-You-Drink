@@ -43,5 +43,9 @@
     <string name="title_user_profile">Profile</string>
     <string name="title_activity_edit_friends">EditFriendsActivity</string>
     <string name="title_edit_friends">Add Friends</string>
+    <string name="error_title">Error</string>
+    <string name="content_desc_message_icon">Message Icon</string>
+    <string name="title_activity_my">MyActivity</string>
+    <string name="menu_send_label">Send</string>
 
 </resources>
