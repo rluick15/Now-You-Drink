@@ -68,6 +68,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         }
     }
 
+
+
     private void navigateToLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
