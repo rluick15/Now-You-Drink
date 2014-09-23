@@ -10,9 +10,11 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
@@ -30,7 +32,9 @@ public class EditFriendsActivity extends ListActivity {
     protected ArrayList<ParseUser> mPendingFriends;
     protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseRelation<ParseUser> mPendingRelation;
+    protected ParseRelation<ParseUser> mPendingRecieverRelation;
     protected ParseUser mCurrentUser;
+    protected ParseUser mRecievingUser;
     protected MenuItem mSendMenuItem;
 
     @Override
@@ -55,6 +59,7 @@ public class EditFriendsActivity extends ListActivity {
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.orderByAscending(ParseConstants.KEY_USERNAME);
         query.whereNotEqualTo(ParseConstants.KEY_USERNAME, mCurrentUser.getUsername());
+        //query.whereNotEqualTo(ParseConstants.KEY_PENDING_RELATION, mCurrentUser.get(ParseConstants.KEY_PENDING_RELATION));
         query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
@@ -105,25 +110,41 @@ public class EditFriendsActivity extends ListActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_send) {
-            //Cycles through list of selected friends and adds as "Pending"
-            for (int i = 0; i < mPendingFriends.size(); i++) { //Cycles through list
-                mPendingRelation.add(mPendingFriends.get(i));
-            }
-
-            mCurrentUser.saveInBackground(new SaveCallback() {
-                @Override
-                public void done(ParseException e) {
-                    if (e != null) {
-                        Log.e(TAG, e.getMessage());
-                    }
-                }
-            });
-            
-//            ParseObject message = createMessage();
-//            send(message);
-            return true;
+            return sendFriendRequest();
         }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean sendFriendRequest() {
+        //Cycles through list of selected friends and adds as "Pending"
+        for (int i = 0; i < mPendingFriends.size(); i++) { //Cycles through list
+            mPendingRelation.add(mPendingFriends.get(i));
+        }
+
+        mCurrentUser.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, e.getMessage());
+                }
+            }
+        });
+
+        ParseObject message = createMessage();
+        if(message == null) { //error
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(getString(R.string.error_title))
+                    .setTitle(getString(R.string.error_friend_request))
+                    .setPositiveButton(android.R.string.ok, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        else { //sends the message and closes the activity
+            send(message);
+            finish();
+        }
+        return true;
     }
 
     @Override
@@ -136,7 +157,37 @@ public class EditFriendsActivity extends ListActivity {
 
         if(l.getCheckedItemCount() > 0) mSendMenuItem.setVisible(true);
         else mSendMenuItem.setVisible(false);
-
-
     }
+
+    protected ParseObject createMessage() {
+        ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGES);
+        message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
+        message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
+        message.put(ParseConstants.KEY_RECIPIENT_IDS, mPendingFriends);
+        message.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_FRIEND_REQUEST);
+
+        return message;
+    }
+
+    protected void send(ParseObject message) {
+        message.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null) {
+                    //success
+                    Toast.makeText(EditFriendsActivity.this, getString(R.string.success_message_friend_request), Toast.LENGTH_LONG).show();
+                    //sendPushNotifications();
+                }
+                else { //error sending message
+                    AlertDialog.Builder builder = new AlertDialog.Builder(EditFriendsActivity.this);
+                    builder.setMessage(getString(R.string.error_sending_friend_request))
+                            .setTitle(getString(R.string.error_selecting_file_title))
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            }
+        });
+    }
+
 }

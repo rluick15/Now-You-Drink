@@ -47,5 +47,9 @@
     <string name="content_desc_message_icon">Message Icon</string>
     <string name="title_activity_my">MyActivity</string>
     <string name="menu_send_label">Send</string>
+    <string name="error_friend_request">There was an error. Please Try Again.</string>
+    <string name="success_message_friend_request">Friend Request(s) Sent!</string>
+    <string name="error_sending_friend_request">There was an error sending you\'re friend request. Please try again.</string>
+    <string name="error_selecting_file_title">Sorry!</string>
 
 </resources>
