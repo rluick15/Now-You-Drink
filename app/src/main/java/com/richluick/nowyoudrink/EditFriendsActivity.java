@@ -16,7 +16,9 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,7 +27,7 @@ public class EditFriendsActivity extends ListActivity {
     public static final String TAG = EditFriendsActivity.class.getSimpleName();
 
     protected List<ParseUser> mUsers;
-    public List<ParseUser> mPendingFriends;
+    protected ArrayList<ParseUser> mPendingFriends;
     protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseRelation<ParseUser> mPendingRelation;
     protected ParseUser mCurrentUser;
@@ -45,6 +47,7 @@ public class EditFriendsActivity extends ListActivity {
         super.onResume();
 
         mCurrentUser = ParseUser.getCurrentUser();
+        mPendingFriends = new ArrayList<ParseUser>();
         mPendingRelation = mCurrentUser.getRelation(ParseConstants.KEY_PENDING_RELATION);
 
         setProgressBarIndeterminateVisibility(true);
@@ -106,6 +109,16 @@ public class EditFriendsActivity extends ListActivity {
             for (int i = 0; i < mPendingFriends.size(); i++) { //Cycles through list
                 mPendingRelation.add(mPendingFriends.get(i));
             }
+
+            mCurrentUser.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e != null) {
+                        Log.e(TAG, e.getMessage());
+                    }
+                }
+            });
+            
 //            ParseObject message = createMessage();
 //            send(message);
             return true;
@@ -117,19 +130,13 @@ public class EditFriendsActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        if(l.getCheckedItemCount() > 0) {
-            mSendMenuItem.setVisible(true);
-        }
-        else {
-            mSendMenuItem.setVisible(false);
-        }
-
         //adds the selected user to list of selected users in the list
-        if (l.isItemChecked(position)) {
-            mPendingFriends.add(mUsers.get(position));
-        }
-        else { //remove the user from the list
-            mPendingFriends.remove(mUsers.get(position));
-        }
+        if (l.isItemChecked(position)) mPendingFriends.add(mUsers.get(position));
+        else mPendingFriends.remove(mUsers.get(position)); //remove the user from the list
+
+        if(l.getCheckedItemCount() > 0) mSendMenuItem.setVisible(true);
+        else mSendMenuItem.setVisible(false);
+
+
     }
 }
