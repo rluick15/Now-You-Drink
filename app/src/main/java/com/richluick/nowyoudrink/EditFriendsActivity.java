@@ -25,7 +25,9 @@ public class EditFriendsActivity extends ListActivity {
     public static final String TAG = EditFriendsActivity.class.getSimpleName();
 
     protected List<ParseUser> mUsers;
+    public List<ParseUser> mPendingFriends;
     protected ParseRelation<ParseUser> mFriendsRelation;
+    protected ParseRelation<ParseUser> mPendingRelation;
     protected ParseUser mCurrentUser;
     protected MenuItem mSendMenuItem;
 
@@ -43,7 +45,7 @@ public class EditFriendsActivity extends ListActivity {
         super.onResume();
 
         mCurrentUser = ParseUser.getCurrentUser();
-        mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
+        mPendingRelation = mCurrentUser.getRelation(ParseConstants.KEY_PENDING_RELATION);
 
         setProgressBarIndeterminateVisibility(true);
 
@@ -65,7 +67,7 @@ public class EditFriendsActivity extends ListActivity {
                         i++;
                     }
 
-                    //Setup Grid View Adapter
+                    //Setup List View Adapter
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                             EditFriendsActivity.this,
                             android.R.layout.simple_list_item_checked,
@@ -100,6 +102,12 @@ public class EditFriendsActivity extends ListActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_send) {
+            //Cycles through list of selected friends and adds as "Pending"
+            for (int i = 0; i < mPendingFriends.size(); i++) { //Cycles through list
+                mPendingRelation.add(mPendingFriends.get(i));
+            }
+//            ParseObject message = createMessage();
+//            send(message);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -114,6 +122,14 @@ public class EditFriendsActivity extends ListActivity {
         }
         else {
             mSendMenuItem.setVisible(false);
+        }
+
+        //adds the selected user to list of selected users in the list
+        if (l.isItemChecked(position)) {
+            mPendingFriends.add(mUsers.get(position));
+        }
+        else { //remove the user from the list
+            mPendingFriends.remove(mUsers.get(position));
         }
     }
 }
