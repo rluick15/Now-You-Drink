@@ -32,9 +32,7 @@ public class EditFriendsActivity extends ListActivity {
     protected ArrayList<ParseUser> mPendingFriends;
     protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseRelation<ParseUser> mPendingRelation;
-    protected ParseRelation<ParseUser> mPendingRecieverRelation;
     protected ParseUser mCurrentUser;
-    protected ParseUser mRecievingUser;
     protected MenuItem mSendMenuItem;
 
     @Override
@@ -59,7 +57,7 @@ public class EditFriendsActivity extends ListActivity {
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.orderByAscending(ParseConstants.KEY_USERNAME);
         query.whereNotEqualTo(ParseConstants.KEY_USERNAME, mCurrentUser.getUsername());
-        //query.whereNotEqualTo(ParseConstants.KEY_PENDING_RELATION, mCurrentUser.get(ParseConstants.KEY_PENDING_RELATION));
+        //query.whereNotEqualTo(ParseConstants.KEY_PENDING_RELATION, mCurrentUser);
         query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
@@ -159,9 +157,11 @@ public class EditFriendsActivity extends ListActivity {
         else mSendMenuItem.setVisible(false);
     }
 
+    //Friend Request Message is create with relevant information
     protected ParseObject createMessage() {
         ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGES);
         message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
+        message.put(ParseConstants.KEY_SENDER, ParseUser.getCurrentUser());
         message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
         message.put(ParseConstants.KEY_RECIPIENT_IDS, mPendingFriends);
         message.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_FRIEND_REQUEST);
@@ -169,6 +169,7 @@ public class EditFriendsActivity extends ListActivity {
         return message;
     }
 
+    //message is sent to recipients
     protected void send(ParseObject message) {
         message.saveInBackground(new SaveCallback() {
             @Override

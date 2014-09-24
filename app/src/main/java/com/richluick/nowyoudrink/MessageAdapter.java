@@ -37,7 +37,7 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.message_item, null);
             holder = new ViewHolder();
             holder.iconImageView = (ImageView) convertView.findViewById(R.id.messageIcon);
-            holder.nameLabel = (TextView) convertView.findViewById(R.id.senderLabel);
+            holder.textLabel = (TextView) convertView.findViewById(R.id.senderLabel);
             holder.timeLabel = (TextView) convertView.findViewById(R.id.timeLabel);
             convertView.setTag(holder);
         }
@@ -49,14 +49,15 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
 
         if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST)) {
             //holder.iconImageView.setImageResource(R.drawable.ic_picture);
+            holder.textLabel.setText("You have a friend request!");
         }
         else {
             //holder.iconImageView.setImageResource(R.drawable.ic_video);
+            holder.textLabel.setText("Now You Drink!");
         }
 
         String convertedDate = formatDate(message);
 
-        holder.nameLabel.setText(message.getString(ParseConstants.KEY_SENDER_NAME));
         holder.timeLabel.setText(convertedDate);
 
         return convertView;
@@ -74,7 +75,7 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
 
     private static class ViewHolder {
         ImageView iconImageView;
-        TextView nameLabel;
+        TextView textLabel;
         TextView timeLabel;
     }
 

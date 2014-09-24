@@ -6,6 +6,7 @@ package com.richluick.nowyoudrink;
 public final class ParseConstants {
     //Class name
     public static final String CLASS_MESSAGES = "Messages";
+    public static final String CLASS_GROUPS = "Groups";
 
     //Field names
     public static final String KEY_USER_ID = "userId";
@@ -19,6 +20,7 @@ public final class ParseConstants {
     public static final String KEY_ID = "id";
     public static final String KEY_RECIPIENT_IDS = "recipientIds";
     public static final String KEY_SENDER_ID = "senderId";
+    public static final String KEY_SENDER = "sender";
     public static final String KEY_SENDER_NAME = "senderName";
     public static final String KEY_MESSAGE = "message";
     public static final String KEY_MESSAGE_TYPE = "messageType";

@@ -51,5 +51,9 @@
     <string name="success_message_friend_request">Friend Request(s) Sent!</string>
     <string name="error_sending_friend_request">There was an error sending you\'re friend request. Please try again.</string>
     <string name="error_selecting_file_title">Sorry!</string>
+    <string name="title_activity_view_friend_request">ViewFriendRequestActivity</string>
+    <string name="title_friend_request">Friend Request</string>
+    <string name="accept_button_label">Accept</string>
+    <string name="reject_button_label">Reject</string>
 
 </resources>
