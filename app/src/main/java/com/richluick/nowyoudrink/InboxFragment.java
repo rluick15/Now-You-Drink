@@ -120,18 +120,24 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
 
         ParseObject message = mMessages.get(position);
         String messageType = message.getString(ParseConstants.KEY_MESSAGE_TYPE);
-
-
+        String senderId = message.get(ParseConstants.KEY_SENDER_ID).toString();
 
         if(messageType.equals(ParseConstants.TYPE_FRIEND_REQUEST)) { //view the friend request
             Intent intent = new Intent(getActivity(), ViewFriendRequestActivity.class);
-            intent.putExtra(ParseConstants.KEY_SENDER_ID, message.get(ParseConstants.KEY_SENDER_ID).toString());
+            intent.putExtra(ParseConstants.KEY_SENDER_ID, senderId);
             startActivity(intent);
         }
-//        else { //view the drink request
+        else if (messageType.equals(ParseConstants.TYPE_FRIEND_REQUEST_CONFIRM)) {
+            Intent intent = new Intent(getActivity(), FriendsProfileActivity.class);
+            intent.putExtra(ParseConstants.KEY_SENDER_ID, senderId);
+            startActivity(intent);
+        }
+        else { //view the drink request
 //            Intent intent = new Intent(Intent.ACTION_VIEW, fileUri);
 //            intent.setDataAndType(fileUri, "video/*");
 //            startActivity(intent);
-//        }
+        }
+
+        message.deleteInBackground();
     }
 }

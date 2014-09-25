@@ -71,6 +71,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />
         </activity>
+        <activity
+            android:name=".FriendsProfileActivity"
+            android:label="Friends Profile"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.richluick.nowyoudrink.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
