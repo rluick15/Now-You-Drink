@@ -51,6 +51,9 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
             //holder.iconImageView.setImageResource(R.drawable.ic_picture);
             holder.textLabel.setText("You have a friend request!");
         }
+        else if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST_CONFIRM)) {
+            holder.textLabel.setText(message.get(ParseConstants.KEY_SENDER_NAME) + " has accepted your friend request!");
+        }
         else {
             //holder.iconImageView.setImageResource(R.drawable.ic_video);
             holder.textLabel.setText("Now You Drink!");

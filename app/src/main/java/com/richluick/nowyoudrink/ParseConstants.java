@@ -19,6 +19,7 @@ public final class ParseConstants {
     public static final String KEY_WEBSITE = "website";
     public static final String KEY_ID = "id";
     public static final String KEY_RECIPIENT_IDS = "recipientIds";
+    public static final String KEY_RECIPIENT_ID = "recipientId";
     public static final String KEY_SENDER_ID = "senderId";
     public static final String KEY_SENDER = "sender";
     public static final String KEY_SENDER_NAME = "senderName";
@@ -29,5 +30,6 @@ public final class ParseConstants {
 
     //Misc
     public static final String TYPE_FRIEND_REQUEST = "friendRequest";
+    public static final String TYPE_FRIEND_REQUEST_CONFIRM = "friendRequestConfirm";
     public static final String TYPE_DRINK_REQUEST = "drinkRequest";
 }

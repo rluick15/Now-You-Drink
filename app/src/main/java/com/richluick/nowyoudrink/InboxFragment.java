@@ -29,6 +29,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
     protected List<ParseObject> mMessages;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     protected ParseRelation<ParseUser> mPendingRelation;
+    protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseUser mCurrentUser;
 
     @Override
@@ -45,6 +46,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
 
         mCurrentUser = ParseUser.getCurrentUser();
         mPendingRelation = mCurrentUser.getRelation(ParseConstants.KEY_PENDING_RELATION);
+        mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
 
         retrieveMessages();
     }
@@ -65,19 +67,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                     int i = 0;
                     for (ParseObject message : mMessages) {
                         usernames[i] = message.getString(ParseConstants.KEY_SENDER_NAME);
-
-                        //Add as pending user
-                        ParseUser user = (ParseUser) message.get(ParseConstants.KEY_SENDER);
-                        mPendingRelation.add(user);
-                        mCurrentUser.saveInBackground(new SaveCallback() {
-                            @Override
-                            public void done(ParseException e) {
-                                if (e != null) {
-                                    Log.e(TAG, e.getMessage());
-                                }
-                            }
-                        });
-
+                        addRelation(message);
                         i++;
                     }
 
@@ -92,6 +82,36 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                 }
             }
         });
+    }
+
+    private void addRelation(ParseObject message) {
+        //Add as pending user
+        if (message.get(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST)) {
+            ParseUser user = (ParseUser) message.get(ParseConstants.KEY_SENDER);
+            mPendingRelation.add(user);
+            mCurrentUser.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e != null) {
+                        Log.e(TAG, e.getMessage());
+                    }
+                }
+            });
+        }
+        //add as friend
+        else if (message.get(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST_CONFIRM)) {
+            ParseUser user = (ParseUser) message.get(ParseConstants.KEY_SENDER);
+            mFriendsRelation.add(user);
+            mPendingRelation.remove(user);
+            mCurrentUser.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e != null) {
+                        Log.e(TAG, e.getMessage());
+                    }
+                }
+            });
+        }
     }
 
     @Override

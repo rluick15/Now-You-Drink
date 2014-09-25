@@ -8,13 +8,17 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
+import java.util.ArrayList;
 
 
 public class ViewFriendRequestActivity extends Activity {
@@ -29,8 +33,6 @@ public class ViewFriendRequestActivity extends Activity {
     protected String mUsername;
     protected ParseRelation<ParseUser> mPendingRelation;
     protected ParseRelation<ParseUser> mFriendsRelation;
-    protected ParseRelation<ParseUser> mPendingSenderRelation;
-    protected ParseRelation<ParseUser> mFriendsSenderRelation;
     protected ParseUser mCurrentUser;
 
     @Override
@@ -40,6 +42,9 @@ public class ViewFriendRequestActivity extends Activity {
         setContentView(R.layout.activity_view_friend_request);
 
         mCurrentUser = ParseUser.getCurrentUser();
+        //Define Relations
+        mPendingRelation = mCurrentUser.getRelation(ParseConstants.KEY_PENDING_RELATION);
+        mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
 
         mRequestText = (TextView) findViewById(R.id.text);
         mAcceptButton = (Button) findViewById(R.id.acceptButton);
@@ -69,19 +74,26 @@ public class ViewFriendRequestActivity extends Activity {
             }
         });
 
-        //Define Relations
-        mPendingRelation = mCurrentUser.getRelation(ParseConstants.KEY_PENDING_RELATION);
-        mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
-//        mPendingSenderRelation = mSender.getRelation(ParseConstants.KEY_PENDING_RELATION);
-//        mFriendsSenderRelation = mSender.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
-
 
         //User Clicks on the accept button
         mAcceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addFriend();
-                finish();
+
+                ParseObject message = createMessage();
+                if(message == null) { //error
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ViewFriendRequestActivity.this);
+                    builder.setMessage(getString(R.string.error_title))
+                            .setTitle(getString(R.string.error_friend_request))
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else { //sends the message and closes the activity
+                    send(message);
+                    finish();
+                }
             }
         });
 
@@ -111,8 +123,6 @@ public class ViewFriendRequestActivity extends Activity {
     private void addFriend() {
         mFriendsRelation.add(mSender); //add to friends list
         mPendingRelation.remove(mSender); //remove from Pending
-//        mFriendsSenderRelation.add(mCurrentUser);
-//        mPendingSenderRelation.remove(mCurrentUser);
 
         mCurrentUser.saveInBackground(new SaveCallback() {
             @Override
@@ -122,14 +132,41 @@ public class ViewFriendRequestActivity extends Activity {
                 }
             }
         });
+    }
 
-//        mSender.saveInBackground(new SaveCallback() {
-//            @Override
-//            public void done(ParseException e) {
-//                if (e != null) {
-//                    Log.e(TAG, e.getMessage());
-//                }
-//            }
-//        });
+    protected ParseObject createMessage() {
+        ArrayList<ParseUser> acceptedFriend = new ArrayList<ParseUser>();
+        acceptedFriend.add(mSender);
+
+        ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGES);
+        message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
+        message.put(ParseConstants.KEY_SENDER, ParseUser.getCurrentUser());
+        message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
+        message.put(ParseConstants.KEY_RECIPIENT_ID, mSender);
+        message.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_FRIEND_REQUEST_CONFIRM);
+
+        return message;
+    }
+
+    //message is sent to recipients
+    protected void send(ParseObject message) {
+        message.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null) {
+                    //success
+                    Toast.makeText(ViewFriendRequestActivity.this, getString(R.string.success_message_accept_request), Toast.LENGTH_LONG).show();
+                    //sendPushNotifications();
+                }
+                else { //error sending message
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ViewFriendRequestActivity.this);
+                    builder.setMessage(e.getMessage())
+                            .setTitle(getString(R.string.error_selecting_file_title))
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            }
+        });
     }
 }
