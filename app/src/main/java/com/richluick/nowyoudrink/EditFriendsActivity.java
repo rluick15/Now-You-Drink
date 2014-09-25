@@ -30,7 +30,6 @@ public class EditFriendsActivity extends ListActivity {
 
     protected List<ParseUser> mUsers;
     protected ArrayList<ParseUser> mPendingFriends;
-    protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseRelation<ParseUser> mPendingRelation;
     protected ParseUser mCurrentUser;
     protected MenuItem mSendMenuItem;

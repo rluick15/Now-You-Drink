@@ -102,7 +102,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
 
         if(messageType.equals(ParseConstants.TYPE_FRIEND_REQUEST)) { //view the friend request
             Intent intent = new Intent(getActivity(), ViewFriendRequestActivity.class);
-            intent.putExtra(ParseConstants.KEY_SENDER_ID, message.getObjectId());
+            intent.putExtra(ParseConstants.KEY_SENDER_ID, message.get(ParseConstants.KEY_SENDER_ID).toString());
             startActivity(intent);
         }
 //        else { //view the drink request

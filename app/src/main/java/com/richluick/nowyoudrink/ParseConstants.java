@@ -23,6 +23,7 @@ public final class ParseConstants {
     public static final String KEY_SENDER = "sender";
     public static final String KEY_SENDER_NAME = "senderName";
     public static final String KEY_MESSAGE = "message";
+    public static final String KEY_MESSAGE_ID = "messageId";
     public static final String KEY_MESSAGE_TYPE = "messageType";
     public static final String KEY_CREATED_AT = "createdAt";
 
