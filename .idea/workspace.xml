@@ -68,11 +68,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="InboxFragment.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="InboxFragment.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/InboxFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="1649">
-              <caret line="98" column="17" selection-start-line="98" selection-start-column="17" selection-end-line="98" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.7029126" vertical-offset="760" max-vertical-offset="1700">
+              <caret line="88" column="18" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -81,31 +81,32 @@
       <file leaf-file-name="EditFriendsActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/EditFriendsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1696" max-vertical-offset="2924">
-              <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1938" max-vertical-offset="2873">
+              <caret line="165" column="33" selection-start-line="165" selection-start-column="33" selection-end-line="165" selection-end-column="33" />
               <folding>
-                <element signature="e#4407#4621#0" expanded="true" />
-                <element signature="e#4610#4611#0" expanded="true" />
+                <element signature="e#4877#4917#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewFriendRequestActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ViewFriendRequestActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ViewFriendRequestActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2737864" vertical-offset="1117" max-vertical-offset="1785">
-              <caret line="88" column="44" selection-start-line="88" selection-start-column="44" selection-end-line="88" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1423" max-vertical-offset="2142">
+              <caret line="127" column="29" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
               <folding>
-                <element signature="e#1851#2735#0" expanded="true" />
-                <element signature="e#2447#2467#0" expanded="true" />
-                <element signature="e#2724#2725#0" expanded="true" />
-                <element signature="e#3214#4255#0" expanded="true" />
-                <element signature="e#3617#3887#0" expanded="true" />
-                <element signature="e#3868#3869#0" expanded="true" />
-                <element signature="e#3932#4202#0" expanded="true" />
-                <element signature="e#4183#4184#0" expanded="true" />
-                <element signature="e#4244#4245#0" expanded="true" />
+                <element signature="e#1818#2700#0" expanded="true" />
+                <element signature="e#2412#2432#0" expanded="true" />
+                <element signature="e#2689#2690#0" expanded="true" />
+                <element signature="e#3183#3357#0" expanded="true" />
+                <element signature="e#3346#3347#0" expanded="true" />
+                <element signature="e#3402#3580#0" expanded="true" />
+                <element signature="e#3569#3570#0" expanded="true" />
+                <element signature="e#3729#3943#0" expanded="true" />
+                <element signature="e#3932#3933#0" expanded="true" />
+                <element signature="e#4255#4469#0" expanded="true" />
+                <element signature="e#4458#4459#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1236,9 +1237,9 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_view_friend_request.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ParseConstants.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/InboxFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/EditFriendsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ViewFriendRequestActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/InboxFragment.java" />
       </list>
     </option>
   </component>
@@ -1325,92 +1326,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Now You Drink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NowYouDrink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Now You Drink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NowYouDrink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Now You Drink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NowYouDrink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1714,7 +1629,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15372169" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -2202,40 +2117,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ViewFriendRequestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1423" max-vertical-offset="2142">
+          <caret line="127" column="29" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
+          <folding>
+            <element signature="e#1818#2700#0" expanded="true" />
+            <element signature="e#2412#2432#0" expanded="true" />
+            <element signature="e#2689#2690#0" expanded="true" />
+            <element signature="e#3183#3357#0" expanded="true" />
+            <element signature="e#3346#3347#0" expanded="true" />
+            <element signature="e#3402#3580#0" expanded="true" />
+            <element signature="e#3569#3570#0" expanded="true" />
+            <element signature="e#3729#3943#0" expanded="true" />
+            <element signature="e#3932#3933#0" expanded="true" />
+            <element signature="e#4255#4469#0" expanded="true" />
+            <element signature="e#4458#4459#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/EditFriendsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1696" max-vertical-offset="2924">
-          <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1938" max-vertical-offset="2873">
+          <caret line="165" column="33" selection-start-line="165" selection-start-column="33" selection-end-line="165" selection-end-column="33" />
           <folding>
-            <element signature="e#4407#4621#0" expanded="true" />
-            <element signature="e#4610#4611#0" expanded="true" />
+            <element signature="e#4877#4917#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/InboxFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="1649">
-          <caret line="98" column="17" selection-start-line="98" selection-start-column="17" selection-end-line="98" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.7029126" vertical-offset="760" max-vertical-offset="1700">
+          <caret line="88" column="18" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ViewFriendRequestActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2737864" vertical-offset="1117" max-vertical-offset="1785">
-          <caret line="88" column="44" selection-start-line="88" selection-start-column="44" selection-end-line="88" selection-end-column="44" />
-          <folding>
-            <element signature="e#1851#2735#0" expanded="true" />
-            <element signature="e#2447#2467#0" expanded="true" />
-            <element signature="e#2724#2725#0" expanded="true" />
-            <element signature="e#3214#4255#0" expanded="true" />
-            <element signature="e#3617#3887#0" expanded="true" />
-            <element signature="e#3868#3869#0" expanded="true" />
-            <element signature="e#3932#4202#0" expanded="true" />
-            <element signature="e#4183#4184#0" expanded="true" />
-            <element signature="e#4244#4245#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

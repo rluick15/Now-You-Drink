@@ -65,6 +65,19 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                     int i = 0;
                     for (ParseObject message : mMessages) {
                         usernames[i] = message.getString(ParseConstants.KEY_SENDER_NAME);
+
+                        //Add as pending user
+                        ParseUser user = (ParseUser) message.get(ParseConstants.KEY_SENDER);
+                        mPendingRelation.add(user);
+                        mCurrentUser.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e != null) {
+                                    Log.e(TAG, e.getMessage());
+                                }
+                            }
+                        });
+
                         i++;
                     }
 
@@ -88,17 +101,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
         ParseObject message = mMessages.get(position);
         String messageType = message.getString(ParseConstants.KEY_MESSAGE_TYPE);
 
-        //Add as pending user
-        ParseUser user = (ParseUser) message.get(ParseConstants.KEY_SENDER);
-        mPendingRelation.add(user);
-        mCurrentUser.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, e.getMessage());
-                }
-            }
-        });
+
 
         if(messageType.equals(ParseConstants.TYPE_FRIEND_REQUEST)) { //view the friend request
             Intent intent = new Intent(getActivity(), ViewFriendRequestActivity.class);

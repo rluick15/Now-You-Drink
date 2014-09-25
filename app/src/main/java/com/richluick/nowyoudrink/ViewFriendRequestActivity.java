@@ -25,7 +25,6 @@ public class ViewFriendRequestActivity extends Activity {
     protected Button mAcceptButton;
     protected Button mRejectButton;
     protected String mSenderId;
-    protected String mMessageId;
     protected ParseUser mSender;
     protected String mUsername;
     protected ParseRelation<ParseUser> mPendingRelation;
@@ -57,8 +56,6 @@ public class ViewFriendRequestActivity extends Activity {
                     mUsername = parseUser.getUsername();
                     mRequestText.setText(mUsername + " has sent you a friend request!");
                     mSender = parseUser;
-
-
                 }
                 else { //error
                     Log.e(TAG, e.getMessage());
@@ -75,40 +72,64 @@ public class ViewFriendRequestActivity extends Activity {
         //Define Relations
         mPendingRelation = mCurrentUser.getRelation(ParseConstants.KEY_PENDING_RELATION);
         mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
-        mPendingSenderRelation = mSender.getRelation(ParseConstants.KEY_PENDING_RELATION);
-        mFriendsSenderRelation = mSender.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
+//        mPendingSenderRelation = mSender.getRelation(ParseConstants.KEY_PENDING_RELATION);
+//        mFriendsSenderRelation = mSender.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
 
 
         //User Clicks on the accept button
         mAcceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mFriendsRelation.add(mSender); //add to friends list
-                mPendingRelation.remove(mSender); //remove from Pending
-                mFriendsSenderRelation.add(mCurrentUser);
-                mPendingSenderRelation.remove(mCurrentUser);
-
-                mCurrentUser.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (e != null) {
-                            Log.e(TAG, e.getMessage());
-                        }
-                    }
-                });
-
-                mSender.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (e != null) {
-                            Log.e(TAG, e.getMessage());
-                        }
-                    }
-                });
-
+                addFriend();
                 finish();
             }
         });
 
+        mRejectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rejectRequest();
+                finish();
+            }
+        });
+
+    }
+
+    private void rejectRequest() {
+        mPendingRelation.remove(mSender); //remove from Pending
+
+        mCurrentUser.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void addFriend() {
+        mFriendsRelation.add(mSender); //add to friends list
+        mPendingRelation.remove(mSender); //remove from Pending
+//        mFriendsSenderRelation.add(mCurrentUser);
+//        mPendingSenderRelation.remove(mCurrentUser);
+
+        mCurrentUser.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, e.getMessage());
+                }
+            }
+        });
+
+//        mSender.saveInBackground(new SaveCallback() {
+//            @Override
+//            public void done(ParseException e) {
+//                if (e != null) {
+//                    Log.e(TAG, e.getMessage());
+//                }
+//            }
+//        });
     }
 }
