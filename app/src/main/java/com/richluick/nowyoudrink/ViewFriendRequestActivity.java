@@ -82,6 +82,8 @@ public class ViewFriendRequestActivity extends Activity {
                 addFriend();
 
                 ParseObject message = createMessage();
+                //message.put(ParseConstants.REQUEST_CONFIRMED, "confirmed");
+
                 if(message == null) { //error
                     AlertDialog.Builder builder = new AlertDialog.Builder(ViewFriendRequestActivity.this);
                     builder.setMessage(getString(R.string.error_title))
@@ -101,6 +103,7 @@ public class ViewFriendRequestActivity extends Activity {
             @Override
             public void onClick(View view) {
                 rejectRequest();
+                //message.put(ParseConstants.REQUEST_DENIED, "denied");
                 finish();
             }
         });

@@ -29,6 +29,8 @@ public final class ParseConstants {
     public static final String KEY_CREATED_AT = "createdAt";
 
     //Misc
+    public static final String REQUEST_CONFIRMED = "confirmed";
+    public static final String REQUEST_DENIED = "denied";
     public static final String TYPE_FRIEND_REQUEST = "friendRequest";
     public static final String TYPE_FRIEND_REQUEST_CONFIRM = "friendRequestConfirm";
     public static final String TYPE_DRINK_REQUEST = "drinkRequest";
