@@ -5,11 +5,13 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.util.Linkify;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.parse.GetCallback;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.squareup.picasso.Picasso;
 
 
 public class FriendsProfileActivity extends Activity {
@@ -29,6 +31,7 @@ public class FriendsProfileActivity extends Activity {
     protected TextView mHometownField;
     protected TextView mWebsiteField;
     protected String mId;
+    protected ImageView mUserImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class FriendsProfileActivity extends Activity {
         mEmailField = (TextView) findViewById(R.id.emailSpace);
         mHometownField = (TextView) findViewById(R.id.hometownSpace);
         mWebsiteField = (TextView) findViewById(R.id.websiteSpace);
+        mUserImageView = (ImageView) findViewById(R.id.userImageView);
 
         mId = getIntent().getStringExtra(ParseConstants.KEY_SENDER_ID);
 
@@ -55,6 +59,8 @@ public class FriendsProfileActivity extends Activity {
                     mEmail = parseUser.getEmail();
                     mHometown = parseUser.get(ParseConstants.KEY_HOMETOWN).toString();
                     mWebsite = parseUser.get(ParseConstants.KEY_WEBSITE).toString();
+
+                    setProfilePicture();
 
                     mUsernameField.setText(mUsername);
                     mFullNameField.setText("Name: " + mFullName);
@@ -75,6 +81,20 @@ public class FriendsProfileActivity extends Activity {
             }
         });
 
+    }
+
+    private void setProfilePicture() {
+        String email = mEmail.toLowerCase();
+        if(email.equals("")) {//Use default image if no email is given
+            mUserImageView.setImageResource(R.drawable.avatar_empty);
+        }
+        else { //use gravatar image if email is given and if user has account
+            String hash = MD5Util.md5Hex(email);
+            String gravatarUrl = "http://www.gravatar.com/avatar/" + hash + "?s=408&d=404";
+            Picasso.with(this).load(gravatarUrl)
+                    .placeholder(R.drawable.avatar_empty) //default image if no account avail
+                    .into(mUserImageView);
+        }
     }
 
 }
