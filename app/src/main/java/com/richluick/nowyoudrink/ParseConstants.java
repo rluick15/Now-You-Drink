@@ -9,7 +9,6 @@ public final class ParseConstants {
     public static final String CLASS_GROUPS = "Groups";
 
     //Field names
-    public static final String KEY_USER_ID = "userId";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_FRIENDS_RELATION = "friendsRelation";
     public static final String KEY_PENDING_RELATION = "pendingRelation";
@@ -19,19 +18,15 @@ public final class ParseConstants {
     public static final String KEY_WEBSITE = "website";
     public static final String KEY_ID = "id";
     public static final String KEY_RECIPIENT_IDS = "recipientIds";
-    public static final String KEY_RECIPIENT_ID = "recipientId";
     public static final String KEY_SENDER_ID = "senderId";
     public static final String KEY_SENDER = "sender";
     public static final String KEY_SENDER_NAME = "senderName";
-    public static final String KEY_MESSAGE = "message";
-    public static final String KEY_MESSAGE_ID = "messageId";
     public static final String KEY_MESSAGE_TYPE = "messageType";
     public static final String KEY_CREATED_AT = "createdAt";
 
     //Misc
-    public static final String REQUEST_CONFIRMED = "confirmed";
-    public static final String REQUEST_DENIED = "denied";
     public static final String TYPE_FRIEND_REQUEST = "friendRequest";
     public static final String TYPE_FRIEND_REQUEST_CONFIRM = "friendRequestConfirm";
+    public static final String TYPE_FRIEND_REQUEST_DENY = "friendRequestDeny";
     public static final String TYPE_DRINK_REQUEST = "drinkRequest";
 }

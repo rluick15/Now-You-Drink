@@ -56,5 +56,6 @@
     <string name="accept_button_label">Accept</string>
     <string name="reject_button_label">Reject</string>
     <string name="success_message_accept_request">Friend Request Accepted!</string>
+    <string name="success_message_reject_request">Friend Request Rejected!</string>
 
 </resources>

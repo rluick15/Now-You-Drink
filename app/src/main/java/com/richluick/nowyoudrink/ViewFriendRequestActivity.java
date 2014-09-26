@@ -81,8 +81,8 @@ public class ViewFriendRequestActivity extends Activity {
             public void onClick(View view) {
                 addFriend();
 
-                ParseObject message = createMessage();
-                //message.put(ParseConstants.REQUEST_CONFIRMED, "confirmed");
+                String type = ParseConstants.TYPE_FRIEND_REQUEST_CONFIRM;
+                ParseObject message = createMessage(type);
 
                 if(message == null) { //error
                     AlertDialog.Builder builder = new AlertDialog.Builder(ViewFriendRequestActivity.this);
@@ -93,7 +93,7 @@ public class ViewFriendRequestActivity extends Activity {
                     dialog.show();
                 }
                 else { //sends the message and closes the activity
-                    send(message);
+                    send(message, type);
                     finish();
                 }
             }
@@ -103,11 +103,24 @@ public class ViewFriendRequestActivity extends Activity {
             @Override
             public void onClick(View view) {
                 rejectRequest();
-                //message.put(ParseConstants.REQUEST_DENIED, "denied");
-                finish();
+
+                String type = ParseConstants.TYPE_FRIEND_REQUEST_DENY;
+                ParseObject message = createMessage(type);
+
+                if(message == null) { //error
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ViewFriendRequestActivity.this);
+                    builder.setMessage(getString(R.string.error_title))
+                            .setTitle(getString(R.string.error_friend_request))
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else { //sends the message and closes the activity
+                    send(message, type);
+                    finish();
+                }
             }
         });
-
     }
 
     private void rejectRequest() {
@@ -137,28 +150,33 @@ public class ViewFriendRequestActivity extends Activity {
         });
     }
 
-    protected ParseObject createMessage() {
-        ArrayList<ParseUser> acceptedFriend = new ArrayList<ParseUser>();
-        acceptedFriend.add(mSender);
+    protected ParseObject createMessage(String type) {
+        ArrayList<ParseUser> sender = new ArrayList<ParseUser>();
+        sender.add(mSender);
 
         ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGES);
         message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
         message.put(ParseConstants.KEY_SENDER, ParseUser.getCurrentUser());
         message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
-        message.put(ParseConstants.KEY_RECIPIENT_IDS, acceptedFriend);
-        message.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_FRIEND_REQUEST_CONFIRM);
+        message.put(ParseConstants.KEY_RECIPIENT_IDS, sender);
+        message.put(ParseConstants.KEY_MESSAGE_TYPE, type);
 
         return message;
     }
 
     //message is sent to recipients
-    protected void send(ParseObject message) {
+    protected void send(ParseObject message, final String type) {
         message.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
                 if(e == null) {
                     //success
-                    Toast.makeText(ViewFriendRequestActivity.this, getString(R.string.success_message_accept_request), Toast.LENGTH_LONG).show();
+                    if(type == ParseConstants.TYPE_FRIEND_REQUEST) {
+                        Toast.makeText(ViewFriendRequestActivity.this, getString(R.string.success_message_accept_request), Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Toast.makeText(ViewFriendRequestActivity.this, getString(R.string.success_message_reject_request), Toast.LENGTH_LONG).show();
+                    }
                     //sendPushNotifications();
                 }
                 else { //error sending message

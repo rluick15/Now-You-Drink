@@ -17,6 +17,7 @@ import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +28,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
     public static final String TAG = EditFriendsActivity.class.getSimpleName();
 
     protected List<ParseObject> mMessages;
+    protected List<ParseObject> mMessagesCopy;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     protected ParseRelation<ParseUser> mPendingRelation;
     protected ParseRelation<ParseUser> mFriendsRelation;
@@ -60,18 +62,30 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
             public void done(List<ParseObject> messages, ParseException e) {
                 getActivity().setProgressBarIndeterminateVisibility(false);
 
-                if(e == null) { //successfully found messages
+                if (e == null) { //successfully found messages
                     mMessages = messages;
+                    mMessagesCopy = new ArrayList<ParseObject>(messages); //avoid concurrent modification error
                     String[] usernames = new String[mMessages.size()];
 
                     int i = 0;
                     for (ParseObject message : mMessages) {
-                        usernames[i] = message.getString(ParseConstants.KEY_SENDER_NAME);
-                        addRelation(message);
-                        i++;
+                        //Request Rejected: Remove the pending relation and delete the reject
+                        //message before it appears
+                        if (message.get(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST_DENY)) {
+                            removeRelation(message);
+                            mMessagesCopy.remove(message);
+                        }
+                        //Request Accepted or drink request
+                        else {
+                            usernames[i] = message.getString(ParseConstants.KEY_SENDER_NAME);
+                            addRelation(message);
+                            i++;
+                        }
                     }
 
-                    if(getListView().getAdapter() == null) {
+                    mMessages = mMessagesCopy;
+
+                    if (getListView().getAdapter() == null) {
                         MessageAdapter adapter = new MessageAdapter(getListView().getContext(), mMessages);
                         setListAdapter(adapter);
                     }
@@ -79,6 +93,18 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                         //refill the adapter
                         ((MessageAdapter) getListView().getAdapter()).refill(mMessages);
                     }
+                }
+            }
+        });
+    }
+
+    private void removeRelation(ParseObject message) {
+        mPendingRelation.remove((ParseUser) message.get(ParseConstants.KEY_SENDER));
+        mCurrentUser.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, e.getMessage());
                 }
             }
         });
