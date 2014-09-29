@@ -33,6 +33,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
     protected ParseRelation<ParseUser> mPendingRelation;
     protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseUser mCurrentUser;
+    protected String mRequestAnswered;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +46,12 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
     public void onResume() {
         super.onResume();
         getActivity().setProgressBarIndeterminateVisibility(true);
+
+        //check if request was answered and if not set it to "notAnswered" instead of null
+        mRequestAnswered = getActivity().getIntent().getStringExtra(ParseConstants.TYPE_FRIEND_REQUEST_UP);
+        if(mRequestAnswered == null) {
+            mRequestAnswered = "notAnswered";
+        }
 
         mCurrentUser = ParseUser.getCurrentUser();
         mPendingRelation = mCurrentUser.getRelation(ParseConstants.KEY_PENDING_RELATION);
@@ -74,6 +81,20 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                         if (message.get(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST_DENY)) {
                             removeRelation(message);
                             mMessagesCopy.remove(message);
+                            message.deleteInBackground();
+                        }
+                        //Check if request was answered yet and if so delete it
+                        else if (message.get(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST)) {
+                            if(mRequestAnswered.equals("answered")) {
+                                mMessagesCopy.remove(message);
+                                mRequestAnswered = "notAnswered"; //reset the value
+                                message.deleteInBackground();
+                            }
+                            else {
+                                usernames[i] = message.getString(ParseConstants.KEY_SENDER_NAME);
+                                addRelation(message);
+                                i++;
+                            }
                         }
                         //Request Accepted or drink request
                         else {
@@ -157,6 +178,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
             Intent intent = new Intent(getActivity(), FriendsProfileActivity.class);
             intent.putExtra(ParseConstants.KEY_SENDER_ID, senderId);
             startActivity(intent);
+            message.deleteInBackground();
         }
         else { //view the drink request
 //            Intent intent = new Intent(Intent.ACTION_VIEW, fileUri);
@@ -164,7 +186,9 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
 //            startActivity(intent);
         }
 
-        message.deleteInBackground();
+
 
     }
+
+
 }

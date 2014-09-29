@@ -2,6 +2,7 @@ package com.richluick.nowyoudrink;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -94,7 +95,7 @@ public class ViewFriendRequestActivity extends Activity {
                 }
                 else { //sends the message and closes the activity
                     send(message, type);
-                    finish();
+                    returnIntent();
                 }
             }
         });
@@ -117,13 +118,13 @@ public class ViewFriendRequestActivity extends Activity {
                 }
                 else { //sends the message and closes the activity
                     send(message, type);
-                    finish();
+                    returnIntent();
                 }
             }
         });
     }
 
-    private void rejectRequest() {
+    protected void rejectRequest() {
         mPendingRelation.remove(mSender); //remove from Pending
 
         mCurrentUser.saveInBackground(new SaveCallback() {
@@ -136,7 +137,7 @@ public class ViewFriendRequestActivity extends Activity {
         });
     }
 
-    private void addFriend() {
+    protected void addFriend() {
         mFriendsRelation.add(mSender); //add to friends list
         mPendingRelation.remove(mSender); //remove from Pending
 
@@ -148,6 +149,12 @@ public class ViewFriendRequestActivity extends Activity {
                 }
             }
         });
+    }
+
+    protected void returnIntent() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(ParseConstants.TYPE_FRIEND_REQUEST_UP, "answered");
+        startActivity(intent);
     }
 
     protected ParseObject createMessage(String type) {
@@ -171,7 +178,7 @@ public class ViewFriendRequestActivity extends Activity {
             public void done(ParseException e) {
                 if(e == null) {
                     //success
-                    if(type == ParseConstants.TYPE_FRIEND_REQUEST) {
+                    if(type == ParseConstants.TYPE_FRIEND_REQUEST_CONFIRM) {
                         Toast.makeText(ViewFriendRequestActivity.this, getString(R.string.success_message_accept_request), Toast.LENGTH_LONG).show();
                     }
                     else {
