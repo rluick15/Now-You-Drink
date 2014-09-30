@@ -2,19 +2,24 @@ package com.richluick.nowyoudrink;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,9 +28,10 @@ public class CreateGroupActivity extends ListActivity {
     public static final String TAG = EditFriendsActivity.class.getSimpleName();
 
     protected List<ParseUser> mFriends;
+    protected ArrayList<ParseUser> mPendingMembers;
     protected ParseUser mCurrentUser;
     protected EditText mGroupNameField;
-    protected String mGroupName;
+    protected Button mCreateGroupButton;
     protected ParseRelation<ParseUser> mFriendsRelation;
 
     @Override
@@ -34,7 +40,49 @@ public class CreateGroupActivity extends ListActivity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_create_group);
 
+        mGroupNameField = (EditText) findViewById(R.id.groupTitleField);
+        mCreateGroupButton = (Button) findViewById(R.id.createGroupButton);
+
+        //creates groups if fields are all filled out
+        mCreateGroupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setProgressBarIndeterminateVisibility(true);
+
+                String groupName = mGroupNameField.getText().toString();
+                if (groupName.isEmpty()) {
+                    setProgressBarIndeterminateVisibility(false);
+
+                    //Checks if the user left the group name field blank and displays an alert message
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
+                    builder.setTitle(getString(R.string.error_title))
+                            .setMessage(getString(R.string.create_group_error_message))
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else {
+                    setProgressBarIndeterminateVisibility(false);
+
+                    ParseObject group = createGroup();
+                    ParseObject message = createMessage();
+
+                    Intent intent = new Intent(CreateGroupActivity.this, GroupActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+    }
+
+    private ParseObject createMessage() {
+        return null;
+    }
+
+    private ParseObject createGroup() {
+
+        return null;
     }
 
     @Override
@@ -42,10 +90,12 @@ public class CreateGroupActivity extends ListActivity {
         super.onResume();
 
         mCurrentUser = ParseUser.getCurrentUser();
+        mPendingMembers = new ArrayList<ParseUser>();
         mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
 
         setProgressBarIndeterminateVisibility(true);
 
+        //queries all the users friends in the listview
         ParseQuery<ParseUser> query = mFriendsRelation.getQuery();
         query.addAscendingOrder(ParseConstants.KEY_USERNAME);
         query.findInBackground(new FindCallback<ParseUser>() {
@@ -69,7 +119,7 @@ public class CreateGroupActivity extends ListActivity {
                             usernames);
                     setListAdapter(adapter);
                 }
-                else {
+                else { //error message dialog if the query fails
                     Log.e(TAG, e.getMessage());
                     AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
                     builder.setTitle(R.string.error_title)
@@ -80,5 +130,18 @@ public class CreateGroupActivity extends ListActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        //adds the selected user to list of selected users in the list
+        if (l.isItemChecked(position)) mPendingMembers.add(mFriends.get(position));
+        else mPendingMembers.remove(mFriends.get(position)); //remove the user from the list
+
+        //only displays the button if at least one friend is selected
+        if(l.getCheckedItemCount() > 0) mCreateGroupButton.setEnabled(true);
+        else mCreateGroupButton.setEnabled(false);
     }
 }

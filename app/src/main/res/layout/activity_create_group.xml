@@ -58,6 +58,7 @@
     <Button
         android:id="@+id/createGroupButton"
         android:text="@string/create_group_button_label"
+        android:enabled="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

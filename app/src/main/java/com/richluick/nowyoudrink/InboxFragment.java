@@ -96,18 +96,21 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                     }
 
                     mMessages = mMessagesCopy;
-
-                    if (getListView().getAdapter() == null) {
-                        MessageAdapter adapter = new MessageAdapter(getListView().getContext(), mMessages);
-                        setListAdapter(adapter);
-                    }
-                    else {
-                        //refill the adapter
-                        ((MessageAdapter) getListView().getAdapter()).refill(mMessages);
-                    }
+                    listAdapter();
                 }
             }
         });
+    }
+
+    private void listAdapter() {
+        if (getListView().getAdapter() == null) {
+            MessageAdapter adapter = new MessageAdapter(getListView().getContext(), mMessages);
+            setListAdapter(adapter);
+        }
+        else {
+            //refill the adapter
+            ((MessageAdapter) getListView().getAdapter()).refill(mMessages);
+        }
     }
 
     private void deleteMessage(ParseObject message) {

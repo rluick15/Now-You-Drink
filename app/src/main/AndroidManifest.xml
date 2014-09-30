@@ -89,6 +89,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />
         </activity>
+        <activity
+            android:name=".GroupActivity"
+            android:label="@string/title_activity_group"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.richluick.nowyoudrink.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
