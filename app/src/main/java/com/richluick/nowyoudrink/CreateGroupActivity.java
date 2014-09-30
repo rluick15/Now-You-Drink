@@ -64,11 +64,23 @@ public class CreateGroupActivity extends ListActivity {
                 else {
                     setProgressBarIndeterminateVisibility(false);
 
-                    ParseObject group = createGroup();
-                    ParseObject message = createMessage();
+                    ParseObject group = createGroup(groupName);
+                    ParseObject message = createMessage(group);
 
-                    Intent intent = new Intent(CreateGroupActivity.this, GroupActivity.class);
-                    startActivity(intent);
+                    if(message == null) { //error
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
+                        builder.setMessage(getString(R.string.error_friend_request))
+                                .setTitle(getString(R.string.error_title))
+                                .setPositiveButton(android.R.string.ok, null);
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                    else { //sends the message and goes to the new group
+                        send(message);
+                        Intent intent = new Intent(CreateGroupActivity.this, GroupActivity.class);
+                        intent.putExtra(ParseConstants.KEY_GROUP_ID, group.getObjectId());
+                        startActivity(intent);
+                    }
                 }
             }
         });
@@ -76,13 +88,29 @@ public class CreateGroupActivity extends ListActivity {
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
 
-    private ParseObject createMessage() {
-        return null;
+    private void send(ParseObject message) {
     }
 
-    private ParseObject createGroup() {
+    private ParseObject createMessage(ParseObject group) {
+        ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGES);
+        message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
+        message.put(ParseConstants.KEY_SENDER, ParseUser.getCurrentUser());
+        message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
+        message.put(ParseConstants.KEY_RECIPIENT_IDS, mPendingMembers);
+        message.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_GROUP_REQUEST);
+        message.put(ParseConstants.KEY_GROUP, group);
+        message.put(ParseConstants.KEY_GROUP_ID, group.getObjectId());
+        message.put(ParseConstants.KEY_GROUP_NAME, group.get(ParseConstants.KEY_GROUP_NAME));
 
-        return null;
+        return message;
+    }
+
+    private ParseObject createGroup(String groupName) {
+        ParseObject group = new ParseObject(ParseConstants.CLASS_GROUPS);
+        group.add(ParseConstants.KEY_GROUP_ADMIN, mCurrentUser);
+        group.add(ParseConstants.KEY_GROUP_NAME, groupName);
+
+        return group;
     }
 
     @Override

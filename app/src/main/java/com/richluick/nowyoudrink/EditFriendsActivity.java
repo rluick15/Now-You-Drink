@@ -131,8 +131,8 @@ public class EditFriendsActivity extends ListActivity {
         ParseObject message = createMessage();
         if(message == null) { //error
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(getString(R.string.error_title))
-                    .setTitle(getString(R.string.error_friend_request))
+            builder.setMessage(getString(R.string.error_friend_request))
+                    .setTitle(getString(R.string.error_title))
                     .setPositiveButton(android.R.string.ok, null);
             AlertDialog dialog = builder.create();
             dialog.show();

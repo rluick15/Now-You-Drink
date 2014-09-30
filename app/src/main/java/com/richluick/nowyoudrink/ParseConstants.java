@@ -23,6 +23,10 @@ public final class ParseConstants {
     public static final String KEY_SENDER_NAME = "senderName";
     public static final String KEY_MESSAGE_TYPE = "messageType";
     public static final String KEY_CREATED_AT = "createdAt";
+    public static final String KEY_GROUP_ADMIN = "groupAdmin";
+    public static final String KEY_GROUP_NAME = "groupName";
+    public static final String KEY_GROUP = "group";
+    public static final String KEY_GROUP_ID = "groupId";
 
     //Misc
     public static final String TYPE_FRIEND_REQUEST = "friendRequest";
