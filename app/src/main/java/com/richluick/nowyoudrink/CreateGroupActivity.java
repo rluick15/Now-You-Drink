@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -18,6 +19,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +71,6 @@ public class CreateGroupActivity extends ListActivity {
                     group.saveInBackground();
 
                     ParseObject message = createMessage(group);
-                    message.saveInBackground();
 
                     if(message == null) { //error
                         AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
@@ -80,7 +81,7 @@ public class CreateGroupActivity extends ListActivity {
                         dialog.show();
                     }
                     else { //sends the message and goes to the new group
-                        //send(message);
+                        send(message);
                         Intent intent = new Intent(CreateGroupActivity.this, GroupActivity.class);
                         intent.putExtra(ParseConstants.KEY_GROUP_ID, group.getObjectId());
                         startActivity(intent);
@@ -93,7 +94,26 @@ public class CreateGroupActivity extends ListActivity {
     }
 
     private void send(ParseObject message) {
+        message.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null) {
+                    //success
+                    Toast.makeText(CreateGroupActivity.this, getString(R.string.success_message_group_create), Toast.LENGTH_LONG).show();
+                    //sendPushNotifications();
+                }
+                else { //error sending message
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
+                    builder.setMessage(getString(R.string.error_creating_group))
+                            .setTitle(getString(R.string.error_selecting_file_title))
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            }
+        });
     }
+
 
     private ParseObject createMessage(ParseObject group) {
         ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGES);

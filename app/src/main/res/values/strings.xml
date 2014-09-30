@@ -49,7 +49,7 @@
     <string name="menu_send_label">Send</string>
     <string name="error_friend_request">There was an error. Please Try Again.</string>
     <string name="success_message_friend_request">Friend Request(s) Sent!</string>
-    <string name="error_sending_friend_request">There was an error sending you\'re friend request. Please try again.</string>
+    <string name="error_sending_friend_request">There was an error sending your friend request. Please try again.</string>
     <string name="error_selecting_file_title">Sorry!</string>
     <string name="title_activity_view_friend_request">ViewFriendRequestActivity</string>
     <string name="title_friend_request">Friend Request</string>
@@ -65,5 +65,7 @@
     <string name="create_group_button_label">Create Group</string>
     <string name="title_activity_group">GroupActivity</string>
     <string name="create_group_error_message">Please make sure you enter a group name.</string>
+    <string name="error_creating_group">There was an error creating your group. Please try again.</string>
+    <string name="success_message_group_create">Group Created!</string>
 
 </resources>
