@@ -58,5 +58,10 @@
     <string name="success_message_accept_request">Friend Request Accepted!</string>
     <string name="success_message_reject_request">Friend Request Rejected!</string>
     <string name="title_activity_create_group">Create Group</string>
+    <string name="group_title_text">Group Title</string>
+    <string name="group_title_hint">Group Title</string>
+    <string name="select_friends_text">Select Friends</string>
+    <string name="empty_friends_label_2">You have no Friends!</string>
+    <string name="create_group_button_label">Create Group</string>
 
 </resources>
