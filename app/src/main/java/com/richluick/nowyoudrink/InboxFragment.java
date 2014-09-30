@@ -86,8 +86,9 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                         //Check if request was answered yet and if so delete it
                         else if (message.get(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST)) {
                             if(mRequestAnswered.equals("answered")) {
-                                mMessagesCopy.remove(message);
+                                mMessagesCopy.remove(message); //remove message from query
                                 mRequestAnswered = "notAnswered"; //reset the value
+                                deleteMessage(message);
                             }
                             else {
                                 usernames[i] = message.getString(ParseConstants.KEY_SENDER_NAME);
@@ -116,6 +117,24 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                 }
             }
         });
+    }
+
+    private void deleteMessage(ParseObject message) {
+        //Delete the message
+        List<ParseUser> ids = message.getList(ParseConstants.KEY_RECIPIENT_IDS);
+        if(ids.size() == 1) {
+            //Last recipient. delete whole message
+            message.deleteInBackground();
+        }
+        else { //remove just the recipient
+            ids.remove(ParseUser.getCurrentUser());
+
+            ArrayList<ParseUser> idsToRemove = new ArrayList<ParseUser>();
+            idsToRemove.add(ParseUser.getCurrentUser());
+
+            message.removeAll(ParseConstants.KEY_RECIPIENT_IDS, idsToRemove);
+            message.saveInBackground();
+        }
     }
 
     private void removeRelation(ParseObject message) {
@@ -184,8 +203,6 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
 //            intent.setDataAndType(fileUri, "video/*");
 //            startActivity(intent);
         }
-
-
 
     }
 
