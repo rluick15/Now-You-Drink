@@ -88,11 +88,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_logout) {
-            ParseUser.logOut();
-            navigateToLogin();
-        }
-        else if (id == R.id.action_profile) {
+        if (id == R.id.action_profile) {
             Intent intent = new Intent(this, PersonalProfileActivity.class);
             startActivity(intent);
         }
@@ -100,7 +96,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             Intent intent = new Intent(this, EditFriendsActivity.class);
             startActivity(intent);
         }
-
+        else if (id ==  R.id.action_create_group) {
+            Intent intent = new Intent(this, CreateGroupActivity.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.action_logout) {
+            ParseUser.logOut();
+            navigateToLogin();
+        }
 
         return super.onOptionsItemSelected(item);
     }

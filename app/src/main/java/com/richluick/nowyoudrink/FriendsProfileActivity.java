@@ -45,7 +45,7 @@ public class FriendsProfileActivity extends Activity {
         mWebsiteField = (TextView) findViewById(R.id.websiteSpace);
         mUserImageView = (ImageView) findViewById(R.id.userImageView);
 
-        mId = getIntent().getStringExtra(ParseConstants.KEY_SENDER_ID);
+        mId = getIntent().getStringExtra(ParseConstants.KEY_ID);
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.getInBackground(mId, new GetCallback<ParseUser>() {

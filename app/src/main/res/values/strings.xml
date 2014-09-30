@@ -34,7 +34,7 @@
     <string name="forgot_password_error_message">Please make sure you enter a valid email.</string>
     <string name="forgot_password_success_title">Success!</string>
     <string name="forgot_password_success_message">An email was successfully sent to the address entered. Please follow the instructions in the email to reset your password.</string>
-    <string name="menu_edit_friends">Edit Friends</string>
+    <string name="menu_edit_friends">Add Friends</string>
     <string name="title_activity_personal_profile">PersonalProfileActivity</string>
     <string name="empty_friends_label">Add Friends to Begin!</string>
     <string name="content_desc_user_avatar">User Avatar</string>
@@ -57,5 +57,6 @@
     <string name="reject_button_label">Reject</string>
     <string name="success_message_accept_request">Friend Request Accepted!</string>
     <string name="success_message_reject_request">Friend Request Rejected!</string>
+    <string name="title_activity_create_group">Create Group</string>
 
 </resources>
