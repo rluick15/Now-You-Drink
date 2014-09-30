@@ -153,7 +153,7 @@ public class ViewFriendRequestActivity extends Activity {
 
     protected void returnIntent() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(ParseConstants.TYPE_FRIEND_REQUEST_UP, "answered");
+        intent.putExtra(ParseConstants.KEY_SENDER_ID, mSenderId);
         startActivity(intent);
     }
 

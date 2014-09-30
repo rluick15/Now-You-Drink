@@ -33,7 +33,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
     protected ParseRelation<ParseUser> mPendingRelation;
     protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseUser mCurrentUser;
-    protected String mRequestAnswered;
+    protected String mSenderIdAnswered;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,11 +47,8 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
         super.onResume();
         getActivity().setProgressBarIndeterminateVisibility(true);
 
-        //check if request was answered and if not set it to "notAnswered" instead of null
-        mRequestAnswered = getActivity().getIntent().getStringExtra(ParseConstants.TYPE_FRIEND_REQUEST_UP);
-        if(mRequestAnswered == null) {
-            mRequestAnswered = "notAnswered";
-        }
+        //check if request was answered and get the senders ID
+        mSenderIdAnswered = getActivity().getIntent().getStringExtra(ParseConstants.KEY_SENDER_ID);
 
         mCurrentUser = ParseUser.getCurrentUser();
         mPendingRelation = mCurrentUser.getRelation(ParseConstants.KEY_PENDING_RELATION);
@@ -84,19 +81,13 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                             message.deleteInBackground();
                         }
                         //Check if request was answered yet and if so delete it
-                        else if (message.get(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST)) {
-                            if(mRequestAnswered.equals("answered")) {
-                                mMessagesCopy.remove(message); //remove message from query
-                                mRequestAnswered = "notAnswered"; //reset the value
-                                deleteMessage(message);
-                            }
-                            else {
-                                usernames[i] = message.getString(ParseConstants.KEY_SENDER_NAME);
-                                addRelation(message);
-                                i++;
-                            }
+                        else if (message.get(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST)
+                                && (message.get(ParseConstants.KEY_SENDER_ID)).equals(mSenderIdAnswered)) {
+
+                            mMessagesCopy.remove(message); //remove message from query
+                            deleteMessage(message);
                         }
-                        //Request Accepted or drink request
+                        //Request Accepted, Friend Request not looked at, or drink request
                         else {
                             usernames[i] = message.getString(ParseConstants.KEY_SENDER_NAME);
                             addRelation(message);
