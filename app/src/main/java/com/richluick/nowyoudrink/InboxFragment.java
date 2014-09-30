@@ -88,7 +88,6 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                             if(mRequestAnswered.equals("answered")) {
                                 mMessagesCopy.remove(message);
                                 mRequestAnswered = "notAnswered"; //reset the value
-                                message.deleteInBackground();
                             }
                             else {
                                 usernames[i] = message.getString(ParseConstants.KEY_SENDER_NAME);
@@ -176,7 +175,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
         }
         else if (messageType.equals(ParseConstants.TYPE_FRIEND_REQUEST_CONFIRM)) {
             Intent intent = new Intent(getActivity(), FriendsProfileActivity.class);
-            intent.putExtra(ParseConstants.KEY_SENDER_ID, senderId);
+            intent.putExtra(ParseConstants.KEY_ID, senderId);
             startActivity(intent);
             message.deleteInBackground();
         }
