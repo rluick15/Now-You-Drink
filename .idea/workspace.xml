@@ -76,16 +76,19 @@
       <file leaf-file-name="CreateGroupActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/CreateGroupActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23300971" vertical-offset="458" max-vertical-offset="2686">
-              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.37669903" vertical-offset="1098" max-vertical-offset="2771">
+              <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
               <folding>
-                <element signature="e#1503#3542#0" expanded="true" />
+                <element signature="e#1503#3704#0" expanded="true" />
                 <element signature="e#2085#2116#0" expanded="true" />
                 <element signature="e#2158#2204#0" expanded="true" />
-                <element signature="e#2810#2850#0" expanded="true" />
-                <element signature="e#2894#2925#0" expanded="true" />
-                <element signature="e#3531#3532#0" expanded="true" />
-                <element signature="e#6447#6467#0" expanded="true" />
+                <element signature="e#2970#3010#0" expanded="true" />
+                <element signature="e#3054#3085#0" expanded="true" />
+                <element signature="e#3693#3694#0" expanded="true" />
+                <element signature="e#5308#6732#0" expanded="true" />
+                <element signature="e#5955#5963#0" expanded="true" />
+                <element signature="e#6444#6464#0" expanded="true" />
+                <element signature="e#6721#6722#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,15 +97,17 @@
       <file leaf-file-name="EditFriendsActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/EditFriendsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1618" max-vertical-offset="2873">
-              <caret line="131" column="37" selection-start-line="131" selection-start-column="37" selection-end-line="131" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2026" max-vertical-offset="2924">
+              <caret line="176" column="29" selection-start-line="176" selection-start-column="29" selection-end-line="176" selection-end-column="29" />
               <folding>
                 <element signature="e#3071#3091#0" expanded="true" />
                 <element signature="e#4814#4854#0" expanded="true" />
                 <element signature="e#4886#4917#0" expanded="true" />
+                <element signature="e#6497#7389#0" expanded="true" />
                 <element signature="e#6712#6762#0" expanded="true" />
                 <element signature="e#7043#7091#0" expanded="true" />
                 <element signature="e#7131#7177#0" expanded="true" />
+                <element signature="e#7378#7379#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -134,7 +139,7 @@
       <file leaf-file-name="ParseConstants.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ParseConstants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="731">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
               <caret line="25" column="62" selection-start-line="25" selection-start-column="62" selection-end-line="25" selection-end-column="62" />
               <folding />
             </state>
@@ -1749,10 +1754,10 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928804" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296501" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.046040516" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15372169" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1820,13 +1825,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/NowYouDrinkApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4456929" vertical-offset="0" max-vertical-offset="534">
-          <caret line="14" column="119" selection-start-line="14" selection-start-column="119" selection-end-line="14" selection-end-column="119" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
@@ -2186,14 +2184,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ParseConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="731">
-          <caret line="25" column="62" selection-start-line="25" selection-start-column="62" selection-end-line="25" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ViewFriendRequestActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="2856">
@@ -2226,21 +2216,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/EditFriendsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1618" max-vertical-offset="2873">
-          <caret line="131" column="37" selection-start-line="131" selection-start-column="37" selection-end-line="131" selection-end-column="37" />
-          <folding>
-            <element signature="e#3071#3091#0" expanded="true" />
-            <element signature="e#4814#4854#0" expanded="true" />
-            <element signature="e#4886#4917#0" expanded="true" />
-            <element signature="e#6712#6762#0" expanded="true" />
-            <element signature="e#7043#7091#0" expanded="true" />
-            <element signature="e#7131#7177#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="365" max-vertical-offset="1275">
@@ -2249,18 +2224,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/app/libs/Parse-1.6.0.jar!/com/parse/ParseObject.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66810346" vertical-offset="6900" max-vertical-offset="7157">
+          <caret line="416" column="0" selection-start-line="416" selection-start-column="0" selection-end-line="416" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ParseConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
+          <caret line="25" column="62" selection-start-line="25" selection-start-column="62" selection-end-line="25" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/EditFriendsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2026" max-vertical-offset="2924">
+          <caret line="176" column="29" selection-start-line="176" selection-start-column="29" selection-end-line="176" selection-end-column="29" />
+          <folding>
+            <element signature="e#3071#3091#0" expanded="true" />
+            <element signature="e#4814#4854#0" expanded="true" />
+            <element signature="e#4886#4917#0" expanded="true" />
+            <element signature="e#6497#7389#0" expanded="true" />
+            <element signature="e#6712#6762#0" expanded="true" />
+            <element signature="e#7043#7091#0" expanded="true" />
+            <element signature="e#7131#7177#0" expanded="true" />
+            <element signature="e#7378#7379#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/CreateGroupActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23300971" vertical-offset="458" max-vertical-offset="2686">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.37669903" vertical-offset="1098" max-vertical-offset="2771">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
           <folding>
-            <element signature="e#1503#3542#0" expanded="true" />
+            <element signature="e#1503#3704#0" expanded="true" />
             <element signature="e#2085#2116#0" expanded="true" />
             <element signature="e#2158#2204#0" expanded="true" />
-            <element signature="e#2810#2850#0" expanded="true" />
-            <element signature="e#2894#2925#0" expanded="true" />
-            <element signature="e#3531#3532#0" expanded="true" />
-            <element signature="e#6447#6467#0" expanded="true" />
+            <element signature="e#2970#3010#0" expanded="true" />
+            <element signature="e#3054#3085#0" expanded="true" />
+            <element signature="e#3693#3694#0" expanded="true" />
+            <element signature="e#5308#6732#0" expanded="true" />
+            <element signature="e#5955#5963#0" expanded="true" />
+            <element signature="e#6444#6464#0" expanded="true" />
+            <element signature="e#6721#6722#0" expanded="true" />
           </folding>
         </state>
       </provider>

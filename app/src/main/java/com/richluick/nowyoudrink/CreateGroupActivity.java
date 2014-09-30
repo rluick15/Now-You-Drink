@@ -64,8 +64,12 @@ public class CreateGroupActivity extends ListActivity {
                 else {
                     setProgressBarIndeterminateVisibility(false);
 
+                    //create the group and save it in background
                     ParseObject group = createGroup(groupName);
+                    group.saveInBackground();
+
                     ParseObject message = createMessage(group);
+                    message.saveInBackground();
 
                     if(message == null) { //error
                         AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
@@ -76,7 +80,7 @@ public class CreateGroupActivity extends ListActivity {
                         dialog.show();
                     }
                     else { //sends the message and goes to the new group
-                        send(message);
+                        //send(message);
                         Intent intent = new Intent(CreateGroupActivity.this, GroupActivity.class);
                         intent.putExtra(ParseConstants.KEY_GROUP_ID, group.getObjectId());
                         startActivity(intent);
@@ -99,8 +103,6 @@ public class CreateGroupActivity extends ListActivity {
         message.put(ParseConstants.KEY_RECIPIENT_IDS, mPendingMembers);
         message.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_GROUP_REQUEST);
         message.put(ParseConstants.KEY_GROUP, group);
-        message.put(ParseConstants.KEY_GROUP_ID, group.getObjectId());
-        message.put(ParseConstants.KEY_GROUP_NAME, group.get(ParseConstants.KEY_GROUP_NAME));
 
         return message;
     }
