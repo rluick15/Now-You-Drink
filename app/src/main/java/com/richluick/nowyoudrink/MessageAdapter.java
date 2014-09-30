@@ -52,10 +52,12 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
             holder.textLabel.setText("You have a friend request!");
         }
         else if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST_CONFIRM)) {
-            holder.textLabel.setText(message.get(ParseConstants.KEY_SENDER_NAME) + " has accepted your friend request!");
+            holder.textLabel.setText(message.get(ParseConstants.KEY_SENDER_NAME)
+                    + " has accepted your friend request!");
         }
         else if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_GROUP_REQUEST)) {
-            holder.textLabel.setText("You have a group invite!");
+            holder.textLabel.setText("You have a group invite from "
+                    + message.get(ParseConstants.KEY_SENDER_NAME) + "!");
         }
         else {
             //holder.iconImageView.setImageResource(R.drawable.ic_video);
