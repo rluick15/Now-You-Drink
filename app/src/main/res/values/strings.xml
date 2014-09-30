@@ -67,5 +67,6 @@
     <string name="create_group_error_message">Please make sure you enter a group name.</string>
     <string name="error_creating_group">There was an error creating your group. Please try again.</string>
     <string name="success_message_group_create">Group Created!</string>
+    <string name="title_activity_group_request">GroupRequestActivity</string>
 
 </resources>

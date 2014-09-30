@@ -180,6 +180,8 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
         ParseObject message = mMessages.get(position);
         String messageType = message.getString(ParseConstants.KEY_MESSAGE_TYPE);
         String senderId = message.get(ParseConstants.KEY_SENDER_ID).toString();
+        ParseObject group = (ParseObject) message.get(ParseConstants.KEY_GROUP);
+        String groupId = group.getObjectId();
 
         if(messageType.equals(ParseConstants.TYPE_FRIEND_REQUEST)) { //view the friend request
             Intent intent = new Intent(getActivity(), ViewFriendRequestActivity.class);
@@ -191,6 +193,12 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
             intent.putExtra(ParseConstants.KEY_ID, senderId);
             startActivity(intent);
             message.deleteInBackground();
+        }
+        else if (messageType.equals(ParseConstants.TYPE_GROUP_REQUEST)) {
+            Intent intent = new Intent(getActivity(), GroupRequestActivity.class);
+            intent.putExtra(ParseConstants.KEY_ID, senderId);
+            intent.putExtra(ParseConstants.KEY_GROUP_ID, groupId);
+            startActivity(intent);
         }
         else { //view the drink request
 //            Intent intent = new Intent(Intent.ACTION_VIEW, fileUri);
