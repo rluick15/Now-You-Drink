@@ -33,6 +33,7 @@ public class CreateGroupActivity extends ListActivity {
     protected ArrayList<ParseUser> mPendingMembers;
     protected ParseUser mCurrentUser;
     protected EditText mGroupNameField;
+    protected String mGroupName;
     protected Button mCreateGroupButton;
     protected ParseRelation<ParseUser> mFriendsRelation;
 
@@ -51,8 +52,8 @@ public class CreateGroupActivity extends ListActivity {
             public void onClick(View view) {
                 setProgressBarIndeterminateVisibility(true);
 
-                String groupName = mGroupNameField.getText().toString();
-                if (groupName.isEmpty()) {
+                mGroupName = mGroupNameField.getText().toString();
+                if (mGroupName.isEmpty()) {
                     setProgressBarIndeterminateVisibility(false);
 
                     //Checks if the user left the group name field blank and displays an alert message
@@ -67,7 +68,7 @@ public class CreateGroupActivity extends ListActivity {
                     setProgressBarIndeterminateVisibility(false);
 
                     //create the group and save it in background
-                    ParseObject group = createGroup(groupName);
+                    ParseObject group = createGroup();
                     group.saveInBackground();
 
                     ParseObject message = createMessage(group);
@@ -127,10 +128,10 @@ public class CreateGroupActivity extends ListActivity {
         return message;
     }
 
-    private ParseObject createGroup(String groupName) {
+    private ParseObject createGroup() {
         ParseObject group = new ParseObject(ParseConstants.CLASS_GROUPS);
         group.add(ParseConstants.KEY_GROUP_ADMIN, mCurrentUser);
-        group.add(ParseConstants.KEY_GROUP_NAME, groupName);
+        group.add(ParseConstants.KEY_GROUP_NAME, mGroupName);
 
         return group;
     }
