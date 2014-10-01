@@ -34,6 +34,7 @@ public class GroupRequestActivity extends Activity {
     protected String mSenderUsername;
     protected ParseRelation<ParseUser> mMemberRelation;
     protected ParseRelation<ParseUser> mPendingMemberRelation;
+    protected ParseRelation<ParseObject> mMemberOfGroupRelation;
     protected ParseUser mCurrentUser;
 
     @Override
@@ -43,6 +44,7 @@ public class GroupRequestActivity extends Activity {
         setContentView(R.layout.activity_group_request);
 
         mCurrentUser = ParseUser.getCurrentUser();
+        mMemberOfGroupRelation = mCurrentUser.getRelation(ParseConstants.KEY_MEMBER_OF_GROUP_RELATION);
 
         mRequestText = (TextView) findViewById(R.id.text);
         mAcceptButton = (Button) findViewById(R.id.acceptButton);
@@ -52,7 +54,7 @@ public class GroupRequestActivity extends Activity {
         mMessageId = getIntent().getStringExtra(ParseConstants.KEY_ID);
 
         //gets the full message object based on senderId from the message
-        ParseQuery<ParseObject> messageQuery = ParseQuery.getQuery("Messages");
+        ParseQuery<ParseObject> messageQuery = ParseQuery.getQuery(ParseConstants.CLASS_MESSAGES);
         messageQuery.getInBackground(mMessageId, new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject parseObject, com.parse.ParseException e) {
@@ -73,7 +75,7 @@ public class GroupRequestActivity extends Activity {
         });
 
         //gets the full group object based on senderId from the message
-        ParseQuery<ParseObject> groupQuery = ParseQuery.getQuery("Groups");
+        ParseQuery<ParseObject> groupQuery = ParseQuery.getQuery(ParseConstants.CLASS_GROUPS);
         groupQuery.getInBackground(mGroupId, new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject parseObject, com.parse.ParseException e) {
@@ -113,11 +115,20 @@ public class GroupRequestActivity extends Activity {
                     }
                 });
 
+                //add to list of groups the user is a part of (inverse group relation
+                mMemberOfGroupRelation.add(mGroup);
+                mCurrentUser.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e != null) {
+                            Log.e(TAG, e.getMessage());
+                        }
+                    }
+                });
                 DeleteMessageUtil.deleteMessage(mMessage);
 
                 Intent intent = new Intent(GroupRequestActivity.this, GroupActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra(ParseConstants.KEY_GROUP_ID, mGroupId);
                 startActivity(intent);
             }
@@ -135,9 +146,7 @@ public class GroupRequestActivity extends Activity {
                         }
                     }
                 });
-
                 DeleteMessageUtil.deleteMessage(mMessage);
-
                 finish();
             }
         });

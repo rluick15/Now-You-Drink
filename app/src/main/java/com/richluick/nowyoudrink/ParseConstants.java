@@ -32,6 +32,7 @@ public final class ParseConstants {
     public static final String KEY_PENDING_RELATION = "pendingRelation";
     public static final String KEY_MEMBER_RELATION = "memberRelation";
     public static final String KEY_PENDING_MEMBER_RELATION = "pendingMemberRelation";
+    public static final String KEY_MEMBER_OF_GROUP_RELATION = "memberOfGroupRelation";
 
     //Misc
     public static final String TYPE_FRIEND_REQUEST = "friendRequest";
