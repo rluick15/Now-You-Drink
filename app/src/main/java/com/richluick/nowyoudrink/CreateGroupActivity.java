@@ -34,9 +34,11 @@ public class CreateGroupActivity extends ListActivity {
     protected ParseUser mCurrentUser;
     protected EditText mGroupNameField;
     protected String mGroupName;
+    protected ParseObject mGroup;
     protected Button mCreateGroupButton;
     protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseRelation<ParseUser> mPendingMemberRelation;
+    protected ParseRelation<ParseUser> mMemberRelation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class CreateGroupActivity extends ListActivity {
 
         mGroupNameField = (EditText) findViewById(R.id.groupTitleField);
         mCreateGroupButton = (Button) findViewById(R.id.createGroupButton);
+
+
 
         //creates groups if fields are all filled out
         mCreateGroupButton.setOnClickListener(new View.OnClickListener() {
@@ -134,8 +138,11 @@ public class CreateGroupActivity extends ListActivity {
         ParseObject group = new ParseObject(ParseConstants.CLASS_GROUPS);
         group.add(ParseConstants.KEY_GROUP_ADMIN, mCurrentUser);
         group.add(ParseConstants.KEY_GROUP_NAME, mGroupName);
+        group.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_GROUP);
 
-        //Add Pending members to group
+        //Add Pending members to group and add current user as group memeber
+        mMemberRelation = group.getRelation(ParseConstants.KEY_MEMBER_RELATION);
+        mMemberRelation.add(mCurrentUser);
         mPendingMemberRelation = group.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
         for (ParseUser member : mPendingMembers) {
             mPendingMemberRelation.add(member);

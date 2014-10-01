@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -63,11 +62,20 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
                         i++;
                     }
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                            getActivity(),
-                            android.R.layout.simple_list_item_1,
-                            groupnames);
-                    setListAdapter(adapter);
+//                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+//                            getActivity(),
+//                            android.R.layout.simple_list_item_1,
+//                            groupnames);
+//                    setListAdapter(adapter);
+
+                    if (getListView().getAdapter() == null) {
+                        MessageAdapter adapter = new MessageAdapter(getListView().getContext(), mGroups);
+                        setListAdapter(adapter);
+                    }
+                    else {
+                        //refill the adapter
+                        ((MessageAdapter) getListView().getAdapter()).refill(mGroups);
+                    }
                 }
                 else {
                     Log.e(TAG, e.getMessage());

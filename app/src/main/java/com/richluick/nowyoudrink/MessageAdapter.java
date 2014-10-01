@@ -60,6 +60,10 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
             holder.textLabel.setText("You have a group invite from "
                     + message.get(ParseConstants.KEY_SENDER_NAME) + "!");
         }
+        else if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_GROUP)) {
+            holder.textLabel.setText("You have a group invite from "
+                    + message.get(ParseConstants.KEY_SENDER_NAME) + "!");
+        }
         else {
             //holder.iconImageView.setImageResource(R.drawable.ic_video);
             holder.textLabel.setText("Now You Drink!");
