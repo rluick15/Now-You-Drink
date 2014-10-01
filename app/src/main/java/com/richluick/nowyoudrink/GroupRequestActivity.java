@@ -58,7 +58,6 @@ public class GroupRequestActivity extends Activity {
             public void done(ParseObject parseObject, com.parse.ParseException e) {
                 if (e == null) {
                     mMessage = parseObject;
-                    mSenderUsername = mMessage.get(ParseConstants.KEY_SENDER_NAME).toString();
                     mGroupId = ((ParseObject) mMessage.get(ParseConstants.KEY_GROUP)).getObjectId();
                 }
                 else { //error
@@ -83,6 +82,7 @@ public class GroupRequestActivity extends Activity {
                     mGroupName = mGroup.get(ParseConstants.KEY_GROUP_NAME).toString();
                     mGroupName = mGroupName.replace("[", "");
                     mGroupName = mGroupName.replace("]", "");
+                    mSenderUsername = mMessage.get(ParseConstants.KEY_SENDER_NAME).toString();
                     mRequestText.setText(mSenderUsername + " has invited you to the group \"" + mGroupName + "\"!");
                     mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
                     mPendingMemberRelation = mGroup.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
@@ -113,7 +113,7 @@ public class GroupRequestActivity extends Activity {
                     }
                 });
 
-                deleteMessageUtil.deleteMessage(mMessage);
+                DeleteMessageUtil.deleteMessage(mMessage);
 
                 Intent intent = new Intent(GroupRequestActivity.this, GroupActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -136,7 +136,7 @@ public class GroupRequestActivity extends Activity {
                     }
                 });
 
-                deleteMessageUtil.deleteMessage(mMessage);
+                DeleteMessageUtil.deleteMessage(mMessage);
 
                 finish();
             }

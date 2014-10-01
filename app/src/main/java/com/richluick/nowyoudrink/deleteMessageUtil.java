@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Rich on 10/1/2014.
  */
-public class deleteMessageUtil {
+public class DeleteMessageUtil {
     public static void deleteMessage(ParseObject message) {
         //Delete the message
         List<ParseUser> ids = message.getList(ParseConstants.KEY_RECIPIENT_IDS);
