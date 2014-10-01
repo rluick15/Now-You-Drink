@@ -34,6 +34,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
     protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseUser mCurrentUser;
     protected String mSenderIdAnswered;
+    protected String mGroupSenderIdAnswered;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
 
         //check if request was answered and get the senders ID
         mSenderIdAnswered = getActivity().getIntent().getStringExtra(ParseConstants.KEY_SENDER_ID);
+        mGroupSenderIdAnswered = getActivity().getIntent().getStringExtra(ParseConstants.KEY_GROUP_SENDER_ID);
 
         mCurrentUser = ParseUser.getCurrentUser();
         mPendingRelation = mCurrentUser.getRelation(ParseConstants.KEY_PENDING_RELATION);
@@ -85,13 +87,13 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                                 && (message.get(ParseConstants.KEY_SENDER_ID)).equals(mSenderIdAnswered)) {
 
                             mMessagesCopy.remove(message); //remove message from query
-                            deleteMessage(message);
+                            deleteMessageUtil.deleteMessage(message);
                         }
                         else if (message.get(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_GROUP_REQUEST)
-                                && (message.get(ParseConstants.KEY_SENDER_ID)).equals(mSenderIdAnswered)) {
+                                && (message.get(ParseConstants.KEY_SENDER_ID)).equals(mGroupSenderIdAnswered)) {
 
                             mMessagesCopy.remove(message); //remove message from query
-                            deleteMessage(message);
+                            deleteMessageUtil.deleteMessage(message);
                         }
                         //Request Accepted, Friend Request not looked at, or drink request
                         else {
@@ -116,24 +118,6 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
         else {
             //refill the adapter
             ((MessageAdapter) getListView().getAdapter()).refill(mMessages);
-        }
-    }
-
-    private void deleteMessage(ParseObject message) {
-        //Delete the message
-        List<ParseUser> ids = message.getList(ParseConstants.KEY_RECIPIENT_IDS);
-        if(ids.size() == 1) {
-            //Last recipient. delete whole message
-            message.deleteInBackground();
-        }
-        else { //remove just the recipient
-            ids.remove(ParseUser.getCurrentUser());
-
-            ArrayList<ParseUser> idsToRemove = new ArrayList<ParseUser>();
-            idsToRemove.add(ParseUser.getCurrentUser());
-
-            message.removeAll(ParseConstants.KEY_RECIPIENT_IDS, idsToRemove);
-            message.saveInBackground();
         }
     }
 

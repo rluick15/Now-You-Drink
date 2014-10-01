@@ -25,6 +25,7 @@ public final class ParseConstants {
     public static final String KEY_GROUP_NAME = "groupName";
     public static final String KEY_GROUP = "group";
     public static final String KEY_GROUP_ID = "groupId";
+    public static final String KEY_GROUP_SENDER_ID = "groupSenderId";
 
     //Relations
     public static final String KEY_FRIENDS_RELATION = "friendsRelation";

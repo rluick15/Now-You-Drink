@@ -113,6 +113,8 @@ public class GroupRequestActivity extends Activity {
                     }
                 });
 
+                deleteMessageUtil.deleteMessage(mMessage);
+
                 Intent intent = new Intent(GroupRequestActivity.this, GroupActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -133,6 +135,8 @@ public class GroupRequestActivity extends Activity {
                         }
                     }
                 });
+
+                deleteMessageUtil.deleteMessage(mMessage);
 
                 finish();
             }
