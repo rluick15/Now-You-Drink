@@ -128,9 +128,9 @@ public class GroupRequestActivity extends Activity {
                 DeleteMessageUtil.deleteMessage(mMessage);
 
                 Intent intent = new Intent(GroupRequestActivity.this, GroupActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra(ParseConstants.KEY_GROUP_ID, mGroupId);
                 startActivity(intent);
+                finish();
             }
         });
 

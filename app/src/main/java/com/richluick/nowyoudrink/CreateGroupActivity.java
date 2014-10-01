@@ -85,9 +85,9 @@ public class CreateGroupActivity extends ListActivity {
                     else { //sends the message and goes to the new group
                         send(message);
                         Intent intent = new Intent(CreateGroupActivity.this, GroupActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.putExtra(ParseConstants.KEY_GROUP_ID, group.getObjectId());
                         startActivity(intent);
+                        finish();
                     }
                 }
             }
