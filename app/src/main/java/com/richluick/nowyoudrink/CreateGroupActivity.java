@@ -36,6 +36,7 @@ public class CreateGroupActivity extends ListActivity {
     protected String mGroupName;
     protected Button mCreateGroupButton;
     protected ParseRelation<ParseUser> mFriendsRelation;
+    protected ParseRelation<ParseUser> mPendingMemberRelation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,7 @@ public class CreateGroupActivity extends ListActivity {
                 else {
                     setProgressBarIndeterminateVisibility(false);
 
-                    //create the group and save it in background
+                    //create the group and save it in background and add pending members
                     ParseObject group = createGroup();
                     group.saveInBackground();
 
@@ -132,6 +133,12 @@ public class CreateGroupActivity extends ListActivity {
         ParseObject group = new ParseObject(ParseConstants.CLASS_GROUPS);
         group.add(ParseConstants.KEY_GROUP_ADMIN, mCurrentUser);
         group.add(ParseConstants.KEY_GROUP_NAME, mGroupName);
+
+        //Add Pending members to group
+        mPendingMemberRelation = group.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
+        for (ParseUser member : mPendingMembers) {
+            mPendingMemberRelation.add(member);
+        }
 
         return group;
     }

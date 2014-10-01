@@ -30,6 +30,7 @@ public class GroupRequestActivity extends Activity {
     protected String mGroupName;
     protected String mSenderUsername;
     protected ParseRelation<ParseUser> mMemberRelation;
+    protected ParseRelation<ParseUser> mPendingMemberRelation;
     protected ParseUser mCurrentUser;
 
     @Override
@@ -79,8 +80,9 @@ public class GroupRequestActivity extends Activity {
                     mGroupName = mGroup.get(ParseConstants.KEY_GROUP_NAME).toString();
                     mGroupName = mGroupName.replace("[", "");
                     mGroupName = mGroupName.replace("]", "");
-                    mRequestText.setText(mSenderUsername + " has invited you to the group " + mGroupName + "\"!");
+                    mRequestText.setText(mSenderUsername + " has invited you to the group \"" + mGroupName + "\"!");
                     mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
+                    mPendingMemberRelation = mGroup.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
                 }
                 else { //error
                     Log.e(TAG, e.getMessage());
@@ -98,6 +100,7 @@ public class GroupRequestActivity extends Activity {
             @Override
             public void onClick(View view) {
                 mMemberRelation.add(mCurrentUser);
+                mPendingMemberRelation.remove(mCurrentUser);
                 mGroup.saveInBackground();
             }
         });
