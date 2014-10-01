@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,12 +23,10 @@ public class GroupRequestActivity extends Activity {
     protected TextView mRequestText;
     protected Button mAcceptButton;
     protected Button mRejectButton;
-    protected String mSenderId;
     protected String mGroupId;
     protected String mMessageId;
     protected ParseObject mMessage;
     protected ParseObject mGroup;
-    protected ParseUser mSender;
     protected String mGroupName;
     protected String mSenderUsername;
     protected ParseRelation<ParseUser> mMemberRelation;
@@ -39,9 +38,7 @@ public class GroupRequestActivity extends Activity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_group_request);
 
-//        mCurrentUser = ParseUser.getCurrentUser();
-//        //Define Relations
-//        mMemberRelation = mCurrentUser.getRelation(ParseConstants.KEY_MEMBER_RELATION);
+        mCurrentUser = ParseUser.getCurrentUser();
 
         mRequestText = (TextView) findViewById(R.id.text);
         mAcceptButton = (Button) findViewById(R.id.acceptButton);
@@ -82,7 +79,8 @@ public class GroupRequestActivity extends Activity {
                     mGroupName = mGroup.get(ParseConstants.KEY_GROUP_NAME).toString();
                     mGroupName = mGroupName.replace("[", "");
                     mGroupName = mGroupName.replace("]", "");
-                    mRequestText.setText(mSenderUsername + " has invited you to the group: " + mGroupName + "!");
+                    mRequestText.setText(mSenderUsername + " has invited you to the group " + mGroupName + "\"!");
+                    mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
                 }
                 else { //error
                     Log.e(TAG, e.getMessage());
@@ -96,6 +94,13 @@ public class GroupRequestActivity extends Activity {
             }
         });
 
+        mAcceptButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mMemberRelation.add(mCurrentUser);
+                mGroup.saveInBackground();
+            }
+        });
 
     }
 }
