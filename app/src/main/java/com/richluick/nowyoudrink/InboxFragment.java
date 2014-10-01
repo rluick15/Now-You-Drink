@@ -87,6 +87,12 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                             mMessagesCopy.remove(message); //remove message from query
                             deleteMessage(message);
                         }
+                        else if (message.get(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_GROUP_REQUEST)
+                                && (message.get(ParseConstants.KEY_SENDER_ID)).equals(mSenderIdAnswered)) {
+
+                            mMessagesCopy.remove(message); //remove message from query
+                            deleteMessage(message);
+                        }
                         //Request Accepted, Friend Request not looked at, or drink request
                         else {
                             usernames[i] = message.getString(ParseConstants.KEY_SENDER_NAME);

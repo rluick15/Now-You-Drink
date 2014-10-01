@@ -92,7 +92,8 @@
         <activity
             android:name=".GroupActivity"
             android:label="@string/title_activity_group"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />
@@ -100,7 +101,8 @@
         <activity
             android:name=".GroupRequestActivity"
             android:label="@string/title_activity_group_request"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />

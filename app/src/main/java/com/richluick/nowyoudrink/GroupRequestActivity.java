@@ -2,6 +2,7 @@ package com.richluick.nowyoudrink;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,10 +11,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 
 public class GroupRequestActivity extends Activity {
@@ -101,7 +104,37 @@ public class GroupRequestActivity extends Activity {
             public void onClick(View view) {
                 mMemberRelation.add(mCurrentUser);
                 mPendingMemberRelation.remove(mCurrentUser);
-                mGroup.saveInBackground();
+                mGroup.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e != null) {
+                            Log.e(TAG, e.getMessage());
+                        }
+                    }
+                });
+
+                Intent intent = new Intent(GroupRequestActivity.this, GroupActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra(ParseConstants.KEY_GROUP_ID, mGroupId);
+                startActivity(intent);
+            }
+        });
+
+        mRejectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPendingMemberRelation.remove(mCurrentUser);
+                mGroup.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e != null) {
+                            Log.e(TAG, e.getMessage());
+                        }
+                    }
+                });
+
+                finish();
             }
         });
 

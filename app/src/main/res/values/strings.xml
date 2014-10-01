@@ -63,10 +63,10 @@
     <string name="select_friends_text">Select Friends</string>
     <string name="empty_friends_label_2">You have no Friends!</string>
     <string name="create_group_button_label">Create Group</string>
-    <string name="title_activity_group">GroupActivity</string>
+    <string name="title_activity_group">Groups</string>
     <string name="create_group_error_message">Please make sure you enter a group name.</string>
     <string name="error_creating_group">There was an error creating your group. Please try again.</string>
     <string name="success_message_group_create">Group Created!</string>
-    <string name="title_activity_group_request">GroupRequestActivity</string>
+    <string name="title_activity_group_request">Group Request</string>
 
 </resources>

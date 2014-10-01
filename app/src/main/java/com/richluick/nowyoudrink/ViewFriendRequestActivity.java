@@ -153,6 +153,8 @@ public class ViewFriendRequestActivity extends Activity {
 
     protected void returnIntent() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra(ParseConstants.KEY_SENDER_ID, mSenderId);
         startActivity(intent);
     }
