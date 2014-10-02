@@ -97,22 +97,22 @@ public class GroupActivity extends ListActivity {
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 }
-
-                mDrinkButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mGroup.remove(ParseConstants.KEY_CURRENT_DRINKER);
-                        mGroup.remove(ParseConstants.KEY_PREVIOUS_DRINKER);
-                        mGroup.add(ParseConstants.KEY_PREVIOUS_DRINKER, mCurrentDrinker);
-                        mGroup.add(ParseConstants.KEY_CURRENT_DRINKER, mNextDrinker.getUsername());
-                        mGroup.saveInBackground();
-                    }
-                });
             }
         });
 
+        mDrinkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mGroup.remove(ParseConstants.KEY_CURRENT_DRINKER);
+                mGroup.remove(ParseConstants.KEY_PREVIOUS_DRINKER);
+                mGroup.add(ParseConstants.KEY_PREVIOUS_DRINKER, mCurrentDrinker);
+                mGroup.add(ParseConstants.KEY_CURRENT_DRINKER, mNextDrinker.getUsername());
+                mGroup.saveInBackground();
 
-
+                finish();
+                startActivity(getIntent());
+            }
+        });
     }
 
     //queries the users in the group and formats them for the list view
