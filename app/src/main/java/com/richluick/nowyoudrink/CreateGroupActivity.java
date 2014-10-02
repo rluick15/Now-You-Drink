@@ -147,7 +147,7 @@ public class CreateGroupActivity extends ListActivity {
         else { //sends the message and goes to the new group
             send(message);
             Intent intent = new Intent(CreateGroupActivity.this, GroupActivity.class);
-            intent.putExtra(ParseConstants.KEY_GROUP_ID, group.getObjectId());
+            intent.putExtra(ParseConstants.KEY_GROUP_ID, message.getObjectId());
             startActivity(intent);
             finish();
         }

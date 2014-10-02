@@ -60,9 +60,10 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
             holder.textLabel.setText("You have a group invite from "
                     + message.get(ParseConstants.KEY_SENDER_NAME) + "!");
         }
+        //in this instance, message holds a object of the group class
         else if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_GROUP)) {
-            holder.textLabel.setText("You have a group invite from "
-                    + message.get(ParseConstants.KEY_SENDER_NAME) + "!");
+            holder.textLabel.setText(message.get(ParseConstants.KEY_GROUP_NAME).toString()
+                    .replace("[", "").replace("]", ""));
         }
         else {
             //holder.iconImageView.setImageResource(R.drawable.ic_video);
@@ -71,7 +72,13 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
 
         String convertedDate = formatDate(message);
 
-        holder.timeLabel.setText(convertedDate);
+        //time label is createdAt if the object is a group in the groups fragment
+        if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_GROUP)) {
+            holder.timeLabel.setText("Click to Drink!");
+        }
+        else {
+            holder.timeLabel.setText(convertedDate);
+        }
 
         return convertView;
     }

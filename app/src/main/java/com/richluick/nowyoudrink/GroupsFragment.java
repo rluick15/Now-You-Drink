@@ -62,12 +62,6 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
                         i++;
                     }
 
-//                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-//                            getActivity(),
-//                            android.R.layout.simple_list_item_1,
-//                            groupnames);
-//                    setListAdapter(adapter);
-
                     if (getListView().getAdapter() == null) {
                         MessageAdapter adapter = new MessageAdapter(getListView().getContext(), mGroups);
                         setListAdapter(adapter);
