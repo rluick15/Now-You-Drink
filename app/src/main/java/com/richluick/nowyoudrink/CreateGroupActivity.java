@@ -35,10 +35,12 @@ public class CreateGroupActivity extends ListActivity {
     protected EditText mGroupNameField;
     protected String mGroupName;
     protected ParseObject mGroup;
+    protected String mGroupId;
     protected Button mCreateGroupButton;
     protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseRelation<ParseUser> mPendingMemberRelation;
     protected ParseRelation<ParseUser> mMemberRelation;
+    ParseRelation<ParseObject> mMemberOfGroupRelation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,115 +51,10 @@ public class CreateGroupActivity extends ListActivity {
         mGroupNameField = (EditText) findViewById(R.id.groupTitleField);
         mCreateGroupButton = (Button) findViewById(R.id.createGroupButton);
 
-
-
-        //creates groups if fields are all filled out
-        mCreateGroupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setProgressBarIndeterminateVisibility(true);
-
-                mGroupName = mGroupNameField.getText().toString();
-                if (mGroupName.isEmpty()) {
-                    setProgressBarIndeterminateVisibility(false);
-
-                    //Checks if the user left the group name field blank and displays an alert message
-                    AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
-                    builder.setTitle(getString(R.string.error_title))
-                            .setMessage(getString(R.string.create_group_error_message))
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                }
-                else {
-                    setProgressBarIndeterminateVisibility(false);
-
-                    //create the group and save it in background and add pending members
-                    ParseObject group = createGroup();
-                    group.saveInBackground();
-
-                    ParseObject message = createMessage(group);
-
-                    if(message == null) { //error
-                        AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
-                        builder.setMessage(getString(R.string.error_friend_request))
-                                .setTitle(getString(R.string.error_title))
-                                .setPositiveButton(android.R.string.ok, null);
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-                    }
-                    else { //sends the message and goes to the new group
-                        send(message);
-                        Intent intent = new Intent(CreateGroupActivity.this, GroupActivity.class);
-                        intent.putExtra(ParseConstants.KEY_GROUP_ID, group.getObjectId());
-                        startActivity(intent);
-                        finish();
-                    }
-                }
-            }
-        });
-
-        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-    }
-
-    private void send(ParseObject message) {
-        message.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if(e == null) {
-                    //success
-                    Toast.makeText(CreateGroupActivity.this, getString(R.string.success_message_group_create), Toast.LENGTH_LONG).show();
-                    //sendPushNotifications();
-                }
-                else { //error sending message
-                    AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
-                    builder.setMessage(getString(R.string.error_creating_group))
-                            .setTitle(getString(R.string.error_selecting_file_title))
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                }
-            }
-        });
-    }
-
-
-    private ParseObject createMessage(ParseObject group) {
-        ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGES);
-        message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
-        message.put(ParseConstants.KEY_SENDER, ParseUser.getCurrentUser());
-        message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
-        message.put(ParseConstants.KEY_RECIPIENT_IDS, mPendingMembers);
-        message.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_GROUP_REQUEST);
-        message.put(ParseConstants.KEY_GROUP, group);
-
-        return message;
-    }
-
-    private ParseObject createGroup() {
-        ParseObject group = new ParseObject(ParseConstants.CLASS_GROUPS);
-        group.add(ParseConstants.KEY_GROUP_ADMIN, mCurrentUser);
-        group.add(ParseConstants.KEY_GROUP_NAME, mGroupName);
-        group.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_GROUP);
-
-        //Add Pending members to group and add current user as group memeber
-        mMemberRelation = group.getRelation(ParseConstants.KEY_MEMBER_RELATION);
-        mMemberRelation.add(mCurrentUser);
-        mPendingMemberRelation = group.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
-        for (ParseUser member : mPendingMembers) {
-            mPendingMemberRelation.add(member);
-        }
-
-        return group;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
         mCurrentUser = ParseUser.getCurrentUser();
         mPendingMembers = new ArrayList<ParseUser>();
         mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
+        mMemberOfGroupRelation = mCurrentUser.getRelation(ParseConstants.KEY_MEMBER_OF_GROUP_RELATION);
 
         setProgressBarIndeterminateVisibility(true);
 
@@ -190,6 +87,114 @@ public class CreateGroupActivity extends ListActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
                     builder.setTitle(R.string.error_title)
                             .setMessage(e.getMessage())
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            }
+        });
+
+        //creates groups if fields are all filled out
+        mCreateGroupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setProgressBarIndeterminateVisibility(true);
+
+                mGroupName = mGroupNameField.getText().toString();
+                if (mGroupName.isEmpty()) {
+                    setProgressBarIndeterminateVisibility(false);
+
+                    //Checks if the user left the group name field blank and displays an alert message
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
+                    builder.setTitle(getString(R.string.error_title))
+                            .setMessage(getString(R.string.create_group_error_message))
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else {
+                    createGroupAndMessage();
+                }
+            }
+        });
+
+        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+    }
+
+    private void createGroupAndMessage() {
+        setProgressBarIndeterminateVisibility(false);
+
+        //create the group and save it in background and add pending members
+        final ParseObject group = createGroup();
+        group.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                String id = group.getObjectId();
+                mMemberOfGroupRelation.add(group);
+                mCurrentUser.saveInBackground();
+            }
+        });
+
+        ParseObject message = createMessage(group);
+        if(message == null) { //error
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
+            builder.setMessage(getString(R.string.error_friend_request))
+                    .setTitle(getString(R.string.error_title))
+                    .setPositiveButton(android.R.string.ok, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        else { //sends the message and goes to the new group
+            send(message);
+            Intent intent = new Intent(CreateGroupActivity.this, GroupActivity.class);
+            intent.putExtra(ParseConstants.KEY_GROUP_ID, group.getObjectId());
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    private ParseObject createGroup() {
+        ParseObject group = new ParseObject(ParseConstants.CLASS_GROUPS);
+        group.add(ParseConstants.KEY_GROUP_ADMIN, mCurrentUser);
+        group.add(ParseConstants.KEY_GROUP_NAME, mGroupName);
+        group.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_GROUP);
+
+        //Add Pending members to group and add current user as group memeber
+        mMemberRelation = group.getRelation(ParseConstants.KEY_MEMBER_RELATION);
+        mMemberRelation.add(mCurrentUser);
+        mPendingMemberRelation = group.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
+        for (ParseUser member : mPendingMembers) {
+            mPendingMemberRelation.add(member);
+        }
+
+        return group;
+    }
+
+    private ParseObject createMessage(ParseObject group) {
+        ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGES);
+        message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
+        message.put(ParseConstants.KEY_SENDER, ParseUser.getCurrentUser());
+        message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
+        message.put(ParseConstants.KEY_RECIPIENT_IDS, mPendingMembers);
+        message.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_GROUP_REQUEST);
+        message.put(ParseConstants.KEY_GROUP, group);
+
+        return message;
+    }
+
+    private void send(ParseObject message) {
+        message.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null) {
+                    //success
+                    Toast.makeText(CreateGroupActivity.this, getString(R.string.success_message_group_create), Toast.LENGTH_LONG).show();
+                    //sendPushNotifications();
+                }
+                else { //error sending message
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
+                    builder.setMessage(getString(R.string.error_creating_group))
+                            .setTitle(getString(R.string.error_selecting_file_title))
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();

@@ -39,6 +39,6 @@ public final class ParseConstants {
     public static final String TYPE_FRIEND_REQUEST_CONFIRM = "friendRequestConfirm";
     public static final String TYPE_FRIEND_REQUEST_DENY = "friendRequestDeny";
     public static final String TYPE_GROUP_REQUEST = "groupRequest";
-    public static final String TYPE_GROUP = "groupRequest";
+    public static final String TYPE_GROUP = "group";
     public static final String TYPE_DRINK_REQUEST = "drinkRequest";
 }
