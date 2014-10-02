@@ -157,8 +157,6 @@ public class CreateGroupActivity extends ListActivity {
                 }
             }
         });
-
-
     }
 
     private ParseObject createGroup() {

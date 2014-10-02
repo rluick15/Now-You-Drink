@@ -72,5 +72,7 @@
     <string name="group_previous_drinker_title">Previous Drinker</string>
     <string name="group_drink_button_text">Now You Drink!</string>
     <string name="group_members_list_title">Group Members</string>
+    <string name="now_you_drink_message">You\'re up! Take a drink and select a friend to go next!</string>
+    <string name="now_you_drink_title">Take a drink!</string>
 
 </resources>

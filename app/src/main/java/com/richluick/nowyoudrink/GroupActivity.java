@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,6 +40,7 @@ public class GroupActivity extends ListActivity {
     protected ParseRelation<ParseObject> mMemberOfGroupRelation;
     protected ParseUser mCurrentUser;
     protected List<ParseUser> mMembers;
+    protected ParseUser mNextDrinker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,6 @@ public class GroupActivity extends ListActivity {
         mDrinkButton = (Button) findViewById(R.id.drinkButton);
 
         mCurrentUser = ParseUser.getCurrentUser();
-
         mGroupId = getIntent().getStringExtra(ParseConstants.KEY_GROUP_ID);
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE); //only one user can be selected
@@ -86,8 +87,32 @@ public class GroupActivity extends ListActivity {
                 mPreviousDrinkerView.setText(mPreviousDrinker);
 
                 listViewQuery(mMemberRelation);
+
+                //activate the button for the current drinker and let them know they are up
+                if((mCurrentUser.getUsername()).equals(mCurrentDrinker)) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
+                    builder.setTitle(getString(R.string.now_you_drink_title))
+                            .setMessage(getString(R.string.now_you_drink_message))
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+
+                mDrinkButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mGroup.remove(ParseConstants.KEY_CURRENT_DRINKER);
+                        mGroup.remove(ParseConstants.KEY_PREVIOUS_DRINKER);
+                        mGroup.add(ParseConstants.KEY_PREVIOUS_DRINKER, mCurrentDrinker);
+                        mGroup.add(ParseConstants.KEY_CURRENT_DRINKER, mNextDrinker.getUsername());
+                        mGroup.saveInBackground();
+                    }
+                });
             }
         });
+
+
+
     }
 
     //queries the users in the group and formats them for the list view
@@ -126,6 +151,20 @@ public class GroupActivity extends ListActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        //adds the selected user to list of selected users in the list
+        if (l.isItemChecked(position)) mNextDrinker = mMembers.get(position);
+
+        //only displays the button if at least one friend is selected
+        if(l.getCheckedItemCount() > 0 && (mCurrentUser.getUsername()).equals(mCurrentDrinker)) {
+            mDrinkButton.setEnabled(true);
+        }
+        else mDrinkButton.setEnabled(false);
     }
 
     @Override
