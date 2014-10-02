@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 
 public class GroupActivity extends Activity {
@@ -15,8 +14,7 @@ public class GroupActivity extends Activity {
         setContentView(R.layout.activity_group);
 
         //use the message Id to extract the group. Also remember to change the friend request system.
-        String messageId = getIntent().getStringExtra(ParseConstants.KEY_GROUP_ID);
-        Toast.makeText(this, messageId,Toast.LENGTH_LONG).show();
+
     }
 
 

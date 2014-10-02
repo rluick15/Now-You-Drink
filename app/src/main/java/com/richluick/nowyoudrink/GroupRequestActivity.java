@@ -85,7 +85,8 @@ public class GroupRequestActivity extends Activity {
                     mGroupName = mGroupName.replace("[", "");
                     mGroupName = mGroupName.replace("]", "");
                     mSenderUsername = mMessage.get(ParseConstants.KEY_SENDER_NAME).toString();
-                    mRequestText.setText(mSenderUsername + " has invited you to the group \"" + mGroupName + "\"!");
+                    mRequestText.setText(mSenderUsername + " has invited you to join the group \""
+                            + mGroupName + "\"!");
                     mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
                     mPendingMemberRelation = mGroup.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
                 }

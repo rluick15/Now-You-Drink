@@ -34,6 +34,7 @@ public class ViewFriendRequestActivity extends Activity {
     protected String mUsername;
     protected ParseRelation<ParseUser> mPendingRelation;
     protected ParseRelation<ParseUser> mFriendsRelation;
+    protected ParseRelation<ParseUser> mSenderFriendsRelation;
     protected ParseUser mCurrentUser;
 
     @Override

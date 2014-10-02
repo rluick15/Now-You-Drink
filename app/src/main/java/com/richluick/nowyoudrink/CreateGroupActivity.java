@@ -125,32 +125,40 @@ public class CreateGroupActivity extends ListActivity {
         setProgressBarIndeterminateVisibility(false);
 
         //create the group and save it in background and add pending members
+        //get the object ID in the callback and create the new group
         final ParseObject group = createGroup();
         group.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                String id = group.getObjectId();
-                mMemberOfGroupRelation.add(group);
-                mCurrentUser.saveInBackground();
+                if (e == null) {
+                    mGroupId = group.getObjectId();
+                    mMemberOfGroupRelation.add(group);
+                    mCurrentUser.saveInBackground();
+
+                    ParseObject message = createMessage(group);
+                    if(message == null) { //error
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
+                        builder.setMessage(getString(R.string.error_friend_request))
+                                .setTitle(getString(R.string.error_title))
+                                .setPositiveButton(android.R.string.ok, null);
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                    else { //sends the message and goes to the new group
+                        send(message);
+                        Intent intent = new Intent(CreateGroupActivity.this, GroupActivity.class);
+                        intent.putExtra(ParseConstants.KEY_GROUP_ID, mGroupId);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+                else {
+                    Log.d(TAG, e.getMessage());
+                }
             }
         });
 
-        ParseObject message = createMessage(group);
-        if(message == null) { //error
-            AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
-            builder.setMessage(getString(R.string.error_friend_request))
-                    .setTitle(getString(R.string.error_title))
-                    .setPositiveButton(android.R.string.ok, null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }
-        else { //sends the message and goes to the new group
-            send(message);
-            Intent intent = new Intent(CreateGroupActivity.this, GroupActivity.class);
-            intent.putExtra(ParseConstants.KEY_GROUP_ID, message.getObjectId());
-            startActivity(intent);
-            finish();
-        }
+
     }
 
     private ParseObject createGroup() {
