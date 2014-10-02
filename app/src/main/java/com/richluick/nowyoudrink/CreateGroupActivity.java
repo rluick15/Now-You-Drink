@@ -165,6 +165,8 @@ public class CreateGroupActivity extends ListActivity {
         ParseObject group = new ParseObject(ParseConstants.CLASS_GROUPS);
         group.add(ParseConstants.KEY_GROUP_ADMIN, mCurrentUser);
         group.add(ParseConstants.KEY_GROUP_NAME, mGroupName);
+        group.add(ParseConstants.KEY_CURRENT_DRINKER, mCurrentUser.getUsername());
+        group.add(ParseConstants.KEY_PREVIOUS_DRINKER, "");
         group.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_GROUP);
 
         //Add Pending members to group and add current user as group memeber

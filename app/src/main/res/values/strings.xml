@@ -68,5 +68,9 @@
     <string name="error_creating_group">There was an error creating your group. Please try again.</string>
     <string name="success_message_group_create">Group Created!</string>
     <string name="title_activity_group_request">Group Request</string>
+    <string name="group_current_drinker_title">Current Drinker</string>
+    <string name="group_previous_drinker_title">Previous Drinker</string>
+    <string name="group_drink_button_text">Now You Drink!</string>
+    <string name="group_members_list_title">Group Members</string>
 
 </resources>
