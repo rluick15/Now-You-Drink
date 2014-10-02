@@ -21,7 +21,6 @@ public class GroupActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
-        setTitle("");
 
         mGroupId = getIntent().getStringExtra(ParseConstants.KEY_GROUP_ID);
 
