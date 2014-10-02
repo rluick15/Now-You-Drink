@@ -5,10 +5,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 
 public class GroupActivity extends Activity {
 
     protected String mGroupId;
+    protected ParseObject mGroup;
+    protected String mGroupName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +24,17 @@ public class GroupActivity extends Activity {
         setTitle("");
 
         mGroupId = getIntent().getStringExtra(ParseConstants.KEY_GROUP_ID);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(ParseConstants.CLASS_GROUPS);
+        query.getInBackground(mGroupId, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject group, ParseException e) {
+                mGroup = group;
+                mGroupName = group.get(ParseConstants.KEY_GROUP_NAME).toString()
+                        .replace("[", "").replace("]", "");
+                setTitle(mGroupName);
+            }
+        });
     }
 
 
