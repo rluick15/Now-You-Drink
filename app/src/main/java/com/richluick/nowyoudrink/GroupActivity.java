@@ -8,13 +8,15 @@ import android.view.MenuItem;
 
 public class GroupActivity extends Activity {
 
+    protected String mGroupId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
+        setTitle("");
 
-        //use the message Id to extract the group. Also remember to change the friend request system.
-
+        mGroupId = getIntent().getStringExtra(ParseConstants.KEY_GROUP_ID);
     }
 
 

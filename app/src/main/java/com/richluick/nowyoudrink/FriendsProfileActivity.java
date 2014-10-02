@@ -53,6 +53,7 @@ public class FriendsProfileActivity extends Activity {
             public void done(ParseUser parseUser, com.parse.ParseException e) {
                 if (e == null) {
                     mUsername = parseUser.getUsername();
+                    setTitle(mUsername + "'s Profile"); //set the page title to the friends username
                     mFirstName = parseUser.get(ParseConstants.KEY_FIRST_NAME).toString();
                     mLastName = parseUser.get(ParseConstants.KEY_LAST_NAME).toString();
                     mFullName = mFirstName + " " + mLastName;
@@ -80,7 +81,6 @@ public class FriendsProfileActivity extends Activity {
                 }
             }
         });
-
     }
 
     private void setProfilePicture() {
