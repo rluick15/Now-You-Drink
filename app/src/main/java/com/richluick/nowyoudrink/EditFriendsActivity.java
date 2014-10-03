@@ -162,6 +162,7 @@ public class EditFriendsActivity extends ListActivity {
         message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
         message.put(ParseConstants.KEY_SENDER, ParseUser.getCurrentUser());
         message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
+        message.put(ParseConstants.KEY_GROUP_ID, "");
         message.put(ParseConstants.KEY_RECIPIENT_IDS, mPendingFriends);
         message.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_FRIEND_REQUEST);
 

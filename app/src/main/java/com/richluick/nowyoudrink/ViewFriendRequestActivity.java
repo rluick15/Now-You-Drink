@@ -170,6 +170,7 @@ public class ViewFriendRequestActivity extends Activity {
         message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
         message.put(ParseConstants.KEY_RECIPIENT_IDS, sender);
         message.put(ParseConstants.KEY_MESSAGE_TYPE, type);
+        message.put(ParseConstants.KEY_GROUP_ID, "");
 
         return message;
     }

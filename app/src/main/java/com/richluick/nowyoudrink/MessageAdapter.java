@@ -62,12 +62,13 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
         }
         //in this instance, message holds a object of the group class
         else if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_GROUP)) {
-            holder.textLabel.setText(message.get(ParseConstants.KEY_GROUP_NAME).toString()
-                    .replace("[", "").replace("]", ""));
+            String text = message.get(ParseConstants.KEY_GROUP_NAME).toString();
+            text = MainActivity.removeCharacters(text);
+            holder.textLabel.setText(text);
         }
         else {
-            //holder.iconImageView.setImageResource(R.drawable.ic_video);
             holder.textLabel.setText("Now You Drink!");
+            //holder.timeLabel.setText(message.get(Pa));
         }
 
         String convertedDate = formatDate(message);

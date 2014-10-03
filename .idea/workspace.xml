@@ -88,26 +88,56 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroupActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="GroupActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/GroupActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.86796117" vertical-offset="2494" max-vertical-offset="4199">
-              <caret line="182" column="19" selection-start-line="182" selection-start-column="19" selection-end-line="182" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3106" max-vertical-offset="4318">
+              <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3784#3823#0" expanded="true" />
-                <element signature="e#3865#3906#0" expanded="true" />
-                <element signature="e#4555#4600#0" expanded="true" />
-                <element signature="e#4642#4689#0" expanded="true" />
-                <element signature="e#5589#5636#0" expanded="true" />
-                <element signature="e#5680#5719#0" expanded="true" />
-                <element signature="e#7136#7144#0" expanded="true" />
-                <element signature="e#7617#7637#0" expanded="true" />
-                <element signature="e#8080#8091#0" expanded="true" />
-                <element signature="e#8818#9306#0" expanded="true" />
-                <element signature="e#9027#9076#0" expanded="true" />
-                <element signature="e#9295#9296#0" expanded="true" />
+                <element signature="e#5270#5567#0" expanded="true" />
+                <element signature="e#5544#5545#0" expanded="true" />
+                <element signature="e#7433#7441#0" expanded="true" />
+                <element signature="e#8377#8388#0" expanded="true" />
+                <element signature="e#9139#9627#0" expanded="true" />
+                <element signature="e#9616#9617#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InboxFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/InboxFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="631" max-vertical-offset="2958">
+              <caret line="68" column="75" selection-start-line="68" selection-start-column="75" selection-end-line="68" selection-end-column="75" />
+              <folding>
+                <element signature="e#2380#4400#0" expanded="true" />
+                <element signature="e#4389#4390#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroupRequestActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/GroupRequestActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5597609" vertical-offset="926" max-vertical-offset="2159">
+              <caret line="90" column="17" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
+              <folding>
+                <element signature="e#3147#4496#0" expanded="true" />
+                <element signature="e#4485#4486#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageAdapter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/MessageAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="874" max-vertical-offset="1751">
+              <caret line="89" column="40" selection-start-line="89" selection-start-column="40" selection-end-line="90" selection-end-column="87" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1227,9 +1257,7 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_group_request.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/InboxFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/SendMessageUtil.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/MessageAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/FriendsProfileActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ParseConstants.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_group.xml" />
@@ -1237,9 +1265,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/GroupRequestActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/GroupsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/GroupActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/InboxFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/EditFriendsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ViewFriendRequestActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/CreateGroupActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ViewFriendRequestActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/MessageAdapter.java" />
       </list>
     </option>
   </component>
@@ -1276,8 +1306,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1426,6 +1454,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1659,13 +1689,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296501" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296501" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.023941068" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15372169" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20631067" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1959,13 +1989,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/MessageAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60587" vertical-offset="612" max-vertical-offset="1734">
-          <caret line="65" column="55" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-20/android.jar!/android/widget/TextView.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20318726" vertical-offset="0" max-vertical-offset="8976">
@@ -2051,34 +2074,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/GroupsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="386" max-vertical-offset="1564">
-          <caret line="51" column="7" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/EditFriendsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.9708738" vertical-offset="539" max-vertical-offset="2788">
-          <caret line="181" column="47" selection-start-line="181" selection-start-column="47" selection-end-line="181" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/FriendsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47184467" vertical-offset="641" max-vertical-offset="1462">
           <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/InboxFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5514563" vertical-offset="0" max-vertical-offset="2890">
-          <caret line="65" column="31" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -2099,51 +2098,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ViewFriendRequestActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/GroupsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6368932" vertical-offset="2307" max-vertical-offset="2822">
-          <caret line="191" column="46" selection-start-line="191" selection-start-column="46" selection-end-line="191" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="386" max-vertical-offset="1564">
+          <caret line="51" column="7" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/GroupRequestActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/EditFriendsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.32038835" vertical-offset="1389" max-vertical-offset="2159">
-          <caret line="91" column="17" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="17" />
-          <folding>
-            <element signature="e#3147#4496#0" expanded="true" />
-            <element signature="e#4485#4486#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.2407767" vertical-offset="2171" max-vertical-offset="2805">
+          <caret line="162" column="71" selection-start-line="162" selection-start-column="71" selection-end-line="162" selection-end-column="71" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/CreateGroupActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4621359" vertical-offset="2618" max-vertical-offset="3281">
-          <caret line="201" column="46" selection-start-line="201" selection-start-column="46" selection-end-line="201" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.16504854" vertical-offset="2516" max-vertical-offset="3298">
+          <caret line="184" column="72" selection-start-line="184" selection-start-column="72" selection-end-line="184" selection-end-column="72" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/GroupActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.86796117" vertical-offset="2494" max-vertical-offset="4199">
-          <caret line="182" column="19" selection-start-line="182" selection-start-column="19" selection-end-line="182" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3208" max-vertical-offset="4318">
+          <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3784#3823#0" expanded="true" />
-            <element signature="e#3865#3906#0" expanded="true" />
-            <element signature="e#4555#4600#0" expanded="true" />
-            <element signature="e#4642#4689#0" expanded="true" />
-            <element signature="e#5589#5636#0" expanded="true" />
-            <element signature="e#5680#5719#0" expanded="true" />
-            <element signature="e#7136#7144#0" expanded="true" />
-            <element signature="e#7617#7637#0" expanded="true" />
-            <element signature="e#8080#8091#0" expanded="true" />
-            <element signature="e#8818#9306#0" expanded="true" />
-            <element signature="e#9027#9076#0" expanded="true" />
-            <element signature="e#9295#9296#0" expanded="true" />
+            <element signature="e#5270#5567#0" expanded="true" />
+            <element signature="e#5544#5545#0" expanded="true" />
+            <element signature="e#7433#7441#0" expanded="true" />
+            <element signature="e#8377#8388#0" expanded="true" />
+            <element signature="e#9139#9627#0" expanded="true" />
+            <element signature="e#9616#9617#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ViewFriendRequestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76893204" vertical-offset="1950" max-vertical-offset="2839">
+          <caret line="172" column="50" selection-start-line="172" selection-start-column="50" selection-end-line="172" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/MessageAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="874" max-vertical-offset="1751">
+          <caret line="89" column="40" selection-start-line="89" selection-start-column="40" selection-end-line="90" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/InboxFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="631" max-vertical-offset="2958">
+          <caret line="68" column="75" selection-start-line="68" selection-start-column="75" selection-end-line="68" selection-end-column="75" />
+          <folding>
+            <element signature="e#2380#4400#0" expanded="true" />
+            <element signature="e#4389#4390#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/GroupRequestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5597609" vertical-offset="926" max-vertical-offset="2159">
+          <caret line="90" column="17" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
+          <folding>
+            <element signature="e#3147#4496#0" expanded="true" />
+            <element signature="e#4485#4486#0" expanded="true" />
           </folding>
         </state>
       </provider>

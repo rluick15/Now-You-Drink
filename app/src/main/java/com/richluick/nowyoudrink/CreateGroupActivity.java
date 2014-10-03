@@ -186,6 +186,7 @@ public class CreateGroupActivity extends ListActivity {
         message.put(ParseConstants.KEY_RECIPIENT_IDS, mPendingMembers);
         message.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_GROUP_REQUEST);
         message.put(ParseConstants.KEY_GROUP, group);
+        message.put(ParseConstants.KEY_GROUP_ID, "");
 
         return message;
     }

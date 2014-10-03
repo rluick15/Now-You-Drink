@@ -120,7 +120,14 @@ public class GroupActivity extends ListActivity {
                     mGroup.remove(ParseConstants.KEY_PREVIOUS_DRINKER);
                     mGroup.add(ParseConstants.KEY_PREVIOUS_DRINKER, mCurrentDrinker);
                     mGroup.add(ParseConstants.KEY_CURRENT_DRINKER, mNextDrinker.getUsername());
-                    mGroup.saveInBackground();
+                    mGroup.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if(e != null) {
+                                Log.e(TAG, e.getMessage());
+                            }
+                        }
+                    });
 
                     //create and send the Now you drink message
                     ParseObject message = createMessage();
@@ -188,10 +195,10 @@ public class GroupActivity extends ListActivity {
         ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGES);
         message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
         message.put(ParseConstants.KEY_SENDER, ParseUser.getCurrentUser());
+        message.put(ParseConstants.KEY_GROUP_ID, mGroupId);
         message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
         message.put(ParseConstants.KEY_RECIPIENT_IDS, nextDrinker);
         message.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_DRINK_REQUEST);
-        message.saveInBackground();
 
         return message;
     }
