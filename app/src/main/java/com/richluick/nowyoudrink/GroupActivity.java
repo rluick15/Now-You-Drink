@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -20,6 +21,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.List;
 
@@ -103,7 +105,8 @@ public class GroupActivity extends ListActivity {
         mDrinkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mNextDrinker == (mCurrentUser) || (mNextDrinker.getUsername()).equals(mPreviousDrinker)) {
+                if(mNextDrinker.getUsername().equals(mCurrentUser.getUsername())
+                        || (mNextDrinker.getUsername()).equals(mPreviousDrinker)) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
                     builder.setTitle(getString(R.string.group_bad_selection_title))
                             .setMessage(getString(R.string.group_bad_selection_message))
@@ -118,8 +121,21 @@ public class GroupActivity extends ListActivity {
                     mGroup.add(ParseConstants.KEY_CURRENT_DRINKER, mNextDrinker.getUsername());
                     mGroup.saveInBackground();
 
-                    finish();
-                    startActivity(getIntent());
+                    //create and send the Now you drink message
+                    ParseObject message = createMessage();
+                    if(message == null) { //error
+                        AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
+                        builder.setMessage(getString(R.string.message_drink_request_error))
+                                .setTitle(getString(R.string.error_message_title))
+                                .setPositiveButton(android.R.string.ok, null);
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                    else { //sends the message and closes the activity
+                        send(message);
+                        finish();
+                        startActivity(getIntent());
+                    }
                 }
             }
         });
@@ -155,6 +171,42 @@ public class GroupActivity extends ListActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
                     builder.setTitle(R.string.error_title)
                             .setMessage(e.getMessage())
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            }
+        });
+    }
+
+    //Friend Request Message is create with relevant information
+    protected ParseObject createMessage() {
+        ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGES);
+        message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
+        message.put(ParseConstants.KEY_SENDER, ParseUser.getCurrentUser());
+        message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
+        message.put(ParseConstants.KEY_RECIPIENT_IDS, mNextDrinker);
+        message.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_DRINK_REQUEST);
+
+        Toast.makeText(GroupActivity.this, mNextDrinker.getUsername(), Toast.LENGTH_LONG).show();
+
+        return message;
+    }
+
+    //message is sent to recipients
+    protected void send(ParseObject message) {
+        message.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null) {
+                    //success
+                    Toast.makeText(GroupActivity.this, getString(R.string.message_success_drink_request), Toast.LENGTH_LONG).show();
+                    //sendPushNotifications();
+                }
+                else { //error sending message
+                    AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
+                    builder.setMessage(getString(R.string.message_drink_request_error))
+                            .setTitle(getString(R.string.error_message_title))
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();

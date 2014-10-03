@@ -76,5 +76,8 @@
     <string name="now_you_drink_title">Take a drink!</string>
     <string name="group_bad_selection_message">Make sure you select a friend that isn\'t the previous drinker or isn\'t yourself(cough... alcoholic).</string>
     <string name="group_bad_selection_title">Oops!</string>
+    <string name="message_success_drink_request">Drink request sent!</string>
+    <string name="error_message_title">Error</string>
+    <string name="message_drink_request_error">There was an error sending the drink request. Please try again.</string>
 
 </resources>
