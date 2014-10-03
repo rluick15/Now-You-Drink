@@ -82,8 +82,7 @@ public class GroupRequestActivity extends Activity {
                 if (e == null) {
                     mGroup = parseObject;
                     mGroupName = mGroup.get(ParseConstants.KEY_GROUP_NAME).toString();
-                    mGroupName = mGroupName.replace("[", "");
-                    mGroupName = mGroupName.replace("]", "");
+                    mGroupName = MainActivity.removeCharacters(mGroupName);
                     mSenderUsername = mMessage.get(ParseConstants.KEY_SENDER_NAME).toString();
                     mRequestText.setText(mSenderUsername + " has invited you to join the group \""
                             + mGroupName + "\"!");

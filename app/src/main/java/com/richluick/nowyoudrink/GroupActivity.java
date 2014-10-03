@@ -74,16 +74,16 @@ public class GroupActivity extends ListActivity {
                 mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
                 mMemberOfGroupRelation = mCurrentUser.getRelation(ParseConstants.KEY_MEMBER_OF_GROUP_RELATION);
 
-                mGroupName = group.get(ParseConstants.KEY_GROUP_NAME).toString()
-                        .replace("[", "").replace("]", "");
+                mGroupName = group.get(ParseConstants.KEY_GROUP_NAME).toString();
+                mGroupName = MainActivity.removeCharacters(mGroupName);
                 setTitle(mGroupName);
 
-                mCurrentDrinker = mGroup.get(ParseConstants.KEY_CURRENT_DRINKER).toString()
-                        .replace("[", "").replace("]", "");
+                mCurrentDrinker = mGroup.get(ParseConstants.KEY_CURRENT_DRINKER).toString();
+                mCurrentDrinker = MainActivity.removeCharacters(mCurrentDrinker);
                 mCurrentDrinkerView.setText(mCurrentDrinker);
 
-                mPreviousDrinker = mGroup.get(ParseConstants.KEY_PREVIOUS_DRINKER).toString()
-                        .replace("[", "").replace("]", "");
+                mPreviousDrinker = mGroup.get(ParseConstants.KEY_PREVIOUS_DRINKER).toString();
+                mPreviousDrinker = MainActivity.removeCharacters(mPreviousDrinker);
                 mPreviousDrinkerView.setText(mPreviousDrinker);
 
                 listViewQuery(mMemberRelation);
@@ -166,6 +166,8 @@ public class GroupActivity extends ListActivity {
         }
         else mDrinkButton.setEnabled(false);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

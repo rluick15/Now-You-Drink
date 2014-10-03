@@ -46,6 +46,7 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
 
         getActivity().setProgressBarIndeterminateVisibility(true);
 
+        //query all the groups that the user is a member of
         ParseQuery<ParseObject> query = mMemberOfGroupRelation.getQuery();
         query.addAscendingOrder(ParseConstants.KEY_GROUP_NAME);
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -57,10 +58,11 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
                     mGroups = groups;
                     String[] groupnames = new String[mGroups.size()];
 
+                    //extrat usernames from all the groups
                     int i = 0;
                     for (ParseObject group : mGroups) {
-                        groupnames[i] = group.get(ParseConstants.KEY_GROUP_NAME).toString()
-                                .replace("[", "").replace("]", "");
+                        String groupName = group.get(ParseConstants.KEY_GROUP_NAME).toString();
+                        groupnames[i] = MainActivity.removeCharacters(groupName);
                         i++;
                     }
 

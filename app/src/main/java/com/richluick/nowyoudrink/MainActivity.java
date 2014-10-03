@@ -75,6 +75,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         startActivity(intent);
     }
 
+    //method to remove first and last characters of a string. used in other activitys
+    public static String removeCharacters(String string) {
+        return string.substring(1, string.length()-1);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
