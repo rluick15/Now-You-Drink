@@ -68,7 +68,6 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
         }
         else {
             holder.textLabel.setText("Now You Drink!");
-            //holder.timeLabel.setText(message.get(Pa));
         }
 
         String convertedDate = formatDate(message);
@@ -76,6 +75,12 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
         //time label is createdAt if the object is a group in the groups fragment
         if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_GROUP)) {
             holder.timeLabel.setText("Click to Drink!");
+        }
+        else if (message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_DRINK_REQUEST)) {
+            String text = message.get(ParseConstants.KEY_GROUP_NAME).toString();
+            text = MainActivity.removeCharacters(text);
+            holder.timeLabel.setText(text);
+            //Set as group name for drink requests
         }
         else {
             holder.timeLabel.setText(convertedDate);

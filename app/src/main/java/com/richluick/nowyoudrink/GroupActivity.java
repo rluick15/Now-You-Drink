@@ -189,13 +189,17 @@ public class GroupActivity extends ListActivity {
 
     //Friend Request Message is create with relevant information
     protected ParseObject createMessage() {
+        //format single variables appropriatly. most cases the field is an array
         ArrayList<ParseUser> nextDrinker = new ArrayList<ParseUser>();
         nextDrinker.add(mNextDrinker);
+        ArrayList<String> groupName = new ArrayList<String>();
+        groupName.add(mGroupName);
 
         ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGES);
         message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
         message.put(ParseConstants.KEY_SENDER, ParseUser.getCurrentUser());
         message.put(ParseConstants.KEY_GROUP_ID, mGroupId);
+        message.put(ParseConstants.KEY_GROUP_NAME, groupName);
         message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
         message.put(ParseConstants.KEY_RECIPIENT_IDS, nextDrinker);
         message.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_DRINK_REQUEST);

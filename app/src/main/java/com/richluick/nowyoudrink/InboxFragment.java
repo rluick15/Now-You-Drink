@@ -187,6 +187,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
             Intent intent = new Intent(getActivity(), GroupActivity.class);
             intent.putExtra(ParseConstants.KEY_GROUP_ID, groupId);
             startActivity(intent);
+            message.deleteInBackground();
         }
 
     }
