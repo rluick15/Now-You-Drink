@@ -179,12 +179,7 @@ public class EditFriendsActivity extends ListActivity {
                     //sendPushNotifications();
                 }
                 else { //error sending message
-                    AlertDialog.Builder builder = new AlertDialog.Builder(EditFriendsActivity.this);
-                    builder.setMessage(getString(R.string.error_sending_friend_request))
-                            .setTitle(getString(R.string.error_selecting_file_title))
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                    Log.e(TAG, e.getMessage());
                 }
             }
         });

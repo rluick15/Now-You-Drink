@@ -190,12 +190,7 @@ public class ViewFriendRequestActivity extends Activity {
                     //sendPushNotifications();
                 }
                 else { //error sending message
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ViewFriendRequestActivity.this);
-                    builder.setMessage(e.getMessage())
-                            .setTitle(getString(R.string.error_selecting_file_title))
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                    Log.e(TAG, e.getMessage());
                 }
             }
         });

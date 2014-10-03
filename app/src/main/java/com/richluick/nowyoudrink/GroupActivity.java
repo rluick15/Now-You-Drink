@@ -23,6 +23,7 @@ import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -181,14 +182,16 @@ public class GroupActivity extends ListActivity {
 
     //Friend Request Message is create with relevant information
     protected ParseObject createMessage() {
+        ArrayList<ParseUser> nextDrinker = new ArrayList<ParseUser>();
+        nextDrinker.add(mNextDrinker);
+
         ParseObject message = new ParseObject(ParseConstants.CLASS_MESSAGES);
         message.put(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
         message.put(ParseConstants.KEY_SENDER, ParseUser.getCurrentUser());
         message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
-        message.put(ParseConstants.KEY_RECIPIENT_IDS, mNextDrinker);
+        message.put(ParseConstants.KEY_RECIPIENT_IDS, nextDrinker);
         message.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_DRINK_REQUEST);
-
-        Toast.makeText(GroupActivity.this, mNextDrinker.getUsername(), Toast.LENGTH_LONG).show();
+        message.saveInBackground();
 
         return message;
     }
@@ -204,12 +207,7 @@ public class GroupActivity extends ListActivity {
                     //sendPushNotifications();
                 }
                 else { //error sending message
-                    AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
-                    builder.setMessage(getString(R.string.message_drink_request_error))
-                            .setTitle(getString(R.string.error_message_title))
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                    Log.e(TAG, e.getMessage());
                 }
             }
         });
