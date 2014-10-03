@@ -74,5 +74,7 @@
     <string name="group_members_list_title">Group Members</string>
     <string name="now_you_drink_message">You\'re up! Take a drink and select a friend to go next!</string>
     <string name="now_you_drink_title">Take a drink!</string>
+    <string name="group_bad_selection_message">Make sure you select a friend that isn\'t the previous drinker or isn\'t yourself(cough... alcoholic).</string>
+    <string name="group_bad_selection_title">Oops!</string>
 
 </resources>

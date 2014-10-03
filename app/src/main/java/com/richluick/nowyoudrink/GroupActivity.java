@@ -103,14 +103,24 @@ public class GroupActivity extends ListActivity {
         mDrinkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mGroup.remove(ParseConstants.KEY_CURRENT_DRINKER);
-                mGroup.remove(ParseConstants.KEY_PREVIOUS_DRINKER);
-                mGroup.add(ParseConstants.KEY_PREVIOUS_DRINKER, mCurrentDrinker);
-                mGroup.add(ParseConstants.KEY_CURRENT_DRINKER, mNextDrinker.getUsername());
-                mGroup.saveInBackground();
+                if(mNextDrinker == (mCurrentUser) || (mNextDrinker.getUsername()).equals(mPreviousDrinker)) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
+                    builder.setTitle(getString(R.string.group_bad_selection_title))
+                            .setMessage(getString(R.string.group_bad_selection_message))
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else {
+                    mGroup.remove(ParseConstants.KEY_CURRENT_DRINKER);
+                    mGroup.remove(ParseConstants.KEY_PREVIOUS_DRINKER);
+                    mGroup.add(ParseConstants.KEY_PREVIOUS_DRINKER, mCurrentDrinker);
+                    mGroup.add(ParseConstants.KEY_CURRENT_DRINKER, mNextDrinker.getUsername());
+                    mGroup.saveInBackground();
 
-                finish();
-                startActivity(getIntent());
+                    finish();
+                    startActivity(getIntent());
+                }
             }
         });
     }
