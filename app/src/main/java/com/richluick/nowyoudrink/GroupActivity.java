@@ -44,6 +44,7 @@ public class GroupActivity extends ListActivity {
     protected ParseUser mCurrentUser;
     protected List<ParseUser> mMembers;
     protected ParseUser mNextDrinker;
+    protected MenuItem mRefreshMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -244,6 +245,8 @@ public class GroupActivity extends ListActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.group, menu);
+        mRefreshMenuItem = menu.getItem(0);
+
         return true;
     }
 
@@ -253,8 +256,9 @@ public class GroupActivity extends ListActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_refresh) {
+            finish();
+            startActivity(getIntent());
         }
         return super.onOptionsItemSelected(item);
     }

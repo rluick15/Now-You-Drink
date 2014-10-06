@@ -79,5 +79,6 @@
     <string name="message_success_drink_request">Drink request sent!</string>
     <string name="error_message_title">Error</string>
     <string name="message_drink_request_error">There was an error sending the drink request. Please try again.</string>
+    <string name="action_refresh">Refresh</string>
 
 </resources>

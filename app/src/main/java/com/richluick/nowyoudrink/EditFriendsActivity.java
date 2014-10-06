@@ -115,8 +115,8 @@ public class EditFriendsActivity extends ListActivity {
 
     private boolean sendFriendRequest() {
         //Cycles through list of selected friends and adds as "Pending"
-        for (int i = 0; i < mPendingFriends.size(); i++) { //Cycles through list
-            mPendingRelation.add(mPendingFriends.get(i));
+        for (ParseUser mPendingFriend : mPendingFriends) { //Cycles through list
+            mPendingRelation.add(mPendingFriend);
         }
 
         mCurrentUser.saveInBackground(new SaveCallback() {
