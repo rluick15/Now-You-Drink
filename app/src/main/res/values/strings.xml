@@ -88,5 +88,9 @@
     <string name="delete">Delete</string>
     <string name="title_activity_edit_members">Add Members</string>
     <string name="success_group_request">Group Request Sent!</string>
+    <string name="message_admin_leave_group">You are the group Admin, Leaving the group will also delete the group. Continue?</string>
+    <string name="current_drinker_leaving_dialog">You are the current drinker. Please select a new drinker before leaving.</string>
+    <string name="message_title_leave_group">Leave Group</string>
+    <string name="message_leave_group">Are you sure you want to leave the group?</string>
 
 </resources>

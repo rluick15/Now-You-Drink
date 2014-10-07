@@ -278,24 +278,63 @@ public class GroupActivity extends ListActivity {
             startActivity(intent);
         }
         else if(id == R.id.action_leave_group) {
-
+            leaveGroupMessages();
         }
         else if(id == R.id.action_delete_group) {
+            String message = getString(R.string.message_delete_group);
+            deleteGroupDialog(message);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void leaveGroupMessages() {
+        if((mCurrentUser.getUsername()).equals(mCurrentDrinker)){
             AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
-            builder.setTitle(getString(R.string.message_title_delete_group))
-                    .setMessage(getString(R.string.message_delete_group))
-                    .setNegativeButton(android.R.string.cancel, null)
-                    .setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
+            builder.setTitle(R.string.error_title)
+                    .setMessage(getString(R.string.current_drinker_leaving_dialog))
+                    .setPositiveButton(android.R.string.ok, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        else if ((mCurrentUser.getUsername()).equals(mGroupAdmin)) {
+            String message = getString(R.string.message_admin_leave_group);
+            deleteGroupDialog(message);
+        }
+        else {
+            //remove relations from the current user
+            AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
+            builder.setTitle(getString(R.string.message_title_leave_group))
+                    .setMessage(getString(R.string.message_leave_group))
+                    .setNegativeButton(android.R.string.no, null)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            mGroup.deleteInBackground();
+                            mMemberRelation.remove(mCurrentUser);
+                            mGroup.saveInBackground();
+                            mMemberOfGroupRelation.remove(mGroup);
+                            mCurrentUser.saveInBackground();
                             finish();
                         }
                     });
             AlertDialog dialog = builder.create();
             dialog.show();
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    private void deleteGroupDialog(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
+        builder.setTitle(getString(R.string.message_title_delete_group))
+                .setMessage(message)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        mGroup.deleteInBackground();
+                        finish();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
