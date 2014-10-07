@@ -186,4 +186,15 @@ public class EditFriendsActivity extends ListActivity {
         });
     }
 
+//    protected void sendPushNotifications() {
+//        ParseQuery<ParseInstallation> query = ParseInstallation.getQuery();
+//        query.whereContainedIn(ParseConstants.KEY_RECIPIENT_IDS, (java.util.Collection<?>) mPendingRelation);
+//
+//        //send push notification
+//        ParsePush push = new ParsePush();
+//        push.setQuery(query);
+//        push.setMessage(getString(R.string.push_message, ParseUser.getCurrentUser().getUsername()));
+//        push.sendInBackground();
+//    }
+
 }

@@ -42,9 +42,11 @@ public class GroupActivity extends ListActivity {
     protected ParseRelation<ParseUser> mMemberRelation;
     protected ParseRelation<ParseObject> mMemberOfGroupRelation;
     protected ParseUser mCurrentUser;
+    protected String mGroupAdmin;
     protected List<ParseUser> mMembers;
     protected ParseUser mNextDrinker;
     protected MenuItem mRefreshMenuItem;
+    protected MenuItem mDeleteMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,13 @@ public class GroupActivity extends ListActivity {
                 mGroup = group;
                 mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
                 mMemberOfGroupRelation = mCurrentUser.getRelation(ParseConstants.KEY_MEMBER_OF_GROUP_RELATION);
+
+                //only the admin can delete the group
+                mGroupAdmin = mGroup.get(ParseConstants.KEY_GROUP_ADMIN).toString();
+                mGroupAdmin = MainActivity.removeCharacters(mGroupAdmin);
+                if((mCurrentUser.getUsername()).equals(mGroupAdmin)) {
+                    mDeleteMenuItem.setVisible(true);
+                }
 
                 mGroupName = group.get(ParseConstants.KEY_GROUP_NAME).toString();
                 mGroupName = MainActivity.removeCharacters(mGroupName);
@@ -246,6 +255,7 @@ public class GroupActivity extends ListActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.group, menu);
         mRefreshMenuItem = menu.getItem(0);
+        mDeleteMenuItem = menu.getItem(3);
 
         return true;
     }
@@ -256,10 +266,20 @@ public class GroupActivity extends ListActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_refresh) {
+        if(id == R.id.action_refresh) {
             finish();
             startActivity(getIntent());
         }
+        else if(id == R.id.action_edit_members) {
+
+        }
+        else if(id == R.id.action_leave_group) {
+
+        }
+        else if(id == R.id.action_delete_group) {
+
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

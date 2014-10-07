@@ -2,10 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.richluick.nowyoudrink.GroupActivity" >
 
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+    <item android:id="@+id/action_edit_members"
+        android:title="@string/action_add_remove_members"
         android:orderInCategory="100"
         android:showAsAction="never" />
+
+    <item android:id="@+id/action_leave_group"
+        android:title="@string/action_leave_group"
+        android:orderInCategory="200"
+        android:showAsAction="never" />
+
+    <item android:id="@+id/action_delete_group"
+        android:title="@string/action_delete_group"
+        android:orderInCategory="300"
+        android:showAsAction="never"
+        android:visible="false" />
 
     <item android:id="@+id/action_refresh"
         android:title="@string/action_refresh"

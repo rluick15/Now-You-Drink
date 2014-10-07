@@ -161,7 +161,7 @@ public class CreateGroupActivity extends ListActivity {
 
     private ParseObject createGroup() {
         ParseObject group = new ParseObject(ParseConstants.CLASS_GROUPS);
-        group.add(ParseConstants.KEY_GROUP_ADMIN, mCurrentUser);
+        group.add(ParseConstants.KEY_GROUP_ADMIN, mCurrentUser.getUsername());
         group.add(ParseConstants.KEY_GROUP_NAME, mGroupName);
         group.add(ParseConstants.KEY_CURRENT_DRINKER, mCurrentUser.getUsername());
         group.add(ParseConstants.KEY_PREVIOUS_DRINKER, "");

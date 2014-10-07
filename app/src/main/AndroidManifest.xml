@@ -107,6 +107,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />
         </activity>
+
     </application>
 
 </manifest>
