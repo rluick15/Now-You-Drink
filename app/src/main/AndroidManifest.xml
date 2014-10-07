@@ -93,7 +93,7 @@
             android:name=".GroupActivity"
             android:label="@string/title_activity_group"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />
@@ -102,12 +102,20 @@
             android:name=".GroupRequestActivity"
             android:label="@string/title_activity_group_request"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />
         </activity>
-
+        <activity
+            android:name=".EditMembersActivity"
+            android:label="Add Members"
+            android:parentActivityName=".GroupActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.richluick.nowyoudrink.GroupActivity" />
+        </activity>
     </application>
 
 </manifest>

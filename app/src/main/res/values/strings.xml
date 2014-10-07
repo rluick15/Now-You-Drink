@@ -80,11 +80,12 @@
     <string name="error_message_title">Error</string>
     <string name="message_drink_request_error">There was an error sending the drink request. Please try again.</string>
     <string name="action_refresh">Refresh</string>
-    <string name="action_add_remove_members">Edit Members</string>
+    <string name="action_add_remove_members">Add Members</string>
     <string name="action_leave_group">Leave Group</string>
     <string name="action_delete_group">Delete Group</string>
     <string name="message_delete_group">Are you sure you want to delete this group?</string>
     <string name="message_title_delete_group">Delete Group</string>
     <string name="delete">Delete</string>
+    <string name="title_activity_edit_members">Add Members</string>
 
 </resources>

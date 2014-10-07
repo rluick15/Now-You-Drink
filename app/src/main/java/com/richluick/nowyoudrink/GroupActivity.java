@@ -3,6 +3,7 @@ package com.richluick.nowyoudrink;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -272,7 +273,8 @@ public class GroupActivity extends ListActivity {
             startActivity(getIntent());
         }
         else if(id == R.id.action_edit_members) {
-
+            Intent intent = new Intent(this, EditMembersActivity.class);
+            startActivity(intent);
         }
         else if(id == R.id.action_leave_group) {
 
