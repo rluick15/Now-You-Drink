@@ -87,5 +87,6 @@
     <string name="message_title_delete_group">Delete Group</string>
     <string name="delete">Delete</string>
     <string name="title_activity_edit_members">Add Members</string>
+    <string name="success_group_request">Group Request Sent!</string>
 
 </resources>
