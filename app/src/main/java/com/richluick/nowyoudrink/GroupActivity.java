@@ -2,6 +2,7 @@ package com.richluick.nowyoudrink;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -277,7 +278,19 @@ public class GroupActivity extends ListActivity {
 
         }
         else if(id == R.id.action_delete_group) {
-
+            AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
+            builder.setTitle(getString(R.string.message_title_delete_group))
+                    .setMessage(getString(R.string.message_delete_group))
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            mGroup.deleteInBackground();
+                            finish();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
 
         return super.onOptionsItemSelected(item);
