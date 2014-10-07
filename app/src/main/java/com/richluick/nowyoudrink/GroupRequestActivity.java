@@ -2,6 +2,7 @@ package com.richluick.nowyoudrink;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -60,50 +61,42 @@ public class GroupRequestActivity extends Activity {
             public void done(ParseObject parseObject, com.parse.ParseException e) {
                 if (e == null) {
                     mMessage = parseObject;
-                    mGroupId = ((ParseObject) mMessage.get(ParseConstants.KEY_GROUP)).getObjectId();
+                    mGroupId = mMessage.get(ParseConstants.KEY_GROUP_ID).toString();
                 }
-                else { //error
+                else { //error is found return to previous activity
                     Log.e(TAG, e.getMessage());
-                    AlertDialog.Builder builder = new AlertDialog.Builder(GroupRequestActivity.this);
-                    builder.setTitle(R.string.error_title)
-                            .setMessage(e.getMessage())
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                    finish();
                 }
-            }
-        });
 
-        //gets the full group object based on senderId from the message
-        ParseQuery<ParseObject> groupQuery = ParseQuery.getQuery(ParseConstants.CLASS_GROUPS);
-        groupQuery.getInBackground(mGroupId, new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject parseObject, com.parse.ParseException e) {
-                if (e == null) {
-                    mGroup = parseObject;
-                    mGroupName = mGroup.get(ParseConstants.KEY_GROUP_NAME).toString();
-                    mGroupName = MainActivity.removeCharacters(mGroupName);
-                    mSenderUsername = mMessage.get(ParseConstants.KEY_SENDER_NAME).toString();
-                    mRequestText.setText(mSenderUsername + " has invited you to join the group \""
-                            + mGroupName + "\"!");
-                    mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
-                    mPendingMemberRelation = mGroup.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
-                }
-                else { //error
-                    Log.e(TAG, e.getMessage());
-                    AlertDialog.Builder builder = new AlertDialog.Builder(GroupRequestActivity.this);
-                    builder.setTitle(R.string.error_title)
-                            .setMessage(e.getMessage())
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                }
+                //gets the full group object based on senderId from the message
+                ParseQuery<ParseObject> groupQuery = ParseQuery.getQuery(ParseConstants.CLASS_GROUPS);
+                groupQuery.getInBackground(mGroupId, new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(ParseObject group, com.parse.ParseException e) {
+                        if (e == null) { //add text to screen
+                            mGroup = group;
+                            mGroupName = mGroup.get(ParseConstants.KEY_GROUP_NAME).toString();
+                            mGroupName = MainActivity.removeCharacters(mGroupName);
+                            mSenderUsername = mMessage.get(ParseConstants.KEY_SENDER_NAME).toString();
+                            mRequestText.setText(mSenderUsername + " has invited you to join the group \""
+                                    + mGroupName + "\"!");
+
+                            //define relations
+                            mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
+                            mPendingMemberRelation = mGroup.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
+                        }
+                        else { //error. group no longer exists. finish to MainActivity
+                            deleteMessageDialog();
+                        }
+                    }
+                });
             }
         });
 
         mAcceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //add relations if user accepts
                 mMemberRelation.add(mCurrentUser);
                 mPendingMemberRelation.remove(mCurrentUser);
                 mGroup.saveInBackground(new SaveCallback() {
@@ -137,6 +130,7 @@ public class GroupRequestActivity extends Activity {
         mRejectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //remove pending relation if user accepts
                 mPendingMemberRelation.remove(mCurrentUser);
                 mGroup.saveInBackground(new SaveCallback() {
                     @Override
@@ -151,5 +145,20 @@ public class GroupRequestActivity extends Activity {
             }
         });
 
+    }
+
+    private void deleteMessageDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.message_title_nonexistent_group))
+                .setMessage(getString(R.string.message_nonexistent_group))
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        DeleteMessageUtil.deleteMessage(mMessage);
+                        finish();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

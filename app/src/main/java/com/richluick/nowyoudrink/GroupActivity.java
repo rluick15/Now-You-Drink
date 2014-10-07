@@ -77,38 +77,52 @@ public class GroupActivity extends ListActivity {
             @Override
             public void done(ParseObject group, ParseException e) {
                 setProgressBarIndeterminateVisibility(false);
+                if(e == null) {
+                    mGroup = group;
+                    mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
+                    mMemberOfGroupRelation = mCurrentUser.getRelation(ParseConstants.KEY_MEMBER_OF_GROUP_RELATION);
 
-                mGroup = group;
-                mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
-                mMemberOfGroupRelation = mCurrentUser.getRelation(ParseConstants.KEY_MEMBER_OF_GROUP_RELATION);
+                    //only the admin can delete the group
+                    mGroupAdmin = mGroup.get(ParseConstants.KEY_GROUP_ADMIN).toString();
+                    mGroupAdmin = MainActivity.removeCharacters(mGroupAdmin);
+                    if ((mCurrentUser.getUsername()).equals(mGroupAdmin)) {
+                        mDeleteMenuItem.setVisible(true);
+                    }
 
-                //only the admin can delete the group
-                mGroupAdmin = mGroup.get(ParseConstants.KEY_GROUP_ADMIN).toString();
-                mGroupAdmin = MainActivity.removeCharacters(mGroupAdmin);
-                if((mCurrentUser.getUsername()).equals(mGroupAdmin)) {
-                    mDeleteMenuItem.setVisible(true);
+                    mGroupName = group.get(ParseConstants.KEY_GROUP_NAME).toString();
+                    mGroupName = MainActivity.removeCharacters(mGroupName);
+                    setTitle(mGroupName);
+
+                    mCurrentDrinker = mGroup.get(ParseConstants.KEY_CURRENT_DRINKER).toString();
+                    mCurrentDrinker = MainActivity.removeCharacters(mCurrentDrinker);
+                    mCurrentDrinkerView.setText(mCurrentDrinker);
+
+                    mPreviousDrinker = mGroup.get(ParseConstants.KEY_PREVIOUS_DRINKER).toString();
+                    mPreviousDrinker = MainActivity.removeCharacters(mPreviousDrinker);
+                    mPreviousDrinkerView.setText(mPreviousDrinker);
+
+                    listViewQuery(mMemberRelation);
+
+                    //activate the button for the current drinker and let them know they are up
+                    if ((mCurrentUser.getUsername()).equals(mCurrentDrinker)) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
+                        builder.setTitle(getString(R.string.now_you_drink_title))
+                                .setMessage(getString(R.string.now_you_drink_message))
+                                .setPositiveButton(android.R.string.ok, null);
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
                 }
-
-                mGroupName = group.get(ParseConstants.KEY_GROUP_NAME).toString();
-                mGroupName = MainActivity.removeCharacters(mGroupName);
-                setTitle(mGroupName);
-
-                mCurrentDrinker = mGroup.get(ParseConstants.KEY_CURRENT_DRINKER).toString();
-                mCurrentDrinker = MainActivity.removeCharacters(mCurrentDrinker);
-                mCurrentDrinkerView.setText(mCurrentDrinker);
-
-                mPreviousDrinker = mGroup.get(ParseConstants.KEY_PREVIOUS_DRINKER).toString();
-                mPreviousDrinker = MainActivity.removeCharacters(mPreviousDrinker);
-                mPreviousDrinkerView.setText(mPreviousDrinker);
-
-                listViewQuery(mMemberRelation);
-
-                //activate the button for the current drinker and let them know they are up
-                if((mCurrentUser.getUsername()).equals(mCurrentDrinker)) {
+                else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
-                    builder.setTitle(getString(R.string.now_you_drink_title))
-                            .setMessage(getString(R.string.now_you_drink_message))
-                            .setPositiveButton(android.R.string.ok, null);
+                    builder.setTitle(getString(R.string.message_title_nonexistent_group))
+                            .setMessage(getString(R.string.message_nonexistent_group))
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    finish();
+                                }
+                            });
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 }

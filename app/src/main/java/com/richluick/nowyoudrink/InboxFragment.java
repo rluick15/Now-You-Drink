@@ -189,8 +189,5 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
             startActivity(intent);
             message.deleteInBackground();
         }
-
     }
-
-
 }

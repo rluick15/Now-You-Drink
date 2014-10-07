@@ -92,5 +92,7 @@
     <string name="current_drinker_leaving_dialog">You are the current drinker. Please select a new drinker before leaving.</string>
     <string name="message_title_leave_group">Leave Group</string>
     <string name="message_leave_group">Are you sure you want to leave the group?</string>
+    <string name="message_title_nonexistent_group">Nonexistent Group</string>
+    <string name="message_nonexistent_group">This group no longer exists.</string>
 
 </resources>
