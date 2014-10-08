@@ -94,5 +94,6 @@
     <string name="message_leave_group">Are you sure you want to leave the group?</string>
     <string name="message_title_nonexistent_group">Nonexistent Group</string>
     <string name="message_nonexistent_group">This group no longer exists.</string>
+    <string name="desc_background_image">Background Image</string>
 
 </resources>
