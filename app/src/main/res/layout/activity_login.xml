@@ -22,7 +22,7 @@
         android:textStyle="bold"
         android:gravity="center"
         android:typeface="monospace"
-        android:textSize="60sp"
+        android:textSize="55sp"
         android:layout_marginTop="32dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,18 +59,24 @@
 
     <TextView
         android:id="@+id/signUpText"
+        android:text="@string/sign_up_text"
+        android:textSize="12sp"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sign_up_text"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/loginButton"
         android:layout_marginTop="12dp"/>
 
     <TextView
         android:id="@+id/forgotPasswordText"
+        android:text="Forgot Password?"
+        android:textSize="12sp"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forgot Password?"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="12dp"/>
