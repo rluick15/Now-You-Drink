@@ -27,6 +27,7 @@
             android:id="@+id/senderLabel"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Test Name"
+            android:textColor="@color/title_text_color"
             android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,7 +40,7 @@
             android:id="@+id/timeLabel"
             android:text="New Text"
             android:textSize="12sp"
-            android:textColor="@color/light_gray"
+            android:textColor="@color/subtitle_text_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/senderLabel"
@@ -47,7 +48,6 @@
             android:layout_alignParentLeft="true"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingBottom="@dimen/message_vertical_padding" />
-
 
     </RelativeLayout>
 
