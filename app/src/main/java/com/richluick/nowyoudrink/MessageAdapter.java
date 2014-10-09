@@ -49,25 +49,29 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
         ParseObject message = mMessages.get(position);
 
         if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST)) {
-            //holder.iconImageView.setImageResource(R.drawable.ic_picture);
+            holder.iconImageView.setImageResource(R.drawable.ic_action_social_add_person);
             holder.textLabel.setText("You have a friend request!");
         }
         else if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST_CONFIRM)) {
             holder.textLabel.setText(message.get(ParseConstants.KEY_SENDER_NAME)
                     + " has accepted your friend request!");
+            holder.iconImageView.setImageResource(R.drawable.ic_action_social_add_person);
         }
         else if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_GROUP_REQUEST)) {
             holder.textLabel.setText("You have a group invite from "
                     + message.get(ParseConstants.KEY_SENDER_NAME) + "!");
+            holder.iconImageView.setImageResource(R.drawable.ic_action_social_add_group);
         }
         //in this instance, message holds a object of the group class
         else if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_GROUP)) {
             String text = message.get(ParseConstants.KEY_GROUP_NAME).toString();
             text = MainActivity.removeCharacters(text);
             holder.textLabel.setText(text);
+            holder.iconImageView.setImageResource(R.drawable.ic_action_social_group_adapter);
         }
         else {
             holder.textLabel.setText("Now You Drink!");
+            holder.iconImageView.setImageResource(R.drawable.ic_action_social_drink);
         }
 
         String convertedDate = formatDate(message);
