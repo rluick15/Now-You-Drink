@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink;
+package com.richluick.nowyoudrink.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,6 +18,9 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.richluick.nowyoudrink.utils.DeleteMessageUtil;
+import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.R;
 
 
 public class GroupRequestActivity extends Activity {

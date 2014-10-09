@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink;
+package com.richluick.nowyoudrink.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.parse.ParseUser;
+import com.richluick.nowyoudrink.utils.MD5Util;
+import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.R;
 import com.squareup.picasso.Picasso;
 
 

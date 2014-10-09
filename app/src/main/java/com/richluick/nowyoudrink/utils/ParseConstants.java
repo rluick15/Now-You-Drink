@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink;
+package com.richluick.nowyoudrink.utils;
 
 /**
  * Created by Rich on 8/27/2014.

@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink;
+package com.richluick.nowyoudrink.ui;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.parse.ParseUser;
+import com.richluick.nowyoudrink.R;
 
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {

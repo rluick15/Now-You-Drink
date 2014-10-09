@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink;
+package com.richluick.nowyoudrink.adapters;
 
 import android.content.Context;
 import android.text.format.DateUtils;
@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.parse.ParseObject;
+import com.richluick.nowyoudrink.R;
+import com.richluick.nowyoudrink.ui.MainActivity;
+import com.richluick.nowyoudrink.utils.ParseConstants;
 
 import java.util.Date;
 import java.util.List;

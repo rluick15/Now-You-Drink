@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink;
+package com.richluick.nowyoudrink.ui;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.RequestPasswordResetCallback;
+import com.richluick.nowyoudrink.R;
 
 //This activity is called if the user selects that they have forgotten their password
 //User can reset their password from this screen

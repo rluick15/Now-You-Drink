@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink;
+package com.richluick.nowyoudrink.utils;
 
 import com.parse.ParseObject;
 import com.parse.ParseUser;

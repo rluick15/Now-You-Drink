@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink;
+package com.richluick.nowyoudrink.ui;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -17,6 +17,9 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
+import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.R;
+import com.richluick.nowyoudrink.adapters.UserAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

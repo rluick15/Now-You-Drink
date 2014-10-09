@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink;
+package com.richluick.nowyoudrink.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

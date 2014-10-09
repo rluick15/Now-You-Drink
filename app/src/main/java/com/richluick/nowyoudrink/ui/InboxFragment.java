@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink;
+package com.richluick.nowyoudrink.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,10 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.richluick.nowyoudrink.utils.DeleteMessageUtil;
+import com.richluick.nowyoudrink.adapters.MessageAdapter;
+import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.R;
 
 import java.util.ArrayList;
 import java.util.List;

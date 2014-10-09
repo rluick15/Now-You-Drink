@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.parse.ParsePushBroadcastReceiver;
+import com.richluick.nowyoudrink.ui.MainActivity;
 
 /**
  * Created by Rich on 10/6/2014.
