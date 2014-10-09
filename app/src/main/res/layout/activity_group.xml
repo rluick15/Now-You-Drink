@@ -76,6 +76,7 @@
         android:layout_above="@+id/drinkButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:listSelector="@color/main_color"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

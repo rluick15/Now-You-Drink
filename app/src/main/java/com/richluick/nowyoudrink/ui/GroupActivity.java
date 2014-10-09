@@ -198,7 +198,7 @@ public class GroupActivity extends ListActivity {
                     //Setup List View Adapter
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                             GroupActivity.this,
-                            android.R.layout.simple_list_item_activated_1,
+                            android.R.layout.simple_list_item_1,
                             usernames);
                     setListAdapter(adapter);
                 }

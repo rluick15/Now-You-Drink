@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context="com.richluick.nowyoudrink.EditFriendsActivityActivity">
 
     <TextView
@@ -12,9 +13,6 @@
 
     <ListView
         android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@android:id/empty"
-        android:layout_alignParentLeft="true" />
+        style="@style/auth_lists_friends" />
 
 </RelativeLayout>

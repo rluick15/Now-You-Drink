@@ -27,7 +27,7 @@
             android:id="@+id/senderLabel"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Test Name"
-            android:textColor="@color/title_text_color"
+            android:textColor="@color/main_color"
             android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
