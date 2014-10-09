@@ -139,4 +139,12 @@
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Nowyoudrink</item>
     </style>
 
+    <style name="auth_message_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/message_text_font_size</item>
+        <item name="android:lineSpacingExtra">@dimen/message_text_line_spacing</item>
+        <item name="android:textColor">@color/title_text_color</item>
+    </style>
+
 </resources>
