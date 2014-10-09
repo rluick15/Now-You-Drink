@@ -12,6 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:padding="@dimen/user_grid_spacing"
         android:numColumns="auto_fit"
         android:columnWidth="90dp"
         android:stretchMode="columnWidth"
