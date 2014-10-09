@@ -10,13 +10,6 @@
         android:contentDescription="@string/content_desc_user_avatar"
         style="@style/GridImage" />
 
-    <ImageView
-        android:id="@+id/checkImageView"
-        android:src="@drawable/avatar_selected"
-        android:contentDescription="@string/content_desc_user_checkmark"
-        android:visibility="invisible"
-        style="@style/GridImage" />
-
     <TextView
         android:id="@+id/nameLabel"
         android:layout_width="wrap_content"

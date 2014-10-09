@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,7 +37,6 @@ public class UserAdapter extends ArrayAdapter<ParseUser> {
             holder = new ViewHolder();
             holder.userImageView = (ImageView) convertView.findViewById(R.id.userImageView);
             holder.nameLabel = (TextView) convertView.findViewById(R.id.nameLabel);
-            holder.checkImageView = (ImageView) convertView.findViewById(R.id.checkImageView);
             convertView.setTag(holder);
         }
         else {
@@ -61,19 +59,10 @@ public class UserAdapter extends ArrayAdapter<ParseUser> {
 
         holder.nameLabel.setText(user.getUsername());
 
-        GridView gridView = (GridView) parent;
-        if(gridView.isItemChecked(position)) {
-            holder.checkImageView.setVisibility(View.VISIBLE);
-        }
-        else {
-            holder.checkImageView.setVisibility(View.INVISIBLE);
-        }
-
         return convertView;
     }
 
     private static class ViewHolder {
-        ImageView checkImageView;
         ImageView userImageView;
         TextView nameLabel;
     }
