@@ -85,6 +85,11 @@
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Nowyoudrink</item>
         <item name="android:editTextBackground">@drawable/apptheme_edit_text_holo_light</item>
         <item name="android:imageButtonStyle">@style/ImageButtonAppTheme</item>
+        <item name="android:actionOverflowButtonStyle">@style/Theme.Nowyoudrink.Overflow</item>
+    </style>
+
+    <style name="Theme.Nowyoudrink.Overflow">
+        <item name="android:src">@drawable/ic_action_core_overflow</item>
     </style>
 
     <style name="ActionBar.Solid.Nowyoudrink" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
@@ -92,6 +97,13 @@
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_nowyoudrink</item>
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_nowyoudrink</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Nowyoudrink</item>
+        <item name="android:titleTextStyle">@style/ActionBar.Solid.Nowyoudrink.TitleTextStyle</item>
+    </style>
+
+    <style name="ActionBar.Solid.Nowyoudrink.TitleTextStyle">
+        <item name="android:textColor">@color/title_text_color</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">17sp</item>
     </style>
 
     <style name="ActionBar.Transparent.Nowyoudrink" parent="@android:style/Widget.Holo.Light.ActionBar">
