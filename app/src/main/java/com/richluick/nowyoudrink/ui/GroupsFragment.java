@@ -3,6 +3,7 @@ package com.richluick.nowyoudrink.ui;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,11 +32,19 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
     protected List<ParseObject> mGroups;
     protected ParseRelation<ParseObject> mMemberOfGroupRelation;
     protected ParseUser mCurrentUser;
-    protected ParseObject mGroup;
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_groups, container, false);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
+        mSwipeRefreshLayout.setColorScheme(
+                R.color.swipeRefresh1,
+                R.color.swipeRefresh2,
+                R.color.swipeRefresh3,
+                R.color.swipeRefresh4);
 
         return rootView;
     }
@@ -50,12 +59,20 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
         getActivity().setProgressBarIndeterminateVisibility(true);
 
         //query all the groups that the user is a member of
+        retrieveGroups();
+    }
+
+    private void retrieveGroups() {
         ParseQuery<ParseObject> query = mMemberOfGroupRelation.getQuery();
         query.addAscendingOrder(ParseConstants.KEY_GROUP_NAME);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> groups, ParseException e) {
                 getActivity().setProgressBarIndeterminateVisibility(false);
+
+                if(mSwipeRefreshLayout.isRefreshing()) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
 
                 if (e == null) {
                     mGroups = groups;
@@ -102,4 +119,11 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
         intent.putExtra(ParseConstants.KEY_GROUP_ID, groupId);
         startActivity(intent);
     }
+
+    protected SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            retrieveGroups();
+        }
+    };
 }

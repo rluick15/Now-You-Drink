@@ -16,10 +16,10 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.richluick.nowyoudrink.utils.DeleteMessageUtil;
-import com.richluick.nowyoudrink.adapters.MessageAdapter;
-import com.richluick.nowyoudrink.utils.ParseConstants;
 import com.richluick.nowyoudrink.R;
+import com.richluick.nowyoudrink.adapters.MessageAdapter;
+import com.richluick.nowyoudrink.utils.DeleteMessageUtil;
+import com.richluick.nowyoudrink.utils.ParseConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +43,14 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_inbox, container, false);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
+        mSwipeRefreshLayout.setColorScheme(
+                R.color.swipeRefresh1,
+                R.color.swipeRefresh2,
+                R.color.swipeRefresh3,
+                R.color.swipeRefresh4);
 
         return rootView;
     }
@@ -71,6 +79,10 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
             @Override
             public void done(List<ParseObject> messages, ParseException e) {
                 getActivity().setProgressBarIndeterminateVisibility(false);
+
+                if(mSwipeRefreshLayout.isRefreshing()) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
 
                 if (e == null) { //successfully found messages
                     mMessages = messages;
@@ -194,4 +206,11 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
             message.deleteInBackground();
         }
     }
+
+    protected SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            retrieveMessages();
+        }
+    };
 }

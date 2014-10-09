@@ -7,9 +7,9 @@
     <color name="text_color">#B26B00</color>
     <color name="title_text_color">#dc5d00</color>
     <color name="subtitle_text_color">#EBC299</color>
-    <color name="swipeRefresh1">#482c6f</color>
-    <color name="swipeRefresh2">#ad78d9</color>
-    <color name="swipeRefresh3">#dcadf4</color>
-    <color name="swipeRefresh4">#ad78d9</color>
+    <color name="swipeRefresh1">#dc5d00</color>
+    <color name="swipeRefresh2">#FFAD33</color>
+    <color name="swipeRefresh3">#FFC266</color>
+    <color name="swipeRefresh4">#FFAD33</color>
     <color name="apptheme_color">#e68a00</color>
 </resources>
