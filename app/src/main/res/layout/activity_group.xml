@@ -36,10 +36,6 @@
         android:id="@+id/previousDrinkerUser"
         android:text=""
         android:layout_below="@+id/previousDrinkerTitle"
-        android:shadowColor="@android:color/darker_gray"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
         style="@style/auth_drinker_text_box" />
 
     <Button

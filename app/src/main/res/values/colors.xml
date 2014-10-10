@@ -3,8 +3,8 @@
     <color name="secondary_color">#F9CC88</color>
     <color name="tertiary_color">#FCA000</color>
     <color name="light_gray">#bbbbbb</color>
-    <color name="light_orange_button">#FFC266</color>
-    <color name="pressed_orange_button">#FFAD33</color>
+    <color name="light_orange_button">#FCA000</color>#F9CC88
+    <color name="pressed_orange_button">#dc5d00</color>
     <color name="focused_orange_button">#FFC266</color>
     <color name="background_color">#FCF3E6</color>
     <color name="text_color">#dc5d00</color>
