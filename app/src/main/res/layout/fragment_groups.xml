@@ -6,6 +6,7 @@
 
     <TextView
         android:id="@android:id/empty"
+        android:textColor="@color/main_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/empty_groups_label"/>
