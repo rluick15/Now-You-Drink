@@ -12,70 +12,49 @@
     <TextView
         android:id="@+id/currentDrinkerTitle"
         android:text="@string/group_current_drinker_title"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        style="@style/auth_group_titles" />
 
     <TextView
         android:id="@+id/currentDrinkerUser"
         android:text=""
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:background="@android:color/white"
         android:layout_below="@+id/currentDrinkerTitle"
-        android:layout_marginBottom="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+        style="@style/auth_drinker_text_box" />
 
     <TextView
         android:id="@+id/previousDrinkerTitle"
         android:text="@string/group_previous_drinker_title"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_below="@+id/currentDrinkerUser"
-        android:layout_marginBottom="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/group_titles_margin"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        style="@style/auth_group_titles" />
 
     <TextView
         android:id="@+id/previousDrinkerUser"
         android:text=""
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:background="@android:color/white"
         android:layout_below="@+id/previousDrinkerTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+        style="@style/auth_drinker_text_box" />
 
     <Button
         android:id="@+id/drinkButton"
         android:text="@string/group_drink_button_text"
         android:enabled="false"
         style="@style/AuthButton"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/group_titles_margin"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/groupMembersTitle"
         android:text="@string/group_members_list_title"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
         android:layout_below="@+id/previousDrinkerUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        style="@style/auth_group_titles"/>
 
     <ListView
         android:id="@android:id/list"
