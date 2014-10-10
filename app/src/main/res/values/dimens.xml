@@ -2,6 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="drinker_horizontal_margin">40dp</dimen>
     <dimen name="message_list_item_vertical_margin">8dp</dimen>
     <dimen name="login_vertical_margin">32dp</dimen>
     <dimen name="login_horizontal_padding">10dp</dimen>
@@ -15,4 +16,5 @@
     <dimen name="message_text_line_spacing">5dp</dimen>
     <dimen name="message_text_font_size">16sp</dimen>
     <dimen name="group_titles_margin">10dp</dimen>
+    <dimen name="profile_layout_margin_top">4dp</dimen>
 </resources>
