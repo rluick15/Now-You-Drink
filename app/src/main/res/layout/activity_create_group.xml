@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -12,8 +13,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/groupTitleHeader"
         android:text="@string/group_title_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/auth_group_titles"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -21,6 +21,8 @@
     <EditText
         android:id="@+id/groupTitleField"
         android:hint="@string/group_title_hint"
+        android:textColorHint="@color/subtitle_text_color"
+        android:textColor="@color/main_color"
         android:layout_below="@+id/groupTitleHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,8 +35,7 @@
         android:text="@string/select_friends_text"
         android:layout_below="@+id/groupTitleField"
         android:layout_marginTop="35dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/auth_group_titles"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -50,7 +51,7 @@
         android:id="@android:id/list"
         android:layout_below="@+id/selectFriendsHeader"
         android:layout_above="@+id/createGroupButton"
-        android:layout_width="match_parent"
+        style="@style/auth_lists_friends"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -59,8 +60,7 @@
         android:id="@+id/createGroupButton"
         android:text="@string/create_group_button_label"
         android:enabled="false"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/AuthButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
