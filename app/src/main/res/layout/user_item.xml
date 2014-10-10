@@ -1,23 +1,30 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/tertiary_color" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
 
-    <ImageView
-        android:id="@+id/userImageView"
-        android:src="@drawable/avatar_empty"
-        android:contentDescription="@string/content_desc_user_avatar"
-        style="@style/GridImage" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="@dimen/friends_horizontal_margin"
+        android:layout_marginRight="@dimen/friends_horizontal_margin"
+        android:layout_marginTop="@dimen/friends_vertical_margin"
+        android:background="@color/tertiary_color" >
 
-    <TextView
-        android:id="@+id/nameLabel"
-        android:textColor="@android:color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/userImageView"
-        android:padding="4dp"
-        android:maxLines="2"/>
+        <ImageView
+            android:id="@+id/userImageView"
+            android:src="@drawable/avatar_empty"
+            android:contentDescription="@string/content_desc_user_avatar"
+            style="@style/GridImage" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/nameLabel"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/userImageView"
+            android:maxLines="2"/>
+
+    </RelativeLayout>
+</LinearLayout>

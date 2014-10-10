@@ -8,8 +8,10 @@
     <dimen name="login_vertical_padding">10dp</dimen>
     <dimen name="inbox_horizontal_margin">8dp</dimen>
     <dimen name="inbox_vertical_margin">8dp</dimen>
+    <dimen name="friends_horizontal_margin">4dp</dimen>
+    <dimen name="friends_vertical_margin">6dp</dimen>
     <dimen name="message_vertical_padding">8dp</dimen>
-    <dimen name="user_grid_spacing">8dp</dimen>
+    <dimen name="user_grid_spacing">4dp</dimen>
     <dimen name="message_text_line_spacing">5dp</dimen>
     <dimen name="message_text_font_size">16sp</dimen>
     <dimen name="group_titles_margin">10dp</dimen>
