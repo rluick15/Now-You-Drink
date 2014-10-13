@@ -27,7 +27,7 @@ public class NowYouDrinkApplication extends Application {
 
     public static void updateParseInstallation(ParseUser user) {
         ParseInstallation installation = ParseInstallation.getCurrentInstallation();
-        installation.put(ParseConstants.KEY_USER_ID, user.getObjectId());
+        installation.put(ParseConstants.KEY_USER, user);
         installation.saveInBackground();
     }
 

@@ -9,6 +9,7 @@ public final class ParseConstants {
     public static final String CLASS_GROUPS = "Groups";
 
     //Field names
+    public static final String KEY_USER = "user";
     public static final String KEY_USER_ID = "userId";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_FIRST_NAME = "firstName";

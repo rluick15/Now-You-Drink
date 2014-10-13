@@ -15,13 +15,15 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.richluick.nowyoudrink.utils.ParseConstants;
 import com.richluick.nowyoudrink.R;
+import com.richluick.nowyoudrink.utils.ParseConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -200,13 +202,24 @@ public class CreateGroupActivity extends ListActivity {
                 if(e == null) {
                     //success
                     Toast.makeText(CreateGroupActivity.this, getString(R.string.success_message_group_create), Toast.LENGTH_LONG).show();
-                    //sendPushNotifications();
+                    sendPushNotifications();
                 }
                 else { //error sending message
                     Log.e(TAG, e.getMessage());
                 }
             }
         });
+    }
+
+    //send push notification to selected pending group members
+    protected void sendPushNotifications() {
+        ParseQuery<ParseInstallation> query = ParseInstallation.getQuery();
+        query.whereContainedIn(ParseConstants.KEY_USER, mPendingMembers);
+
+        ParsePush push = new ParsePush();
+        push.setQuery(query);
+        push.setMessage(ParseUser.getCurrentUser().getUsername() + " invited you to join the group " +  mGroupName + "!");
+        push.sendInBackground();
     }
 
     @Override
@@ -221,4 +234,6 @@ public class CreateGroupActivity extends ListActivity {
         if(l.getCheckedItemCount() > 0) mCreateGroupButton.setEnabled(true);
         else mCreateGroupButton.setEnabled(false);
     }
+    
+    
 }
