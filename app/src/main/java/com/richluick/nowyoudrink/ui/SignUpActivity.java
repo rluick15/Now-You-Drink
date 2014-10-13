@@ -13,8 +13,9 @@ import android.widget.ProgressBar;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
-import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.NowYouDrinkApplication;
 import com.richluick.nowyoudrink.R;
+import com.richluick.nowyoudrink.utils.ParseConstants;
 
 
 public class SignUpActivity extends Activity {
@@ -116,6 +117,8 @@ public class SignUpActivity extends Activity {
 
                             if (e == null) {
                                 //If sign up is a success, user is taken to the inbox
+                                NowYouDrinkApplication.updateParseInstallation(ParseUser.getCurrentUser());
+
                                 Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
