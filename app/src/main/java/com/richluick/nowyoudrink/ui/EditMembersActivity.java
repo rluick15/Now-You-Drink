@@ -39,7 +39,6 @@ public class EditMembersActivity extends ListActivity {
     protected List<ParseUser> mFriends;
     protected ArrayList<ParseUser> mPendingMembers;
     protected ParseUser mCurrentUser;
-    protected ParseObject mGroup;
     protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseRelation<ParseUser> mPendingMemberRelation;
     protected ParseRelation<ParseUser> mMemberRelation;
@@ -73,8 +72,8 @@ public class EditMembersActivity extends ListActivity {
         query.getInBackground(mGroupId, new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject group, ParseException e) {
-                mGroup = group;
-                mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
+                mMemberRelation = group.getRelation(ParseConstants.KEY_MEMBER_RELATION);
+                mPendingMemberRelation = group.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
 
                 //query current users friends to populate list
                 listQuery();
@@ -87,6 +86,8 @@ public class EditMembersActivity extends ListActivity {
         query.orderByAscending(ParseConstants.KEY_USERNAME);
         query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_USERNAME,
                 ParseConstants.KEY_USERNAME, mMemberRelation.getQuery());
+        query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_EMAIL,
+                ParseConstants.KEY_EMAIL, mPendingMemberRelation.getQuery());
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> parseUsers, ParseException e) {
