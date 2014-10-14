@@ -62,6 +62,7 @@ public class EditFriendsActivity extends ListActivity {
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.orderByAscending(ParseConstants.KEY_USERNAME);
         query.whereNotEqualTo(ParseConstants.KEY_USERNAME, mCurrentUser.getUsername()); //exclude current user
+        //query.whereContains(ParseConstants.KEY_USERNAME, "s");
         query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_USERNAME, //exclude friends
                 ParseConstants.KEY_USERNAME, mFriendsRelation.getQuery());
         query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_EMAIL, //exclude pending friends
