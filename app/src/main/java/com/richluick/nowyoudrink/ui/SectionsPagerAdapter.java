@@ -29,9 +29,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                return new GroupsFragment();
-            case 1:
                 return new InboxFragment();
+            case 1:
+                return new GroupsFragment();
             case 2:
                 return new FriendsFragment();
         }
@@ -47,9 +47,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Locale l = Locale.getDefault();
         switch (position) {
             case 0:
-                return mContext.getString(R.string.title_groups).toUpperCase(l);
-            case 1:
                 return mContext.getString(R.string.title_inbox).toUpperCase(l);
+            case 1:
+                return mContext.getString(R.string.title_groups).toUpperCase(l);
             case 2:
                 return mContext.getString(R.string.title_friends).toUpperCase(l);
         }
@@ -59,9 +59,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public int getIcon(int position) {
         switch (position) {
             case 0:
-                return R.drawable.ic_action_social_group;
-            case 1:
                 return R.drawable.ic_action_content_email;
+            case 1:
+                return R.drawable.ic_action_social_group;
             case 2:
                 return R.drawable.ic_action_social_friends;
         }
