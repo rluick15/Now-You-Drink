@@ -182,7 +182,7 @@ public class GroupActivity extends ListActivity {
     //queries the users in the group and formats them for the list view
     private void listViewQuery(ParseRelation<ParseUser> mMemberRelation) {
         ParseQuery<ParseUser> query = mMemberRelation.getQuery();
-        query.addAscendingOrder(ParseConstants.KEY_USERNAME);
+        query.orderByAscending(ParseConstants.KEY_USERNAME);
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> users, ParseException e) {

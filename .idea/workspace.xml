@@ -102,7 +102,7 @@
       <file leaf-file-name="CreateGroupActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/CreateGroupActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1338" max-vertical-offset="3519">
+            <state vertical-scroll-proportion="0.0" vertical-offset="777" max-vertical-offset="3519">
               <caret line="117" column="17" selection-start-line="117" selection-start-column="17" selection-end-line="117" selection-end-column="17" />
               <folding />
             </state>
@@ -112,29 +112,33 @@
       <file leaf-file-name="GroupActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/GroupActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3480" max-vertical-offset="5525">
-              <caret line="260" column="0" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3633" max-vertical-offset="5627">
+              <caret line="115" column="55" selection-start-line="115" selection-start-column="55" selection-end-line="115" selection-end-column="55" />
               <folding>
                 <element signature="e#4610#4649#0" expanded="true" />
                 <element signature="e#4695#4736#0" expanded="true" />
                 <element signature="e#5114#5165#0" expanded="true" />
                 <element signature="e#5207#5252#0" expanded="true" />
+                <element signature="e#5322#5607#0" expanded="true" />
+                <element signature="e#5576#5577#0" expanded="true" />
                 <element signature="e#6182#6227#0" expanded="true" />
                 <element signature="e#6269#6316#0" expanded="true" />
                 <element signature="e#7513#7560#0" expanded="true" />
                 <element signature="e#7604#7643#0" expanded="true" />
-                <element signature="e#9531#9551#0" expanded="true" />
-                <element signature="e#11207#11256#0" expanded="true" />
-                <element signature="e#13685#13725#0" expanded="true" />
-                <element signature="e#14057#14077#0" expanded="true" />
-                <element signature="e#14111#14161#0" expanded="true" />
-                <element signature="e#14416#14461#0" expanded="true" />
-                <element signature="e#14697#14742#0" expanded="true" />
-                <element signature="e#14776#14815#0" expanded="true" />
-                <element signature="e#15697#15743#0" expanded="true" />
-                <element signature="e#15883#15909#0" expanded="true" />
-                <element signature="e#15911#16189#0" expanded="true" />
-                <element signature="e#16170#16171#0" expanded="true" />
+                <element signature="e#8422#9818#0" expanded="true" />
+                <element signature="e#9530#9550#0" expanded="true" />
+                <element signature="e#9807#9808#0" expanded="true" />
+                <element signature="e#11206#11255#0" expanded="true" />
+                <element signature="e#13684#13724#0" expanded="true" />
+                <element signature="e#14056#14076#0" expanded="true" />
+                <element signature="e#14110#14160#0" expanded="true" />
+                <element signature="e#14415#14460#0" expanded="true" />
+                <element signature="e#14696#14741#0" expanded="true" />
+                <element signature="e#14775#14814#0" expanded="true" />
+                <element signature="e#15696#15742#0" expanded="true" />
+                <element signature="e#15882#15908#0" expanded="true" />
+                <element signature="e#15910#16188#0" expanded="true" />
+                <element signature="e#16169#16170#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -143,21 +147,46 @@
       <file leaf-file-name="ParseConstants.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/utils/ParseConstants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="918">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
               <caret line="12" column="54" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditFriendsActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="EditFriendsActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/EditFriendsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36452243" vertical-offset="357" max-vertical-offset="3128">
-              <caret line="57" column="89" selection-start-line="57" selection-start-column="89" selection-end-line="57" selection-end-column="89" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="3128">
+              <caret line="81" column="21" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
               <folding>
                 <element signature="e#2567#3943#0" expanded="true" />
                 <element signature="e#3932#3933#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditMembersActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/EditMembersActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2651072" vertical-offset="680" max-vertical-offset="3587">
+              <caret line="74" column="15" selection-start-line="74" selection-start-column="15" selection-end-line="74" selection-end-column="15" />
+              <folding>
+                <element signature="e#2375#2388#0" expanded="true" />
+                <element signature="e#2809#2810#0" expanded="true" />
+                <element signature="e#3167#4549#0" expanded="true" />
+                <element signature="e#3814#3822#0" expanded="true" />
+                <element signature="e#4261#4281#0" expanded="true" />
+                <element signature="e#4538#4539#0" expanded="true" />
+                <element signature="e#5655#5668#0" expanded="true" />
+                <element signature="e#5739#6922#0" expanded="true" />
+                <element signature="e#6447#6487#0" expanded="true" />
+                <element signature="e#6527#6558#0" expanded="true" />
+                <element signature="e#6911#6912#0" expanded="true" />
+                <element signature="e#7740#8224#0" expanded="true" />
+                <element signature="e#7955#7996#0" expanded="true" />
+                <element signature="e#8213#8214#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1255,7 +1284,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/EditFriendsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/InboxFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/GroupActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/auth_common.xml" />
@@ -1303,9 +1331,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/CreateGroupActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/NowYouDrinkApplication.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/EditMembersActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/GroupActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/EditFriendsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/GroupActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/FriendsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/EditMembersActivity.java" />
       </list>
     </option>
   </component>
@@ -1793,7 +1822,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296501" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.881877" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.881877" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15235008" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1870,22 +1899,26 @@
             <element signature="e#4695#4736#0" expanded="true" />
             <element signature="e#5114#5165#0" expanded="true" />
             <element signature="e#5207#5252#0" expanded="true" />
+            <element signature="e#5322#5607#0" expanded="true" />
+            <element signature="e#5576#5577#0" expanded="true" />
             <element signature="e#6182#6227#0" expanded="true" />
             <element signature="e#6269#6316#0" expanded="true" />
             <element signature="e#7513#7560#0" expanded="true" />
             <element signature="e#7604#7643#0" expanded="true" />
-            <element signature="e#9531#9551#0" expanded="true" />
-            <element signature="e#11207#11256#0" expanded="true" />
-            <element signature="e#13685#13725#0" expanded="true" />
-            <element signature="e#14057#14077#0" expanded="true" />
-            <element signature="e#14111#14161#0" expanded="true" />
-            <element signature="e#14416#14461#0" expanded="true" />
-            <element signature="e#14697#14742#0" expanded="true" />
-            <element signature="e#14776#14815#0" expanded="true" />
-            <element signature="e#15697#15743#0" expanded="true" />
-            <element signature="e#15883#15909#0" expanded="true" />
-            <element signature="e#15911#16189#0" expanded="true" />
-            <element signature="e#16170#16171#0" expanded="true" />
+            <element signature="e#8422#9818#0" expanded="true" />
+            <element signature="e#9530#9550#0" expanded="true" />
+            <element signature="e#9807#9808#0" expanded="true" />
+            <element signature="e#11206#11255#0" expanded="true" />
+            <element signature="e#13684#13724#0" expanded="true" />
+            <element signature="e#14056#14076#0" expanded="true" />
+            <element signature="e#14110#14160#0" expanded="true" />
+            <element signature="e#14415#14460#0" expanded="true" />
+            <element signature="e#14696#14741#0" expanded="true" />
+            <element signature="e#14775#14814#0" expanded="true" />
+            <element signature="e#15696#15742#0" expanded="true" />
+            <element signature="e#15882#15908#0" expanded="true" />
+            <element signature="e#15910#16188#0" expanded="true" />
+            <element signature="e#16169#16170#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1987,13 +2020,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.046602" vertical-offset="51" max-vertical-offset="1207">
           <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/FriendsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.5944881" vertical-offset="208" max-vertical-offset="1462">
-          <caret line="75" column="21" selection-start-line="75" selection-start-column="21" selection-end-line="75" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -2326,47 +2352,35 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/EditMembersActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.80194175" vertical-offset="2715" max-vertical-offset="3281">
-          <caret line="210" column="22" selection-start-line="210" selection-start-column="22" selection-end-line="210" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/utils/ParseConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="918">
-          <caret line="12" column="54" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/GroupActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3480" max-vertical-offset="5525">
-          <caret line="260" column="0" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3633" max-vertical-offset="5627">
+          <caret line="115" column="55" selection-start-line="115" selection-start-column="55" selection-end-line="115" selection-end-column="55" />
           <folding>
             <element signature="e#4610#4649#0" expanded="true" />
             <element signature="e#4695#4736#0" expanded="true" />
             <element signature="e#5114#5165#0" expanded="true" />
             <element signature="e#5207#5252#0" expanded="true" />
+            <element signature="e#5322#5607#0" expanded="true" />
+            <element signature="e#5576#5577#0" expanded="true" />
             <element signature="e#6182#6227#0" expanded="true" />
             <element signature="e#6269#6316#0" expanded="true" />
             <element signature="e#7513#7560#0" expanded="true" />
             <element signature="e#7604#7643#0" expanded="true" />
-            <element signature="e#9531#9551#0" expanded="true" />
-            <element signature="e#11207#11256#0" expanded="true" />
-            <element signature="e#13685#13725#0" expanded="true" />
-            <element signature="e#14057#14077#0" expanded="true" />
-            <element signature="e#14111#14161#0" expanded="true" />
-            <element signature="e#14416#14461#0" expanded="true" />
-            <element signature="e#14697#14742#0" expanded="true" />
-            <element signature="e#14776#14815#0" expanded="true" />
-            <element signature="e#15697#15743#0" expanded="true" />
-            <element signature="e#15883#15909#0" expanded="true" />
-            <element signature="e#15911#16189#0" expanded="true" />
-            <element signature="e#16170#16171#0" expanded="true" />
+            <element signature="e#8422#9818#0" expanded="true" />
+            <element signature="e#9530#9550#0" expanded="true" />
+            <element signature="e#9807#9808#0" expanded="true" />
+            <element signature="e#11206#11255#0" expanded="true" />
+            <element signature="e#13684#13724#0" expanded="true" />
+            <element signature="e#14056#14076#0" expanded="true" />
+            <element signature="e#14110#14160#0" expanded="true" />
+            <element signature="e#14415#14460#0" expanded="true" />
+            <element signature="e#14696#14741#0" expanded="true" />
+            <element signature="e#14775#14814#0" expanded="true" />
+            <element signature="e#15696#15742#0" expanded="true" />
+            <element signature="e#15882#15908#0" expanded="true" />
+            <element signature="e#15910#16188#0" expanded="true" />
+            <element signature="e#16169#16170#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2379,13 +2393,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/utils/ParseConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="918">
+          <caret line="12" column="54" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/EditFriendsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36452243" vertical-offset="357" max-vertical-offset="3128">
-          <caret line="57" column="89" selection-start-line="57" selection-start-column="89" selection-end-line="57" selection-end-column="89" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="3128">
+          <caret line="81" column="21" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
           <folding>
             <element signature="e#2567#3943#0" expanded="true" />
             <element signature="e#3932#3933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/FriendsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30019492" vertical-offset="645" max-vertical-offset="1462">
+          <caret line="71" column="53" selection-start-line="71" selection-start-column="53" selection-end-line="71" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/EditMembersActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2651072" vertical-offset="680" max-vertical-offset="3587">
+          <caret line="74" column="15" selection-start-line="74" selection-start-column="15" selection-end-line="74" selection-end-column="15" />
+          <folding>
+            <element signature="e#2375#2388#0" expanded="true" />
+            <element signature="e#2809#2810#0" expanded="true" />
+            <element signature="e#3167#4549#0" expanded="true" />
+            <element signature="e#3814#3822#0" expanded="true" />
+            <element signature="e#4261#4281#0" expanded="true" />
+            <element signature="e#4538#4539#0" expanded="true" />
+            <element signature="e#5655#5668#0" expanded="true" />
+            <element signature="e#5739#6922#0" expanded="true" />
+            <element signature="e#6447#6487#0" expanded="true" />
+            <element signature="e#6527#6558#0" expanded="true" />
+            <element signature="e#6911#6912#0" expanded="true" />
+            <element signature="e#7740#8224#0" expanded="true" />
+            <element signature="e#7955#7996#0" expanded="true" />
+            <element signature="e#8213#8214#0" expanded="true" />
           </folding>
         </state>
       </provider>

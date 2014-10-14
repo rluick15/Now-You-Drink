@@ -39,8 +39,10 @@ public class EditMembersActivity extends ListActivity {
     protected List<ParseUser> mFriends;
     protected ArrayList<ParseUser> mPendingMembers;
     protected ParseUser mCurrentUser;
+    protected ParseObject mGroup;
     protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseRelation<ParseUser> mPendingMemberRelation;
+    protected ParseRelation<ParseUser> mMemberRelation;
 
 
     @Override
@@ -66,9 +68,25 @@ public class EditMembersActivity extends ListActivity {
 
         setProgressBarIndeterminateVisibility(true);
 
-        //query current users friends to populate list
+        //this query gets the group object to exclude members from the list
+        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(ParseConstants.CLASS_GROUPS);
+        query.getInBackground(mGroupId, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject group, ParseException e) {
+                mGroup = group;
+                mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
+
+                //query current users friends to populate list
+                listQuery();
+            }
+        });
+    }
+
+    protected void listQuery() {
         ParseQuery<ParseUser> query = mFriendsRelation.getQuery();
-        query.addAscendingOrder(ParseConstants.KEY_USERNAME);
+        query.orderByAscending(ParseConstants.KEY_USERNAME);
+        query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_USERNAME,
+                ParseConstants.KEY_USERNAME, mMemberRelation.getQuery());
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> parseUsers, ParseException e) {
