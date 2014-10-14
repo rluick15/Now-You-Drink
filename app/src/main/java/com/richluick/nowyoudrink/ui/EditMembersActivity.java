@@ -15,7 +15,9 @@ import android.widget.Toast;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
@@ -32,13 +34,15 @@ public class EditMembersActivity extends ListActivity {
     public static final String TAG = EditFriendsActivity.class.getSimpleName();
 
     protected String mGroupId;
+    protected String mGroupName;
     protected MenuItem mSendMenuItem;
     protected List<ParseUser> mFriends;
     protected ArrayList<ParseUser> mPendingMembers;
     protected ParseUser mCurrentUser;
     protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseRelation<ParseUser> mPendingMemberRelation;
-    ParseRelation<ParseObject> mMemberOfGroupRelation;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,7 @@ public class EditMembersActivity extends ListActivity {
         setContentView(R.layout.activity_edit_members);
 
         mGroupId = getIntent().getStringExtra(ParseConstants.KEY_GROUP_ID);
+        mGroupName = getIntent().getStringExtra(ParseConstants.KEY_GROUP_NAME);
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
@@ -174,13 +179,24 @@ public class EditMembersActivity extends ListActivity {
                 if(e == null) {
                     //success
                     Toast.makeText(EditMembersActivity.this, getString(R.string.success_group_request), Toast.LENGTH_LONG).show();
-                    //sendPushNotifications();
+                    sendPushNotifications();
                 }
                 else { //error sending message
                     Log.e(TAG, e.getMessage());
                 }
             }
         });
+    }
+
+    //send push notification to selected pending group members
+    protected void sendPushNotifications() {
+        ParseQuery<ParseInstallation> query = ParseInstallation.getQuery();
+        query.whereContainedIn(ParseConstants.KEY_USER, mPendingMembers);
+
+        ParsePush push = new ParsePush();
+        push.setQuery(query);
+        push.setMessage(ParseUser.getCurrentUser().getUsername() + " invited you to join the group " +  mGroupName + "!");
+        push.sendInBackground();
     }
 
     @Override

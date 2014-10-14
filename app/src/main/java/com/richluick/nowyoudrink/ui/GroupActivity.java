@@ -291,6 +291,7 @@ public class GroupActivity extends ListActivity {
         else if(id == R.id.action_edit_members) {
             Intent intent = new Intent(this, EditMembersActivity.class);
             intent.putExtra(ParseConstants.KEY_GROUP_ID, mGroupId);
+            intent.putExtra(ParseConstants.KEY_GROUP_NAME, mGroupName);
             startActivity(intent);
         }
         else if(id == R.id.action_leave_group) {
