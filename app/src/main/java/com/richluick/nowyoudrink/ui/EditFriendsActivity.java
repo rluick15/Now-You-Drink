@@ -35,6 +35,7 @@ public class EditFriendsActivity extends ListActivity {
     protected List<ParseUser> mUsers;
     protected ArrayList<ParseUser> mPendingFriends;
     protected ParseRelation<ParseUser> mPendingRelation;
+    protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseUser mCurrentUser;
     protected MenuItem mSendMenuItem;
 
@@ -54,13 +55,17 @@ public class EditFriendsActivity extends ListActivity {
         mCurrentUser = ParseUser.getCurrentUser();
         mPendingFriends = new ArrayList<ParseUser>();
         mPendingRelation = mCurrentUser.getRelation(ParseConstants.KEY_PENDING_RELATION);
+        mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
 
         setProgressBarIndeterminateVisibility(true);
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.orderByAscending(ParseConstants.KEY_USERNAME);
-        query.whereNotEqualTo(ParseConstants.KEY_USERNAME, mCurrentUser.getUsername());
-        //query.whereNotEqualTo(ParseConstants.KEY_PENDING_RELATION, "cgOJUDi5C0");
+        query.whereNotEqualTo(ParseConstants.KEY_USERNAME, mCurrentUser.getUsername()); //exclude current user
+        query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_USERNAME, //exclude friends
+                ParseConstants.KEY_USERNAME, mFriendsRelation.getQuery());
+//        query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_USERNAME, //exclude pending friends
+//                ParseConstants.KEY_USERNAME, mPendingRelation.getQuery());
         query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
