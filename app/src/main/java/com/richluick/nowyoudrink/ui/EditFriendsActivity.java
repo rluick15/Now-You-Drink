@@ -64,8 +64,8 @@ public class EditFriendsActivity extends ListActivity {
         query.whereNotEqualTo(ParseConstants.KEY_USERNAME, mCurrentUser.getUsername()); //exclude current user
         query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_USERNAME, //exclude friends
                 ParseConstants.KEY_USERNAME, mFriendsRelation.getQuery());
-//        query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_USERNAME, //exclude pending friends
-//                ParseConstants.KEY_USERNAME, mPendingRelation.getQuery());
+        query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_EMAIL, //exclude pending friends
+                ParseConstants.KEY_EMAIL, mPendingRelation.getQuery());
         query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
