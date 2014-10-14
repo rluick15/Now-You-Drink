@@ -14,13 +14,15 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.richluick.nowyoudrink.utils.ParseConstants;
 import com.richluick.nowyoudrink.R;
+import com.richluick.nowyoudrink.utils.ParseConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -179,7 +181,7 @@ public class EditFriendsActivity extends ListActivity {
                 if(e == null) {
                     //success
                     Toast.makeText(EditFriendsActivity.this, getString(R.string.success_message_friend_request), Toast.LENGTH_LONG).show();
-                    //sendPushNotifications();
+                    sendPushNotifications();
                 }
                 else { //error sending message
                     Log.e(TAG, e.getMessage());
@@ -188,15 +190,15 @@ public class EditFriendsActivity extends ListActivity {
         });
     }
 
-//    protected void sendPushNotifications() {
-//        ParseQuery<ParseInstallation> query = ParseInstallation.getQuery();
-//        query.whereContainedIn(ParseConstants.KEY_RECIPIENT_IDS, (java.util.Collection<?>) mPendingRelation);
-//
-//        //send push notification
-//        ParsePush push = new ParsePush();
-//        push.setQuery(query);
-//        push.setMessage(getString(R.string.push_message, ParseUser.getCurrentUser().getUsername()));
-//        push.sendInBackground();
-//    }
+    protected void sendPushNotifications() {
+        ParseQuery<ParseInstallation> query = ParseInstallation.getQuery();
+        query.whereContainedIn(ParseConstants.KEY_USER, mPendingFriends);
+
+        //send push notification
+        ParsePush push = new ParsePush();
+        push.setQuery(query);
+        push.setMessage(ParseUser.getCurrentUser().getUsername() + " has sent you a friend request!");
+        push.sendInBackground();
+    }
 
 }

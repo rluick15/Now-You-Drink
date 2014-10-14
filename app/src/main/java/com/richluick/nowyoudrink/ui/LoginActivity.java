@@ -95,7 +95,7 @@ public class LoginActivity extends Activity {
                             mProgressBar.setVisibility(View.INVISIBLE);
 
                             if (e == null) { //Login is a success, send user to inbox activity
-                               NowYouDrinkApplication.updateParseInstallation(ParseUser.getCurrentUser());
+                                NowYouDrinkApplication.updateParseInstallation(ParseUser.getCurrentUser());
 
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

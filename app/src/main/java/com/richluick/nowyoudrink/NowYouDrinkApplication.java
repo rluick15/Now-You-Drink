@@ -21,8 +21,6 @@ public class NowYouDrinkApplication extends Application {
 
         ParseInstallation.getCurrentInstallation().saveInBackground();
         PushService.setDefaultPushCallback(this, MainActivity.class);
-
-        //PushService.setDefaultPushCallback(this, MainActivity.class, R.drawable.ic_stat_ic_launcher);
     }
 
     public static void updateParseInstallation(ParseUser user) {
@@ -30,5 +28,4 @@ public class NowYouDrinkApplication extends Application {
         installation.put(ParseConstants.KEY_USER, user);
         installation.saveInBackground();
     }
-
 }
