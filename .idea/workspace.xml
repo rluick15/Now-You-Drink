@@ -109,24 +109,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroupActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="GroupActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/GroupActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3949" max-vertical-offset="5287">
-              <caret line="292" column="48" selection-start-line="292" selection-start-column="48" selection-end-line="292" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.34951457" vertical-offset="3390" max-vertical-offset="5474">
+              <caret line="258" column="34" selection-start-line="258" selection-start-column="34" selection-end-line="258" selection-end-column="34" />
               <folding>
-                <element signature="e#13225#13265#0" expanded="true" />
+                <element signature="e#4610#4649#0" expanded="true" />
+                <element signature="e#4695#4736#0" expanded="true" />
+                <element signature="e#5114#5165#0" expanded="true" />
+                <element signature="e#5207#5252#0" expanded="true" />
+                <element signature="e#6182#6227#0" expanded="true" />
+                <element signature="e#6269#6316#0" expanded="true" />
+                <element signature="e#7513#7560#0" expanded="true" />
+                <element signature="e#7604#7643#0" expanded="true" />
+                <element signature="e#9531#9551#0" expanded="true" />
+                <element signature="e#11207#11256#0" expanded="true" />
+                <element signature="e#13685#13725#0" expanded="true" />
+                <element signature="e#14057#14077#0" expanded="true" />
+                <element signature="e#14111#14161#0" expanded="true" />
+                <element signature="e#14416#14461#0" expanded="true" />
+                <element signature="e#14697#14742#0" expanded="true" />
+                <element signature="e#14776#14815#0" expanded="true" />
+                <element signature="e#15697#15743#0" expanded="true" />
+                <element signature="e#15883#15909#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EditMembersActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/EditMembersActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.80194175" vertical-offset="2715" max-vertical-offset="3281">
-              <caret line="210" column="22" selection-start-line="210" selection-start-column="22" selection-end-line="210" selection-end-column="22" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -1282,8 +1289,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/NowYouDrinkApplication.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/EditFriendsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/GroupActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/EditMembersActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/GroupActivity.java" />
       </list>
     </option>
   </component>
@@ -1846,7 +1853,24 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="6154">
           <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding>
-            <element signature="e#13225#13265#0" expanded="true" />
+            <element signature="e#4610#4649#0" expanded="true" />
+            <element signature="e#4695#4736#0" expanded="true" />
+            <element signature="e#5114#5165#0" expanded="true" />
+            <element signature="e#5207#5252#0" expanded="true" />
+            <element signature="e#6182#6227#0" expanded="true" />
+            <element signature="e#6269#6316#0" expanded="true" />
+            <element signature="e#7513#7560#0" expanded="true" />
+            <element signature="e#7604#7643#0" expanded="true" />
+            <element signature="e#9531#9551#0" expanded="true" />
+            <element signature="e#11207#11256#0" expanded="true" />
+            <element signature="e#13685#13725#0" expanded="true" />
+            <element signature="e#14057#14077#0" expanded="true" />
+            <element signature="e#14111#14161#0" expanded="true" />
+            <element signature="e#14416#14461#0" expanded="true" />
+            <element signature="e#14697#14742#0" expanded="true" />
+            <element signature="e#14776#14815#0" expanded="true" />
+            <element signature="e#15697#15743#0" expanded="true" />
+            <element signature="e#15883#15909#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2303,6 +2327,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/EditMembersActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.80194175" vertical-offset="2715" max-vertical-offset="3281">
+          <caret line="210" column="22" selection-start-line="210" selection-start-column="22" selection-end-line="210" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/CreateGroupActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2766" max-vertical-offset="3519">
@@ -2313,19 +2345,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/GroupActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3949" max-vertical-offset="5287">
-          <caret line="292" column="48" selection-start-line="292" selection-start-column="48" selection-end-line="292" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.34951457" vertical-offset="3390" max-vertical-offset="5474">
+          <caret line="258" column="34" selection-start-line="258" selection-start-column="34" selection-end-line="258" selection-end-column="34" />
           <folding>
-            <element signature="e#13225#13265#0" expanded="true" />
+            <element signature="e#4610#4649#0" expanded="true" />
+            <element signature="e#4695#4736#0" expanded="true" />
+            <element signature="e#5114#5165#0" expanded="true" />
+            <element signature="e#5207#5252#0" expanded="true" />
+            <element signature="e#6182#6227#0" expanded="true" />
+            <element signature="e#6269#6316#0" expanded="true" />
+            <element signature="e#7513#7560#0" expanded="true" />
+            <element signature="e#7604#7643#0" expanded="true" />
+            <element signature="e#9531#9551#0" expanded="true" />
+            <element signature="e#11207#11256#0" expanded="true" />
+            <element signature="e#13685#13725#0" expanded="true" />
+            <element signature="e#14057#14077#0" expanded="true" />
+            <element signature="e#14111#14161#0" expanded="true" />
+            <element signature="e#14416#14461#0" expanded="true" />
+            <element signature="e#14697#14742#0" expanded="true" />
+            <element signature="e#14776#14815#0" expanded="true" />
+            <element signature="e#15697#15743#0" expanded="true" />
+            <element signature="e#15883#15909#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/richluick/nowyoudrink/ui/EditMembersActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.80194175" vertical-offset="2715" max-vertical-offset="3281">
-          <caret line="210" column="22" selection-start-line="210" selection-start-column="22" selection-end-line="210" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>

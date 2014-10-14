@@ -19,7 +19,9 @@ import android.widget.Toast;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
@@ -243,13 +245,24 @@ public class GroupActivity extends ListActivity {
                 if(e == null) {
                     //success
                     Toast.makeText(GroupActivity.this, getString(R.string.message_success_drink_request), Toast.LENGTH_LONG).show();
-                    //sendPushNotifications();
+                    sendPushNotifications();
                 }
                 else { //error sending message
                     Log.e(TAG, e.getMessage());
                 }
             }
         });
+    }
+
+    //send push notification to selected next drinker
+    protected void sendPushNotifications() {
+        ParseQuery<ParseInstallation> query = ParseInstallation.getQuery();
+        query.whereEqualTo(ParseConstants.KEY_USER, mNextDrinker);
+
+        ParsePush push = new ParsePush();
+        push.setQuery(query);
+        push.setMessage("Now you drink!");
+        push.sendInBackground();
     }
 
     @Override
