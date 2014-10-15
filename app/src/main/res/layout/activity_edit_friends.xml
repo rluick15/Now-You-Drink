@@ -5,14 +5,38 @@
     android:background="@color/background_color"
     tools:context="com.richluick.nowyoudrink.EditFriendsActivityActivity">
 
-    <EditText
-        android:id="@+id/searchText"
-        style="@style/AuthEditText"
-        android:hint="Search for Friends"
+    <!--wrap button and edit text in linear layout-->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        style="@style/AuthFieldContainer"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp">
+
+        <EditText
+            android:id="@+id/searchText"
+            style="@style/AuthEditText"
+            android:layout_weight="0.7"
+            android:layout_width="wrap_content"
+            android:hint="@string/search_friends_hint"
+            android:layout_alignParentLeft="true"/>
+
+        <Button
+            android:id="@+id/searchButton"
+            android:text="Search"
+            style="@style/AuthButton"
+            android:layout_weight="0.3"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/searchText"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"/>
+
+    </LinearLayout>
 
     <TextView
         android:id="@android:id/empty"
@@ -24,6 +48,6 @@
     <ListView
         android:id="@android:id/list"
         style="@style/auth_lists_friends"
-        android:layout_below="@+id/searchText"/>
+        android:layout_below="@+id/linearLayout"/>
 
 </RelativeLayout>

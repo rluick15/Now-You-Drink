@@ -95,5 +95,6 @@
     <string name="message_title_nonexistent_group">Nonexistent Group</string>
     <string name="message_nonexistent_group">This group no longer exists.</string>
     <string name="desc_background_image">Background Image</string>
+    <string name="search_friends_hint">Search for Friends</string>
 
 </resources>
