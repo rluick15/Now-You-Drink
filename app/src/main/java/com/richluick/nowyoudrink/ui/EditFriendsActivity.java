@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -33,6 +35,9 @@ public class EditFriendsActivity extends ListActivity {
     public static final String TAG = EditFriendsActivity.class.getSimpleName();
 
     protected List<ParseUser> mUsers;
+    protected EditText mSearchTextField;
+    protected Button mSearchButton;
+    protected String mSearchText = "";
     protected ArrayList<ParseUser> mPendingFriends;
     protected ParseRelation<ParseUser> mPendingRelation;
     protected ParseRelation<ParseUser> mFriendsRelation;
@@ -44,6 +49,9 @@ public class EditFriendsActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_edit_friends);
+
+        mSearchTextField = (EditText) findViewById(R.id.searchText);
+        mSearchButton = (Button) findViewById(R.id.searchButton);
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
@@ -57,12 +65,29 @@ public class EditFriendsActivity extends ListActivity {
         mPendingRelation = mCurrentUser.getRelation(ParseConstants.KEY_PENDING_RELATION);
         mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
 
+        mSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSearchText = mSearchTextField.getText().toString();
+
+                //query with relevant searchText
+                userQuery();
+            }
+        });
+
+        //default query of first 1000 users if nothing is entered into search
+        userQuery();
+    }
+
+    protected void userQuery() {
         setProgressBarIndeterminateVisibility(true);
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.orderByAscending(ParseConstants.KEY_USERNAME);
         query.whereNotEqualTo(ParseConstants.KEY_USERNAME, mCurrentUser.getUsername()); //exclude current user
-        //query.whereContains(ParseConstants.KEY_USERNAME, "s");
+        query.whereContains(ParseConstants.KEY_USERNAME, mSearchText);
+        query.whereContains(ParseConstants.KEY_USERNAME, mSearchText.toUpperCase());
+        query.whereContains(ParseConstants.KEY_USERNAME, mSearchText.toLowerCase());
         query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_USERNAME, //exclude friends
                 ParseConstants.KEY_USERNAME, mFriendsRelation.getQuery());
         query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_EMAIL, //exclude pending friends
