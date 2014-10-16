@@ -130,6 +130,7 @@ public class GroupActivity extends ListActivity {
                             });
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    customDialog(dialog);
                 }
             }
         });
@@ -145,6 +146,7 @@ public class GroupActivity extends ListActivity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    customDialog(dialog);
                 }
                 else {
                     mGroup.remove(ParseConstants.KEY_CURRENT_DRINKER);
@@ -169,6 +171,7 @@ public class GroupActivity extends ListActivity {
                                 .setPositiveButton(android.R.string.ok, null);
                         AlertDialog dialog = builder.create();
                         dialog.show();
+                        customDialog(dialog);
                     }
                     else { //sends the message and closes the activity
                         send(message);
@@ -206,13 +209,13 @@ public class GroupActivity extends ListActivity {
                     setListAdapter(adapter);
                 }
                 else { //error message dialog if the query fails
-                    Log.e(TAG, e.getMessage());
                     AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
                     builder.setTitle(R.string.error_title)
                             .setMessage(e.getMessage())
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    customDialog(dialog);
                 }
             }
         });
@@ -325,6 +328,7 @@ public class GroupActivity extends ListActivity {
                     .setPositiveButton(android.R.string.ok, null);
             AlertDialog dialog = builder.create();
             dialog.show();
+            customDialog(dialog);
         }
         else if ((mCurrentUser.getUsername()).equals(mGroupAdmin)) {
             String message = getString(R.string.message_admin_leave_group);
@@ -348,6 +352,7 @@ public class GroupActivity extends ListActivity {
                     });
             AlertDialog dialog = builder.create();
             dialog.show();
+            customDialog(dialog);
         }
     }
 
@@ -365,6 +370,7 @@ public class GroupActivity extends ListActivity {
                 });
         AlertDialog dialog = builder.create();
         dialog.show();
+        customDialog(dialog);
     }
 
     //set the colors for the custom dialogs

@@ -4,11 +4,11 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -16,9 +16,9 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
+import com.richluick.nowyoudrink.R;
 import com.richluick.nowyoudrink.adapters.MessageAdapter;
 import com.richluick.nowyoudrink.utils.ParseConstants;
-import com.richluick.nowyoudrink.R;
 
 import java.util.List;
 
@@ -96,13 +96,13 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
                     }
                 }
                 else {
-                    Log.e(TAG, e.getMessage());
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle(R.string.error_title)
                             .setMessage(e.getMessage())
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    customDialog(dialog);
                 }
             }
         });
@@ -126,4 +126,17 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
             retrieveGroups();
         }
     };
+
+    //set the colors for the custom dialogs
+    protected void customDialog(AlertDialog dialog) {
+        //custom divider color
+        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
+        View divider = dialog.findViewById(dividerId);
+        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
+
+        //custom title color
+        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
+        TextView tv = (TextView) dialog.findViewById(textViewId);
+        tv.setTextColor(getResources().getColor(R.color.main_color));
+    }
 }

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.util.Linkify;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -79,6 +80,7 @@ public class FriendsProfileActivity extends Activity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    customDialog(dialog);
                 }
             }
         });
@@ -96,6 +98,19 @@ public class FriendsProfileActivity extends Activity {
                     .placeholder(R.drawable.avatar_empty) //default image if no account avail
                     .into(mUserImageView);
         }
+    }
+
+    //set the colors for the custom dialogs
+    protected void customDialog(AlertDialog dialog) {
+        //custom divider color
+        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
+        View divider = dialog.findViewById(dividerId);
+        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
+
+        //custom title color
+        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
+        TextView tv = (TextView) dialog.findViewById(textViewId);
+        tv.setTextColor(getResources().getColor(R.color.main_color));
     }
 
 }

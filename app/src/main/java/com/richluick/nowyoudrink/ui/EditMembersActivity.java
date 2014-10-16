@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -117,6 +118,7 @@ public class EditMembersActivity extends ListActivity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    customDialog(dialog);
                 }
             }
         });
@@ -167,6 +169,7 @@ public class EditMembersActivity extends ListActivity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    customDialog(dialog);
                 }
                 else { //sends the message and goes to the new group
                     send(message);
@@ -228,5 +231,18 @@ public class EditMembersActivity extends ListActivity {
 
         if(l.getCheckedItemCount() > 0) mSendMenuItem.setVisible(true);
         else mSendMenuItem.setVisible(false);
+    }
+
+    //set the colors for the custom dialogs
+    protected void customDialog(AlertDialog dialog) {
+        //custom divider color
+        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
+        View divider = dialog.findViewById(dividerId);
+        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
+
+        //custom title color
+        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
+        TextView tv = (TextView) dialog.findViewById(textViewId);
+        tv.setTextColor(getResources().getColor(R.color.main_color));
     }
 }

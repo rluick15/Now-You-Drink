@@ -87,6 +87,7 @@ public class LoginActivity extends Activity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    customDialog(dialog);
                 }
                 else { //Login
                     ParseUser.logInInBackground(username, password, new LogInCallback() {
@@ -109,11 +110,25 @@ public class LoginActivity extends Activity {
                                         .setPositiveButton(android.R.string.ok, null);
                                 AlertDialog dialog = builder.create();
                                 dialog.show();
+                                customDialog(dialog);
                             }
                         }
                     });
                 }
             }
         });
+    }
+
+    //set the colors for the custom dialogs
+    protected void customDialog(AlertDialog dialog) {
+        //custom divider color
+        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
+        View divider = dialog.findViewById(dividerId);
+        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
+
+        //custom title color
+        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
+        TextView tv = (TextView) dialog.findViewById(textViewId);
+        tv.setTextColor(getResources().getColor(R.color.main_color));
     }
 }

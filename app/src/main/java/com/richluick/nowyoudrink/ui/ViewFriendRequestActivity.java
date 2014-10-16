@@ -67,13 +67,13 @@ public class ViewFriendRequestActivity extends Activity {
                     mSender = parseUser;
                 }
                 else { //error
-                    Log.e(TAG, e.getMessage());
                     AlertDialog.Builder builder = new AlertDialog.Builder(ViewFriendRequestActivity.this);
                     builder.setTitle(R.string.error_title)
                             .setMessage(e.getMessage())
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    customDialog(dialog);
                 }
             }
         });
@@ -95,6 +95,7 @@ public class ViewFriendRequestActivity extends Activity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    customDialog(dialog);
                 }
                 else { //sends the message and closes the activity
                     send(message, type);
@@ -118,6 +119,7 @@ public class ViewFriendRequestActivity extends Activity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    customDialog(dialog);
                 }
                 else { //sends the message and closes the activity
                     send(message, type);
@@ -197,5 +199,18 @@ public class ViewFriendRequestActivity extends Activity {
                 }
             }
         });
+    }
+
+    //set the colors for the custom dialogs
+    protected void customDialog(AlertDialog dialog) {
+        //custom divider color
+        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
+        View divider = dialog.findViewById(dividerId);
+        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
+
+        //custom title color
+        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
+        TextView tv = (TextView) dialog.findViewById(textViewId);
+        tv.setTextColor(getResources().getColor(R.color.main_color));
     }
 }

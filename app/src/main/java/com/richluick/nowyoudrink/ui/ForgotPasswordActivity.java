@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -99,6 +100,7 @@ public class ForgotPasswordActivity extends Activity {
                 .setPositiveButton(android.R.string.ok, null);
         AlertDialog dialog = builder.create();
         dialog.show();
+        customDialog(dialog);
     }
 
     //valid email was typed. Email was successfully sent to user for password reset.
@@ -115,6 +117,7 @@ public class ForgotPasswordActivity extends Activity {
                 });
         AlertDialog dialog = builder.create();
         dialog.show();
+        customDialog(dialog);
     }
 
     //Error message if the email field is empty and the user clicks the reset button
@@ -125,6 +128,20 @@ public class ForgotPasswordActivity extends Activity {
                 .setPositiveButton(android.R.string.ok, null);
         AlertDialog dialog = builder.create();
         dialog.show();
+        customDialog(dialog);
+    }
+
+    //set the colors for the custom dialogs
+    protected void customDialog(AlertDialog dialog) {
+        //custom divider color
+        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
+        View divider = dialog.findViewById(dividerId);
+        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
+
+        //custom title color
+        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
+        TextView tv = (TextView) dialog.findViewById(textViewId);
+        tv.setTextColor(getResources().getColor(R.color.main_color));
     }
 
 }

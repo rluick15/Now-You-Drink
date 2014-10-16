@@ -44,7 +44,7 @@ public class NowYouDrinkApplication extends Application {
                 menuKeyField.setBoolean(config, false);
             }
         }
-        catch (Exception ex) {
+        catch (Exception e) {
             // Ignore
         }
     }

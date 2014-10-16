@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -113,13 +114,13 @@ public class EditFriendsActivity extends ListActivity {
                     setListAdapter(adapter);
                 }
                 else {
-                    Log.e(TAG, e.getMessage());
                     AlertDialog.Builder builder = new AlertDialog.Builder(EditFriendsActivity.this);
                     builder.setTitle(R.string.error_title)
                             .setMessage(e.getMessage())
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    customDialog(dialog);
                 }
             }
         });
@@ -169,6 +170,7 @@ public class EditFriendsActivity extends ListActivity {
                     .setPositiveButton(android.R.string.ok, null);
             AlertDialog dialog = builder.create();
             dialog.show();
+            customDialog(dialog);
         }
         else { //sends the message and closes the activity
             send(message);
@@ -228,6 +230,19 @@ public class EditFriendsActivity extends ListActivity {
         push.setQuery(query);
         push.setMessage(ParseUser.getCurrentUser().getUsername() + " has sent you a friend request!");
         push.sendInBackground();
+    }
+
+    //set the colors for the custom dialogs
+    protected void customDialog(AlertDialog dialog) {
+        //custom divider color
+        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
+        View divider = dialog.findViewById(dividerId);
+        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
+
+        //custom title color
+        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
+        TextView tv = (TextView) dialog.findViewById(textViewId);
+        tv.setTextColor(getResources().getColor(R.color.main_color));
     }
 
 }
