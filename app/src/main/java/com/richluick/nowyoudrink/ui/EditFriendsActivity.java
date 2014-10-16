@@ -83,11 +83,9 @@ public class EditFriendsActivity extends ListActivity {
         setProgressBarIndeterminateVisibility(true);
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.orderByAscending(ParseConstants.KEY_USERNAME);
+        query.orderByAscending(ParseConstants.KEY_FULL_NAME);
         query.whereNotEqualTo(ParseConstants.KEY_USERNAME, mCurrentUser.getUsername()); //exclude current user
-        query.whereContains(ParseConstants.KEY_USERNAME, mSearchText);
-        query.whereContains(ParseConstants.KEY_USERNAME, mSearchText.toUpperCase());
-        query.whereContains(ParseConstants.KEY_USERNAME, mSearchText.toLowerCase());
+        query.whereContains(ParseConstants.KEY_FULL_NAME_LOWERCASE, mSearchText.toLowerCase());
         query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_USERNAME, //exclude friends
                 ParseConstants.KEY_USERNAME, mFriendsRelation.getQuery());
         query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_EMAIL, //exclude pending friends
@@ -100,10 +98,10 @@ public class EditFriendsActivity extends ListActivity {
 
                 if(e == null) {
                     mUsers = parseUsers;
-                    String[] usernames = new String[mUsers.size()];
+                    String[] fullNames = new String[mUsers.size()];
                     int i = 0;
                     for(ParseUser user : mUsers) {
-                        usernames[i] = user.getUsername();
+                        fullNames[i] = user.get(ParseConstants.KEY_FULL_NAME).toString();
                         i++;
                     }
 
@@ -111,7 +109,7 @@ public class EditFriendsActivity extends ListActivity {
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                             EditFriendsActivity.this,
                             android.R.layout.simple_list_item_checked,
-                            usernames);
+                            fullNames);
                     setListAdapter(adapter);
                 }
                 else {

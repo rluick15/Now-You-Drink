@@ -10,12 +10,10 @@ public final class ParseConstants {
 
     //Field names
     public static final String KEY_USER = "user";
-    public static final String KEY_USER_ID = "userId";
-    public static final String KEY_OBJECT_ID = "objectId";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_USERNAME = "username";
-    public static final String KEY_FIRST_NAME = "firstName";
-    public static final String KEY_LAST_NAME = "lastName";
+    public static final String KEY_FULL_NAME = "fullName";
+    public static final String KEY_FULL_NAME_LOWERCASE = "fullNameLowercase";
     public static final String KEY_HOMETOWN = "hometown";
     public static final String KEY_WEBSITE = "website";
     public static final String KEY_ID = "id";

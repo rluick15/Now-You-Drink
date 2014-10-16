@@ -44,9 +44,7 @@ public class PersonalProfileActivity extends Activity {
         ParseUser currentUser = ParseUser.getCurrentUser();
 
         mUsername = currentUser.getUsername();
-        mFirstName = currentUser.get(ParseConstants.KEY_FIRST_NAME).toString();
-        mLastName = currentUser.get(ParseConstants.KEY_LAST_NAME).toString();
-        mFullName = mFirstName + " " + mLastName;
+        mFullName = currentUser.get(ParseConstants.KEY_FULL_NAME).toString();
         mEmail = currentUser.getEmail();
         mHometown = currentUser.get(ParseConstants.KEY_HOMETOWN).toString();
         mWebsite = currentUser.get(ParseConstants.KEY_WEBSITE).toString();

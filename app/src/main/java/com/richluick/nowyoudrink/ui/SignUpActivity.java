@@ -81,6 +81,7 @@ public class SignUpActivity extends Activity {
                 email = email.trim();
                 firstName = firstName.trim();
                 lastName = lastName.trim();
+                String fullName = firstName + " " + lastName;
                 hometown = hometown.trim();
                 website = website.trim();
 
@@ -105,8 +106,8 @@ public class SignUpActivity extends Activity {
                     newUser.setUsername(username);
                     newUser.setPassword(password);
                     newUser.setEmail(email);
-                    newUser.put(ParseConstants.KEY_FIRST_NAME, firstName);
-                    newUser.put(ParseConstants.KEY_LAST_NAME, lastName);
+                    newUser.put(ParseConstants.KEY_FULL_NAME, fullName);
+                    newUser.put(ParseConstants.KEY_FULL_NAME_LOWERCASE, fullName.toLowerCase());
                     newUser.put(ParseConstants.KEY_HOMETOWN, hometown);
                     newUser.put(ParseConstants.KEY_WEBSITE, website);
 

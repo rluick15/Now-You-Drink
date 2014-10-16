@@ -57,9 +57,7 @@ public class FriendsProfileActivity extends Activity {
                 if (e == null) {
                     mUsername = parseUser.getUsername();
                     setTitle(mUsername + "'s Profile"); //set the page title to the friends username
-                    mFirstName = parseUser.get(ParseConstants.KEY_FIRST_NAME).toString();
-                    mLastName = parseUser.get(ParseConstants.KEY_LAST_NAME).toString();
-                    mFullName = mFirstName + " " + mLastName;
+                    mFullName = parseUser.get(ParseConstants.KEY_FULL_NAME).toString();
                     mEmail = parseUser.getEmail();
                     mHometown = parseUser.get(ParseConstants.KEY_HOMETOWN).toString();
                     mWebsite = parseUser.get(ParseConstants.KEY_WEBSITE).toString();
