@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -26,6 +25,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.richluick.nowyoudrink.R;
 import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.utils.Utilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +50,8 @@ public class EditFriendsActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_edit_friends);
+
+        Utilities.setContext(this); //set the utilities context to this
 
         mSearchTextField = (EditText) findViewById(R.id.searchText);
         mSearchButton = (Button) findViewById(R.id.searchButton);
@@ -78,6 +80,13 @@ public class EditFriendsActivity extends ListActivity {
 
         //default query of first 1000 users if nothing is entered into search
         userQuery();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Utilities.setContext(null); //set context to null to prevent leak
     }
 
     protected void userQuery() {
@@ -120,7 +129,7 @@ public class EditFriendsActivity extends ListActivity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    customDialog(dialog);
+                    Utilities.customDialog(dialog);
                 }
             }
         });
@@ -170,7 +179,7 @@ public class EditFriendsActivity extends ListActivity {
                     .setPositiveButton(android.R.string.ok, null);
             AlertDialog dialog = builder.create();
             dialog.show();
-            customDialog(dialog);
+            Utilities.customDialog(dialog);
         }
         else { //sends the message and closes the activity
             send(message);
@@ -231,18 +240,4 @@ public class EditFriendsActivity extends ListActivity {
         push.setMessage(ParseUser.getCurrentUser().getUsername() + " has sent you a friend request!");
         push.sendInBackground();
     }
-
-    //set the colors for the custom dialogs
-    protected void customDialog(AlertDialog dialog) {
-        //custom divider color
-        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
-        View divider = dialog.findViewById(dividerId);
-        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
-
-        //custom title color
-        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
-        TextView tv = (TextView) dialog.findViewById(textViewId);
-        tv.setTextColor(getResources().getColor(R.color.main_color));
-    }
-
 }

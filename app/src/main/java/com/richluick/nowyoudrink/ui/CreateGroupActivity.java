@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -25,6 +24,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.richluick.nowyoudrink.R;
 import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.utils.Utilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,6 @@ public class CreateGroupActivity extends ListActivity {
     protected ParseUser mCurrentUser;
     protected EditText mGroupNameField;
     protected String mGroupName;
-    protected ParseObject mGroup;
     protected String mGroupId;
     protected Button mCreateGroupButton;
     protected ParseRelation<ParseUser> mFriendsRelation;
@@ -95,7 +94,7 @@ public class CreateGroupActivity extends ListActivity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    customDialog(dialog);
+                    Utilities.customDialog (dialog);
                 }
             }
         });
@@ -117,7 +116,7 @@ public class CreateGroupActivity extends ListActivity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    customDialog(dialog);
+                    Utilities.customDialog (dialog);
                 }
                 else {
                     createGroupAndMessage();
@@ -143,24 +142,22 @@ public class CreateGroupActivity extends ListActivity {
                     mCurrentUser.saveInBackground();
 
                     ParseObject message = createMessage(group);
-                    if(message == null) { //error
+                    if (message == null) { //error
                         AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
                         builder.setMessage(getString(R.string.error_friend_request))
                                 .setTitle(getString(R.string.error_title))
                                 .setPositiveButton(android.R.string.ok, null);
                         AlertDialog dialog = builder.create();
                         dialog.show();
-                        customDialog(dialog);
-                    }
-                    else { //sends the message and goes to the new group
+                        Utilities.customDialog (dialog);
+                    } else { //sends the message and goes to the new group
                         send(message);
                         Intent intent = new Intent(CreateGroupActivity.this, GroupActivity.class);
                         intent.putExtra(ParseConstants.KEY_GROUP_ID, mGroupId);
                         startActivity(intent);
                         finish();
                     }
-                }
-                else {
+                } else {
                     Log.d(TAG, e.getMessage());
                 }
             }
@@ -203,12 +200,11 @@ public class CreateGroupActivity extends ListActivity {
         message.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                if(e == null) {
+                if (e == null) {
                     //success
                     Toast.makeText(CreateGroupActivity.this, getString(R.string.success_message_group_create), Toast.LENGTH_LONG).show();
                     sendPushNotifications();
-                }
-                else { //error sending message
+                } else { //error sending message
                     Log.e(TAG, e.getMessage());
                 }
             }
@@ -237,18 +233,5 @@ public class CreateGroupActivity extends ListActivity {
         //only displays the button if at least one friend is selected
         if(l.getCheckedItemCount() > 0) mCreateGroupButton.setEnabled(true);
         else mCreateGroupButton.setEnabled(false);
-    }
-
-    //set the colors for the custom dialogs
-    protected void customDialog(AlertDialog dialog) {
-        //custom divider color
-        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
-        View divider = dialog.findViewById(dividerId);
-        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
-
-        //custom title color
-        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
-        TextView tv = (TextView) dialog.findViewById(textViewId);
-        tv.setTextColor(getResources().getColor(R.color.main_color));
     }
 }

@@ -36,6 +36,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
+        assert actionBar != null;
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // Create the adapter that will return a fragment for each of the three
@@ -74,11 +75,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-    }
-
-    //method to remove first and last characters of a string. used in other activitys
-    public static String removeCharacters(String string) {
-        return string.substring(1, string.length()-1);
     }
 
     @Override

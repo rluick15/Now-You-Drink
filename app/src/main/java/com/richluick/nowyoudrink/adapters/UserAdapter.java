@@ -15,9 +15,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-/**
- * Created by Rich on 9/5/2014.
- */
 public class UserAdapter extends ArrayAdapter<ParseUser> {
 
     protected Context mContext;

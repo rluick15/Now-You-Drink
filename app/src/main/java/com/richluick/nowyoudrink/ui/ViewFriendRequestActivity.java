@@ -18,10 +18,13 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.richluick.nowyoudrink.utils.ParseConstants;
 import com.richluick.nowyoudrink.R;
+import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.utils.Utilities;
 
 import java.util.ArrayList;
+
+import static com.richluick.nowyoudrink.utils.ParseConstants.TYPE_FRIEND_REQUEST_CONFIRM;
 
 
 public class ViewFriendRequestActivity extends Activity {
@@ -36,7 +39,6 @@ public class ViewFriendRequestActivity extends Activity {
     protected String mUsername;
     protected ParseRelation<ParseUser> mPendingRelation;
     protected ParseRelation<ParseUser> mFriendsRelation;
-    protected ParseRelation<ParseUser> mSenderFriendsRelation;
     protected ParseUser mCurrentUser;
 
     @Override
@@ -73,7 +75,7 @@ public class ViewFriendRequestActivity extends Activity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    customDialog(dialog);
+                    Utilities.customDialog(dialog);
                 }
             }
         });
@@ -85,7 +87,7 @@ public class ViewFriendRequestActivity extends Activity {
             public void onClick(View view) {
                 addFriend();
 
-                String type = ParseConstants.TYPE_FRIEND_REQUEST_CONFIRM;
+                String type = TYPE_FRIEND_REQUEST_CONFIRM;
                 ParseObject message = createMessage(type);
 
                 if(message == null) { //error
@@ -95,7 +97,7 @@ public class ViewFriendRequestActivity extends Activity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    customDialog(dialog);
+                    Utilities.customDialog(dialog);
                 }
                 else { //sends the message and closes the activity
                     send(message, type);
@@ -119,7 +121,7 @@ public class ViewFriendRequestActivity extends Activity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    customDialog(dialog);
+                    Utilities.customDialog(dialog);
                 }
                 else { //sends the message and closes the activity
                     send(message, type);
@@ -184,33 +186,18 @@ public class ViewFriendRequestActivity extends Activity {
         message.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                if(e == null) {
+                if (e == null) {
                     //success
-                    if(type == ParseConstants.TYPE_FRIEND_REQUEST_CONFIRM) {
+                    if (type.equals(TYPE_FRIEND_REQUEST_CONFIRM)) {
                         Toast.makeText(ViewFriendRequestActivity.this, getString(R.string.success_message_accept_request), Toast.LENGTH_LONG).show();
-                    }
-                    else {
+                    } else {
                         Toast.makeText(ViewFriendRequestActivity.this, getString(R.string.success_message_reject_request), Toast.LENGTH_LONG).show();
                     }
                     //sendPushNotifications();
-                }
-                else { //error sending message
+                } else { //error sending message
                     Log.e(TAG, e.getMessage());
                 }
             }
         });
-    }
-
-    //set the colors for the custom dialogs
-    protected void customDialog(AlertDialog dialog) {
-        //custom divider color
-        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
-        View divider = dialog.findViewById(dividerId);
-        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
-
-        //custom title color
-        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
-        TextView tv = (TextView) dialog.findViewById(textViewId);
-        tv.setTextColor(getResources().getColor(R.color.main_color));
     }
 }

@@ -19,6 +19,7 @@ import com.parse.ParseUser;
 import com.richluick.nowyoudrink.R;
 import com.richluick.nowyoudrink.adapters.UserAdapter;
 import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.utils.Utilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,13 +66,8 @@ public class FriendsFragment extends Fragment {
                 if (e == null) {
                     mFriends = friends;
 
-                    String[] usernames = new String[mFriends.size()];
-
-                    int i = 0;
                     for (ParseUser user : mFriends) {
-                        usernames[i] = user.getUsername();
                         mObjectIds.add(user.getObjectId());
-                        i++;
                     }
 
                     if(mGridView.getAdapter() == null) {
@@ -89,7 +85,7 @@ public class FriendsFragment extends Fragment {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    customDialog(dialog);
+                    Utilities.customDialog(dialog);
                 }
             }
         });
@@ -105,17 +101,4 @@ public class FriendsFragment extends Fragment {
             startActivity(intent);
         }
     };
-
-    //set the colors for the custom dialogs
-    protected void customDialog(AlertDialog dialog) {
-        //custom divider color
-        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
-        View divider = dialog.findViewById(dividerId);
-        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
-
-        //custom title color
-        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
-        TextView tv = (TextView) dialog.findViewById(textViewId);
-        tv.setTextColor(getResources().getColor(R.color.main_color));
-    }
 }

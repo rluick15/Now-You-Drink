@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -17,6 +16,7 @@ import com.parse.SignUpCallback;
 import com.richluick.nowyoudrink.NowYouDrinkApplication;
 import com.richluick.nowyoudrink.R;
 import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.utils.Utilities;
 
 
 public class SignUpActivity extends Activity {
@@ -43,6 +43,7 @@ public class SignUpActivity extends Activity {
 
         //Hide the action bar
         ActionBar actionBar = getActionBar();
+        assert actionBar != null;
         actionBar.hide();
 
         mUsername = (EditText) findViewById(R.id.usernameField);
@@ -96,7 +97,7 @@ public class SignUpActivity extends Activity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    customDialog(dialog);
+                    Utilities.customDialog(dialog);
                 }
                 else {
                     mProgressBar.setVisibility(View.INVISIBLE);
@@ -135,25 +136,12 @@ public class SignUpActivity extends Activity {
                                         .setPositiveButton(android.R.string.ok, null);
                                 AlertDialog dialog = builder.create();
                                 dialog.show();
-                                customDialog(dialog);
+                                Utilities.customDialog(dialog);
                             }
                         }
                     });
                 }
             }
         });
-    }
-
-    //set the colors for the custom dialogs
-    protected void customDialog(AlertDialog dialog) {
-        //custom divider color
-        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
-        View divider = dialog.findViewById(dividerId);
-        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
-
-        //custom title color
-        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
-        TextView tv = (TextView) dialog.findViewById(textViewId);
-        tv.setTextColor(getResources().getColor(R.color.main_color));
     }
 }

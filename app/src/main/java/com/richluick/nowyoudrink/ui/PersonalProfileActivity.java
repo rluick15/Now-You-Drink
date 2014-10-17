@@ -16,8 +16,6 @@ import com.squareup.picasso.Picasso;
 public class PersonalProfileActivity extends Activity {
 
     protected String mUsername;
-    protected String mFirstName;
-    protected String mLastName;
     protected String mFullName;
     protected String mEmail;
     protected String mHometown;
@@ -57,8 +55,6 @@ public class PersonalProfileActivity extends Activity {
         mHometownField.setText("Hometown: " + mHometown);
         mWebsiteField.setText("Website: " + mWebsite);
         Linkify.addLinks(mWebsiteField, Linkify.ALL);
-
-
     }
 
     private void setProfilePicture() {

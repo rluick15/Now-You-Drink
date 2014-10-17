@@ -18,7 +18,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.richluick.nowyoudrink.utils.DeleteMessageUtil;
+import com.richluick.nowyoudrink.utils.Utilities;
 import com.richluick.nowyoudrink.utils.ParseConstants;
 import com.richluick.nowyoudrink.R;
 
@@ -79,7 +79,7 @@ public class GroupRequestActivity extends Activity {
                         if (e == null) { //add text to screen
                             mGroup = group;
                             mGroupName = mGroup.get(ParseConstants.KEY_GROUP_NAME).toString();
-                            mGroupName = MainActivity.removeCharacters(mGroupName);
+                            mGroupName = Utilities.removeCharacters(mGroupName);
                             mSenderUsername = mMessage.get(ParseConstants.KEY_SENDER_NAME).toString();
                             mRequestText.setText(mSenderUsername + " has invited you to join the group \""
                                     + mGroupName + "\"!");
@@ -121,7 +121,7 @@ public class GroupRequestActivity extends Activity {
                         }
                     }
                 });
-                DeleteMessageUtil.deleteMessage(mMessage);
+                Utilities.deleteMessage(mMessage);
 
                 Intent intent = new Intent(GroupRequestActivity.this, GroupActivity.class);
                 intent.putExtra(ParseConstants.KEY_GROUP_ID, mGroupId);
@@ -143,7 +143,7 @@ public class GroupRequestActivity extends Activity {
                         }
                     }
                 });
-                DeleteMessageUtil.deleteMessage(mMessage);
+                Utilities.deleteMessage(mMessage);
                 finish();
             }
         });
@@ -157,25 +157,12 @@ public class GroupRequestActivity extends Activity {
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        DeleteMessageUtil.deleteMessage(mMessage);
+                        Utilities.deleteMessage(mMessage);
                         finish();
                     }
                 });
         AlertDialog dialog = builder.create();
         dialog.show();
-        customDialog(dialog);
-    }
-
-    //set the colors for the custom dialogs
-    protected void customDialog(AlertDialog dialog) {
-        //custom divider color
-        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
-        View divider = dialog.findViewById(dividerId);
-        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
-
-        //custom title color
-        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
-        TextView tv = (TextView) dialog.findViewById(textViewId);
-        tv.setTextColor(getResources().getColor(R.color.main_color));
+        Utilities.customDialog(dialog);
     }
 }

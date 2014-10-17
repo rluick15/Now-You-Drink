@@ -11,20 +11,16 @@ import android.widget.TextView;
 
 import com.parse.ParseObject;
 import com.richluick.nowyoudrink.R;
-import com.richluick.nowyoudrink.ui.MainActivity;
 import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.utils.Utilities;
 
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Rich on 9/5/2014.
- */
 public class MessageAdapter extends ArrayAdapter<ParseObject> {
 
     protected Context mContext;
     protected List<ParseObject> mMessages;
-    protected List<ParseObject> mGroups;
 
     public MessageAdapter(Context context, List<ParseObject> messages) {
         super(context, R.layout.message_item, messages);
@@ -68,7 +64,7 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
         //in this instance, message holds a object of the group class
         else if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_GROUP)) {
             String text = message.get(ParseConstants.KEY_GROUP_NAME).toString();
-            text = MainActivity.removeCharacters(text);
+            text = Utilities.removeCharacters(text);
             holder.textLabel.setText(text);
             holder.iconImageView.setImageResource(R.drawable.ic_action_social_group_adapter);
         }
@@ -85,7 +81,7 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
         }
         else if (message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_DRINK_REQUEST)) {
             String text = message.get(ParseConstants.KEY_GROUP_NAME).toString();
-            text = MainActivity.removeCharacters(text);
+            text = Utilities.removeCharacters(text);
             holder.timeLabel.setText(text);
             //Set as group name for drink requests
         }
@@ -100,10 +96,9 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
     private String formatDate(ParseObject message) {
         Date createdAt = message.getCreatedAt();
         long now = new Date().getTime();
-        String convertedDate = DateUtils.getRelativeTimeSpanString(createdAt.getTime(),
+        return DateUtils.getRelativeTimeSpanString(createdAt.getTime(),
             now,
             DateUtils.SECOND_IN_MILLIS).toString();
-        return convertedDate;
     }
 
     private static class ViewHolder {

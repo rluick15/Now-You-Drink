@@ -9,12 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.RequestPasswordResetCallback;
 import com.richluick.nowyoudrink.R;
+import com.richluick.nowyoudrink.utils.Utilities;
 
 //This activity is called if the user selects that they have forgotten their password
 //User can reset their password from this screen
@@ -35,6 +35,7 @@ public class ForgotPasswordActivity extends Activity {
 
         //Hide the action bar
         ActionBar actionBar = getActionBar();
+        assert actionBar != null;
         actionBar.hide();
 
         //Returns to Login Screen
@@ -100,7 +101,7 @@ public class ForgotPasswordActivity extends Activity {
                 .setPositiveButton(android.R.string.ok, null);
         AlertDialog dialog = builder.create();
         dialog.show();
-        customDialog(dialog);
+        Utilities.customDialog(dialog);
     }
 
     //valid email was typed. Email was successfully sent to user for password reset.
@@ -117,7 +118,7 @@ public class ForgotPasswordActivity extends Activity {
                 });
         AlertDialog dialog = builder.create();
         dialog.show();
-        customDialog(dialog);
+        Utilities.customDialog(dialog);
     }
 
     //Error message if the email field is empty and the user clicks the reset button
@@ -128,20 +129,6 @@ public class ForgotPasswordActivity extends Activity {
                 .setPositiveButton(android.R.string.ok, null);
         AlertDialog dialog = builder.create();
         dialog.show();
-        customDialog(dialog);
+        Utilities.customDialog(dialog);
     }
-
-    //set the colors for the custom dialogs
-    protected void customDialog(AlertDialog dialog) {
-        //custom divider color
-        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
-        View divider = dialog.findViewById(dividerId);
-        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
-
-        //custom title color
-        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
-        TextView tv = (TextView) dialog.findViewById(textViewId);
-        tv.setTextColor(getResources().getColor(R.color.main_color));
-    }
-
 }

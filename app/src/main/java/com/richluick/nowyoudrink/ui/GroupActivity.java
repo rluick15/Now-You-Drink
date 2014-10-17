@@ -28,6 +28,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.richluick.nowyoudrink.R;
 import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.utils.Utilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +61,8 @@ public class GroupActivity extends ListActivity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_group);
 
+        Utilities.setContext(this); //set the utilities context to this
+
         mCurrentDrinkerView = (TextView) findViewById(R.id.currentDrinkerUser);
         mPreviousDrinkerView = (TextView) findViewById(R.id.previousDrinkerUser);
         mDrinkButton = (Button) findViewById(R.id.drinkButton);
@@ -88,21 +91,21 @@ public class GroupActivity extends ListActivity {
 
                     //only the admin can delete the group
                     mGroupAdmin = mGroup.get(ParseConstants.KEY_GROUP_ADMIN).toString();
-                    mGroupAdmin = MainActivity.removeCharacters(mGroupAdmin);
+                    mGroupAdmin = Utilities.removeCharacters(mGroupAdmin);
                     if ((mCurrentUser.getUsername()).equals(mGroupAdmin)) {
                         mDeleteMenuItem.setVisible(true);
                     }
 
                     mGroupName = group.get(ParseConstants.KEY_GROUP_NAME).toString();
-                    mGroupName = MainActivity.removeCharacters(mGroupName);
+                    mGroupName = Utilities.removeCharacters(mGroupName);
                     setTitle(mGroupName);
 
                     mCurrentDrinker = mGroup.get(ParseConstants.KEY_CURRENT_DRINKER).toString();
-                    mCurrentDrinker = MainActivity.removeCharacters(mCurrentDrinker);
+                    mCurrentDrinker = Utilities.removeCharacters(mCurrentDrinker);
                     mCurrentDrinkerView.setText(mCurrentDrinker);
 
                     mPreviousDrinker = mGroup.get(ParseConstants.KEY_PREVIOUS_DRINKER).toString();
-                    mPreviousDrinker = MainActivity.removeCharacters(mPreviousDrinker);
+                    mPreviousDrinker = Utilities.removeCharacters(mPreviousDrinker);
                     mPreviousDrinkerView.setText(mPreviousDrinker);
 
                     listViewQuery(mMemberRelation);
@@ -115,7 +118,7 @@ public class GroupActivity extends ListActivity {
                                 .setPositiveButton(android.R.string.ok, null);
                         AlertDialog dialog = builder.create();
                         dialog.show();
-                        customDialog(dialog);
+                        Utilities.customDialog(dialog);
                     }
                 }
                 else {
@@ -130,7 +133,7 @@ public class GroupActivity extends ListActivity {
                             });
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    customDialog(dialog);
+                    Utilities.customDialog(dialog);
                 }
             }
         });
@@ -146,7 +149,7 @@ public class GroupActivity extends ListActivity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    customDialog(dialog);
+                    Utilities.customDialog(dialog);
                 }
                 else {
                     mGroup.remove(ParseConstants.KEY_CURRENT_DRINKER);
@@ -171,7 +174,7 @@ public class GroupActivity extends ListActivity {
                                 .setPositiveButton(android.R.string.ok, null);
                         AlertDialog dialog = builder.create();
                         dialog.show();
-                        customDialog(dialog);
+                        Utilities.customDialog(dialog);
                     }
                     else { //sends the message and closes the activity
                         send(message);
@@ -181,6 +184,13 @@ public class GroupActivity extends ListActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Utilities.setContext(null); //set context to null to prevent leak
     }
 
     //queries the users in the group and formats them for the list view
@@ -215,7 +225,7 @@ public class GroupActivity extends ListActivity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    customDialog(dialog);
+                    Utilities.customDialog(dialog);
                 }
             }
         });
@@ -328,7 +338,7 @@ public class GroupActivity extends ListActivity {
                     .setPositiveButton(android.R.string.ok, null);
             AlertDialog dialog = builder.create();
             dialog.show();
-            customDialog(dialog);
+            Utilities.customDialog(dialog);
         }
         else if ((mCurrentUser.getUsername()).equals(mGroupAdmin)) {
             String message = getString(R.string.message_admin_leave_group);
@@ -352,7 +362,7 @@ public class GroupActivity extends ListActivity {
                     });
             AlertDialog dialog = builder.create();
             dialog.show();
-            customDialog(dialog);
+            Utilities.customDialog(dialog);
         }
     }
 
@@ -370,19 +380,6 @@ public class GroupActivity extends ListActivity {
                 });
         AlertDialog dialog = builder.create();
         dialog.show();
-        customDialog(dialog);
-    }
-
-    //set the colors for the custom dialogs
-    protected void customDialog(AlertDialog dialog) {
-        //custom divider color
-        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
-        View divider = dialog.findViewById(dividerId);
-        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
-
-        //custom title color
-        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
-        TextView tv = (TextView) dialog.findViewById(textViewId);
-        tv.setTextColor(getResources().getColor(R.color.main_color));
+        Utilities.customDialog(dialog);
     }
 }

@@ -16,6 +16,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.richluick.nowyoudrink.NowYouDrinkApplication;
 import com.richluick.nowyoudrink.R;
+import com.richluick.nowyoudrink.utils.Utilities;
 
 
 public class LoginActivity extends Activity {
@@ -39,6 +40,7 @@ public class LoginActivity extends Activity {
 
         //Hide the action bar
         ActionBar actionBar = getActionBar();
+        assert actionBar != null;
         actionBar.hide();
 
         //Navigate to SignUp when link is clicked
@@ -87,7 +89,7 @@ public class LoginActivity extends Activity {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    customDialog(dialog);
+                    Utilities.customDialog(dialog);
                 }
                 else { //Login
                     ParseUser.logInInBackground(username, password, new LogInCallback() {
@@ -110,25 +112,12 @@ public class LoginActivity extends Activity {
                                         .setPositiveButton(android.R.string.ok, null);
                                 AlertDialog dialog = builder.create();
                                 dialog.show();
-                                customDialog(dialog);
+                                Utilities.customDialog(dialog);
                             }
                         }
                     });
                 }
             }
         });
-    }
-
-    //set the colors for the custom dialogs
-    protected void customDialog(AlertDialog dialog) {
-        //custom divider color
-        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
-        View divider = dialog.findViewById(dividerId);
-        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
-
-        //custom title color
-        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
-        TextView tv = (TextView) dialog.findViewById(textViewId);
-        tv.setTextColor(getResources().getColor(R.color.main_color));
     }
 }

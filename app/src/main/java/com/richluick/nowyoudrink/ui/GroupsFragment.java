@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -19,12 +18,10 @@ import com.parse.ParseUser;
 import com.richluick.nowyoudrink.R;
 import com.richluick.nowyoudrink.adapters.MessageAdapter;
 import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.utils.Utilities;
 
 import java.util.List;
 
-/**
- * Created by Rich on 9/18/2014.
- */
 public class GroupsFragment extends android.support.v4.app.ListFragment {
 
     public static final String TAG = FriendsFragment.class.getSimpleName();
@@ -76,15 +73,6 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
 
                 if (e == null) {
                     mGroups = groups;
-                    String[] groupnames = new String[mGroups.size()];
-
-                    //extrat usernames from all the groups
-                    int i = 0;
-                    for (ParseObject group : mGroups) {
-                        String groupName = group.get(ParseConstants.KEY_GROUP_NAME).toString();
-                        groupnames[i] = MainActivity.removeCharacters(groupName);
-                        i++;
-                    }
 
                     if (getListView().getAdapter() == null) {
                         MessageAdapter adapter = new MessageAdapter(getListView().getContext(), mGroups);
@@ -102,7 +90,7 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                    customDialog(dialog);
+                    Utilities.customDialog(dialog);
                 }
             }
         });
@@ -126,17 +114,4 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
             retrieveGroups();
         }
     };
-
-    //set the colors for the custom dialogs
-    protected void customDialog(AlertDialog dialog) {
-        //custom divider color
-        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
-        View divider = dialog.findViewById(dividerId);
-        divider.setBackgroundColor(getResources().getColor(R.color.main_color));
-
-        //custom title color
-        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
-        TextView tv = (TextView) dialog.findViewById(textViewId);
-        tv.setTextColor(getResources().getColor(R.color.main_color));
-    }
 }

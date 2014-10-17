@@ -6,10 +6,10 @@ import java.security.NoSuchAlgorithmException;
 
 public class MD5Util {
     public static String hex(byte[] array) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < array.length; ++i) {
-            sb.append(Integer.toHexString((array[i]
-                    & 0xFF) | 0x100).substring(1,3));
+        StringBuilder sb = new StringBuilder();
+        for (byte anArray : array) {
+            sb.append(Integer.toHexString((anArray
+                    & 0xFF) | 0x100).substring(1, 3));
         }
         return sb.toString();
     }
@@ -18,8 +18,8 @@ public class MD5Util {
             MessageDigest md =
                     MessageDigest.getInstance("MD5");
             return hex (md.digest(message.getBytes("CP1252")));
-        } catch (NoSuchAlgorithmException e) {
-        } catch (UnsupportedEncodingException e) {
+        } catch (NoSuchAlgorithmException ignored) {
+        } catch (UnsupportedEncodingException ignored) {
         }
         return null;
     }

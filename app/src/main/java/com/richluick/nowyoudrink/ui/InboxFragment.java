@@ -18,15 +18,12 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.richluick.nowyoudrink.R;
 import com.richluick.nowyoudrink.adapters.MessageAdapter;
-import com.richluick.nowyoudrink.utils.DeleteMessageUtil;
+import com.richluick.nowyoudrink.utils.Utilities;
 import com.richluick.nowyoudrink.utils.ParseConstants;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Rich on 9/18/2014.
- */
 public class InboxFragment extends android.support.v4.app.ListFragment {
 
     public static final String TAG = EditFriendsActivity.class.getSimpleName();
@@ -87,9 +84,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                 if (e == null) { //successfully found messages
                     mMessages = messages;
                     mMessagesCopy = new ArrayList<ParseObject>(messages); //avoid concurrent modification error
-                    String[] usernames = new String[mMessages.size()];
 
-                    int i = 0;
                     for (ParseObject message : mMessages) {
                         //Request Rejected: Remove the pending relation and delete the reject
                         //message before it appears
@@ -103,13 +98,11 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                                 && (message.get(ParseConstants.KEY_SENDER_ID)).equals(mSenderIdAnswered)) {
 
                             mMessagesCopy.remove(message); //remove message from query
-                            DeleteMessageUtil.deleteMessage(message);
+                            Utilities.deleteMessage(message);
                         }
                         //Request Accepted, Friend Request not looked at, or drink request
                         else {
-                            usernames[i] = message.getString(ParseConstants.KEY_SENDER_NAME);
                             addRelation(message);
-                            i++;
                         }
                     }
 
