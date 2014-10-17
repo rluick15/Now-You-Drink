@@ -250,7 +250,7 @@ public class GroupActivity extends ListActivity {
 
         ParsePush push = new ParsePush();
         push.setQuery(query);
-        push.setMessage("Now you drink!");
+        push.setMessage(getString(R.string.push_drink_request_message));
         push.sendInBackground();
     }
 

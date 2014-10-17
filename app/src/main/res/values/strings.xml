@@ -100,5 +100,6 @@
     <string name="drink_request_message">Now You Drink!</string>
     <string name="friend_request_message">You have a friend request!</string>
     <string name="alert_standard_error_message">There was an error processing your request. Please try again.</string>
+    <string name="push_drink_request_message">Now you drink!</string>
 
 </resources>
