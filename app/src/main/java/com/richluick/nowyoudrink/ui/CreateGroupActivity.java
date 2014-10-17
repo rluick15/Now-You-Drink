@@ -124,7 +124,6 @@ public class CreateGroupActivity extends ListActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         Utilities.setContext(null); //set context to null to prevent leak
     }
 

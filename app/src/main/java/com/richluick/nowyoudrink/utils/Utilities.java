@@ -83,15 +83,17 @@ public class Utilities {
 
     //set the colors for the custom dialogs
     public static void customDialog(AlertDialog dialog) {
-        //custom divider color
-        int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
-        View divider = dialog.findViewById(dividerId);
-        divider.setBackgroundColor(context.getResources().getColor(R.color.main_color));
+        //custom divider color unless the context is not carried over
+        if(context != null) {
+            int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
+            View divider = dialog.findViewById(dividerId);
+            divider.setBackgroundColor(context.getResources().getColor(R.color.main_color));
 
-        //custom title color
-        int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
-        TextView tv = (TextView) dialog.findViewById(textViewId);
-        tv.setTextColor(context.getResources().getColor(R.color.main_color));
+            //custom title color
+            int textViewId = dialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
+            TextView tv = (TextView) dialog.findViewById(textViewId);
+            tv.setTextColor(context.getResources().getColor(R.color.main_color));
+        }
     }
 
 }
