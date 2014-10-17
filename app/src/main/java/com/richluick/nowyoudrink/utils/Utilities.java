@@ -7,7 +7,10 @@ import android.content.DialogInterface;
 import android.view.View;
 import android.widget.TextView;
 
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.richluick.nowyoudrink.R;
 
@@ -17,6 +20,7 @@ import java.util.List;
 public class Utilities {
 
     private static Context context = null;
+    private static final String sr = "sr";
 
     public static void setContext(Context context)
     {
@@ -26,6 +30,23 @@ public class Utilities {
     //method to remove first and last characters of a string. used in other activities
     public static String removeCharacters(String string) {
         return string.substring(1, string.length()-1);
+    }
+
+    public static void  sendPushNotifications(ParseUser recipient, ArrayList<ParseUser> recipients,
+                                              String message, String type) {
+        ParseQuery<ParseInstallation> query = ParseInstallation.getQuery();
+
+        if(type.equals(sr)){ //sr = single recipient
+            query.whereEqualTo(ParseConstants.KEY_USER, recipient);
+        }
+        else { //mr = multiple recipients
+            query.whereContainedIn(ParseConstants.KEY_USER, recipients);
+        }
+
+        ParsePush push = new ParsePush();
+        push.setQuery(query);
+        push.setMessage(message);
+        push.sendInBackground();
     }
 
     //utilities method to delete messages after being viewed

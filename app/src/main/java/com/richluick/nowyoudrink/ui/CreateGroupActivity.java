@@ -14,9 +14,7 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseInstallation;
 import com.parse.ParseObject;
-import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
@@ -199,24 +197,16 @@ public class CreateGroupActivity extends ListActivity {
                 if (e == null) {
                     //success
                     Toast.makeText(CreateGroupActivity.this, getString(R.string.success_message_group_create), Toast.LENGTH_LONG).show();
-                    sendPushNotifications();
+                    Utilities.sendPushNotifications(null, mPendingMembers,
+                            ParseUser.getCurrentUser().getUsername()
+                                    + " invited you to join the group " +  mGroupName + "!",
+                            "mr");
                 }
                 else { //error sending message
                     Utilities.getErrorAlertDialog();
                 }
             }
         });
-    }
-
-    //send push notification to selected pending group members
-    protected void sendPushNotifications() {
-        ParseQuery<ParseInstallation> query = ParseInstallation.getQuery();
-        query.whereContainedIn(ParseConstants.KEY_USER, mPendingMembers);
-
-        ParsePush push = new ParsePush();
-        push.setQuery(query);
-        push.setMessage(ParseUser.getCurrentUser().getUsername() + " invited you to join the group " +  mGroupName + "!");
-        push.sendInBackground();
     }
 
     @Override

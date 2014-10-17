@@ -14,9 +14,7 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseInstallation;
 import com.parse.ParseObject;
-import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
@@ -207,23 +205,14 @@ public class EditFriendsActivity extends ListActivity {
                 if(e == null) {
                     //success
                     Toast.makeText(EditFriendsActivity.this, getString(R.string.success_message_friend_request), Toast.LENGTH_LONG).show();
-                    sendPushNotifications();
+                    Utilities.sendPushNotifications(null, mPendingFriends,
+                            ParseUser.getCurrentUser().getUsername() + " has sent you a friend request!",
+                            "mr");
                 }
                 else { //error sending message
                     Utilities.getErrorAlertDialog();
                 }
             }
         });
-    }
-
-    protected void sendPushNotifications() {
-        ParseQuery<ParseInstallation> query = ParseInstallation.getQuery();
-        query.whereContainedIn(ParseConstants.KEY_USER, mPendingFriends);
-
-        //send push notification
-        ParsePush push = new ParsePush();
-        push.setQuery(query);
-        push.setMessage(ParseUser.getCurrentUser().getUsername() + " has sent you a friend request!");
-        push.sendInBackground();
     }
 }

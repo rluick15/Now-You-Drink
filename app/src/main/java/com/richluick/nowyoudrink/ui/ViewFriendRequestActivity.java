@@ -11,9 +11,7 @@ import android.widget.Toast;
 
 import com.parse.GetCallback;
 import com.parse.ParseException;
-import com.parse.ParseInstallation;
 import com.parse.ParseObject;
-import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
@@ -180,7 +178,9 @@ public class ViewFriendRequestActivity extends Activity {
                     //success
                     if (type.equals(TYPE_FRIEND_REQUEST_CONFIRM)) {
                         Toast.makeText(ViewFriendRequestActivity.this, getString(R.string.success_message_accept_request), Toast.LENGTH_LONG).show();
-                        sendPushNotifications();
+                        Utilities.sendPushNotifications(mSender, null,
+                                ParseUser.getCurrentUser().getUsername() + " has accepted your friend request!",
+                                "sr");
                     } else {
                         Toast.makeText(ViewFriendRequestActivity.this, getString(R.string.success_message_reject_request), Toast.LENGTH_LONG).show();
                     }
@@ -190,16 +190,5 @@ public class ViewFriendRequestActivity extends Activity {
                 }
             }
         });
-    }
-
-    //send push notification to friend request sender
-    protected void sendPushNotifications() {
-        ParseQuery<ParseInstallation> query = ParseInstallation.getQuery();
-        query.whereEqualTo(ParseConstants.KEY_USER, mSender);
-
-        ParsePush push = new ParsePush();
-        push.setQuery(query);
-        push.setMessage(ParseUser.getCurrentUser().getUsername() + " has accepted your friend request!");
-        push.sendInBackground();
     }
 }
