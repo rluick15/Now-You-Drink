@@ -8,6 +8,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -18,6 +19,9 @@ import com.parse.SaveCallback;
 import com.richluick.nowyoudrink.R;
 import com.richluick.nowyoudrink.utils.ParseConstants;
 import com.richluick.nowyoudrink.utils.Utilities;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class GroupRequestActivity extends Activity {
@@ -37,6 +41,7 @@ public class GroupRequestActivity extends Activity {
     protected ParseRelation<ParseUser> mPendingMemberRelation;
     protected ParseRelation<ParseObject> mMemberOfGroupRelation;
     protected ParseUser mCurrentUser;
+    protected ArrayList<ParseUser> mGroupMembers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +90,21 @@ public class GroupRequestActivity extends Activity {
                             //define relations
                             mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
                             mPendingMemberRelation = mGroup.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
+
+                            //query the group members
+                            ParseQuery<ParseUser> query = mMemberRelation.getQuery();
+                            query.findInBackground(new FindCallback<ParseUser>() {
+                                @Override
+                                public void done(List<ParseUser> members, ParseException e) {
+                                    if (e == null) {
+                                        mGroupMembers = (ArrayList<ParseUser>) members;
+                                    }
+                                    else {
+                                        Utilities.getErrorAlertDialog();
+                                    }
+                                }
+                            });
+
                         }
                         else { //error. group no longer exists. finish to MainActivity
                             Utilities.getNoGroupAlertDialog(mMessage);
@@ -124,9 +144,9 @@ public class GroupRequestActivity extends Activity {
                 //need to query group members to send the push
 
                 //sends a push to all group members saying the user joined
-//                Utilities.sendPushNotifications(null, mGroupMembers,
-//                        ParseUser.getCurrentUser().getUsername() + " joined the group " + mGroupName + "!",
-//                        "mr");
+                Utilities.sendPushNotifications(null, mGroupMembers,
+                        ParseUser.getCurrentUser().getUsername() + " joined the group " + mGroupName + "!",
+                        "mr");
 
                 Intent intent = new Intent(GroupRequestActivity.this, GroupActivity.class);
                 intent.putExtra(ParseConstants.KEY_GROUP_ID, mGroupId);
