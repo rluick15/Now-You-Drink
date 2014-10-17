@@ -40,6 +40,8 @@ public class FriendsProfileActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends_profile);
 
+        Utilities.setContext(this); //set the utilities context to this
+
         mUsernameField = (TextView) findViewById(R.id.usernameSpace);
         mFullNameField = (TextView) findViewById(R.id.fullNameSpace);
         mEmailField = (TextView) findViewById(R.id.emailSpace);
@@ -82,6 +84,13 @@ public class FriendsProfileActivity extends Activity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Utilities.setContext(null); //set context to null to prevent leak
     }
 
     private void setProfilePicture() {

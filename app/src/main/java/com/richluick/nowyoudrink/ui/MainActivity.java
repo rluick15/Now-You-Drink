@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.parse.ParseUser;
 import com.richluick.nowyoudrink.R;
+import com.richluick.nowyoudrink.utils.Utilities;
 
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -68,6 +69,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                             .setIcon(mSectionsPagerAdapter.getIcon(i))
                             .setTabListener(this));
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Utilities.setContext(null); //set context to null to prevent leak
     }
 
     private void navigateToLogin() {

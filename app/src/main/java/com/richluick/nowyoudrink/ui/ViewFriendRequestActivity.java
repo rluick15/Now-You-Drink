@@ -47,6 +47,8 @@ public class ViewFriendRequestActivity extends Activity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_view_friend_request);
 
+        Utilities.setContext(this); //set the utilities context to this
+
         mCurrentUser = ParseUser.getCurrentUser();
         //Define Relations
         mPendingRelation = mCurrentUser.getRelation(ParseConstants.KEY_PENDING_RELATION);
@@ -129,6 +131,12 @@ public class ViewFriendRequestActivity extends Activity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Utilities.setContext(null); //set context to null to prevent leak
     }
 
     protected void rejectRequest() {

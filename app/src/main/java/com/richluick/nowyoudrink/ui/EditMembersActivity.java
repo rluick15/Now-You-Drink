@@ -51,6 +51,8 @@ public class EditMembersActivity extends ListActivity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_edit_members);
 
+        Utilities.setContext(this); //set the utilities context to this
+
         mGroupId = getIntent().getStringExtra(ParseConstants.KEY_GROUP_ID);
         mGroupName = getIntent().getStringExtra(ParseConstants.KEY_GROUP_NAME);
 
@@ -80,6 +82,13 @@ public class EditMembersActivity extends ListActivity {
                 listQuery();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Utilities.setContext(null); //set context to null to prevent leak
     }
 
     protected void listQuery() {

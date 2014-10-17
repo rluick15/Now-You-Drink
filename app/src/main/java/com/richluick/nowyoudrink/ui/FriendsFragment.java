@@ -38,6 +38,8 @@ public class FriendsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.user_grid, container, false);
 
+        Utilities.setContext(getActivity()); //set the utilities context to this
+
         mGridView = (GridView) rootView.findViewById(R.id.friendsGrid);
 
         TextView emptyTextView = (TextView) rootView.findViewById(android.R.id.empty);
@@ -89,6 +91,13 @@ public class FriendsFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        Utilities.setContext(null); //set context to null to prevent leak
     }
 
     protected AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {

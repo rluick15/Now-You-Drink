@@ -30,6 +30,8 @@ public class ForgotPasswordActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
+        Utilities.setContext(this); //set the utilities context to this
+
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar); //Get progress bar
         mProgressBar.setVisibility(View.INVISIBLE);
 
@@ -62,6 +64,13 @@ public class ForgotPasswordActivity extends Activity {
                 isEmailValid(email); //checks if the email is valid/not empty
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Utilities.setContext(null); //set context to null to prevent leak
     }
 
     private void isEmailValid(String email) {

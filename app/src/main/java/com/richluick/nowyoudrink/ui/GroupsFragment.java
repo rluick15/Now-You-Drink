@@ -35,6 +35,8 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_groups, container, false);
 
+        Utilities.setContext(getActivity()); //set the utilities context to this
+
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
         mSwipeRefreshLayout.setColorScheme(
@@ -57,6 +59,13 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
 
         //query all the groups that the user is a member of
         retrieveGroups();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        Utilities.setContext(null); //set context to null to prevent leak
     }
 
     private void retrieveGroups() {

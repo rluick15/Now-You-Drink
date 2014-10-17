@@ -47,6 +47,8 @@ public class GroupRequestActivity extends Activity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_group_request);
 
+        Utilities.setContext(this); //set the utilities context to this
+
         mCurrentUser = ParseUser.getCurrentUser();
         mMemberOfGroupRelation = mCurrentUser.getRelation(ParseConstants.KEY_MEMBER_OF_GROUP_RELATION);
 
@@ -147,7 +149,12 @@ public class GroupRequestActivity extends Activity {
                 finish();
             }
         });
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Utilities.setContext(null); //set context to null to prevent leak
     }
 
     private void deleteMessageDialog() {

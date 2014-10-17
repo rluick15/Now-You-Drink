@@ -37,6 +37,8 @@ public class SignUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        Utilities.setContext(this); //set the utilities context to this
+
         //Get progress bar
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mProgressBar.setVisibility(View.INVISIBLE);
@@ -143,5 +145,11 @@ public class SignUpActivity extends Activity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Utilities.setContext(null); //set context to null to prevent leak
     }
 }

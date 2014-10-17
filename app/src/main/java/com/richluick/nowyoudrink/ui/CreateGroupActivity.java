@@ -52,6 +52,8 @@ public class CreateGroupActivity extends ListActivity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_create_group);
 
+        Utilities.setContext(this); //set the utilities context to this
+
         mGroupNameField = (EditText) findViewById(R.id.groupTitleField);
         mCreateGroupButton = (Button) findViewById(R.id.createGroupButton);
 
@@ -125,6 +127,13 @@ public class CreateGroupActivity extends ListActivity {
         });
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Utilities.setContext(null); //set context to null to prevent leak
     }
 
     private void createGroupAndMessage() {
