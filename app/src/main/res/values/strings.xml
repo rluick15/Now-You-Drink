@@ -43,7 +43,7 @@
     <string name="title_user_profile">Profile</string>
     <string name="title_activity_edit_friends">EditFriendsActivity</string>
     <string name="title_edit_friends">Add Friends</string>
-    <string name="error_title">Error</string>
+    <string name="error_title">We\'re Sorry!</string>
     <string name="content_desc_message_icon">Message Icon</string>
     <string name="title_activity_my">MyActivity</string>
     <string name="menu_send_label">Send</string>
@@ -74,7 +74,7 @@
     <string name="group_members_list_title">Group Members</string>
     <string name="now_you_drink_message">You\'re up! Take a drink and select a friend to go next!</string>
     <string name="now_you_drink_title">Take a drink!</string>
-    <string name="group_bad_selection_message">Make sure you select a friend that isn\'t the previous drinker or isn\'t yourself(cough... alcoholic).</string>
+    <string name="group_bad_selection_message">Make sure you select a friend that isn\'t the previous drinker or isn\'t yourself.</string>
     <string name="group_bad_selection_title">Oops!</string>
     <string name="message_success_drink_request">Drink request sent!</string>
     <string name="error_message_title">Error</string>
@@ -96,5 +96,9 @@
     <string name="message_nonexistent_group">This group no longer exists.</string>
     <string name="desc_background_image">Background Image</string>
     <string name="search_friends_hint">Search for Friends</string>
+    <string name="group_adapter_subtitle">Click to Drink!</string>
+    <string name="drink_request_message">Now You Drink!</string>
+    <string name="friend_request_message">You have a friend request!</string>
+    <string name="alert_standard_error_message">There was an error processing your request. Please try again.</string>
 
 </resources>

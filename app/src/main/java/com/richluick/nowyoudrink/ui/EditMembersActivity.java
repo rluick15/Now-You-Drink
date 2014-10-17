@@ -1,9 +1,7 @@
 package com.richluick.nowyoudrink.ui;
 
-import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -75,11 +73,16 @@ public class EditMembersActivity extends ListActivity {
         query.getInBackground(mGroupId, new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject group, ParseException e) {
-                mMemberRelation = group.getRelation(ParseConstants.KEY_MEMBER_RELATION);
-                mPendingMemberRelation = group.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
+                if(e == null) {
+                    mMemberRelation = group.getRelation(ParseConstants.KEY_MEMBER_RELATION);
+                    mPendingMemberRelation = group.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
 
-                //query current users friends to populate list
-                listQuery();
+                    //query current users friends to populate list
+                    listQuery();
+                }
+                else {
+                    Utilities.getErrorAlertDialog();
+                }
             }
         });
     }
@@ -120,14 +123,7 @@ public class EditMembersActivity extends ListActivity {
                     setListAdapter(adapter);
                 }
                 else {
-                    Log.e(TAG, e.getMessage());
-                    AlertDialog.Builder builder = new AlertDialog.Builder(EditMembersActivity.this);
-                    builder.setTitle(R.string.error_title)
-                            .setMessage(e.getMessage())
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    Utilities.customDialog (dialog);
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });
@@ -163,26 +159,24 @@ public class EditMembersActivity extends ListActivity {
         query.getInBackground(mGroupId, new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject group, ParseException e) {
-                //add selectees to mending member relation
-                mPendingMemberRelation = group.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
-                for (ParseUser member : mPendingMembers) {
-                    mPendingMemberRelation.add(member);
-                }
-                group.saveInBackground();
+                if(e == null) {
+                    //add selectees to mending member relation
+                    mPendingMemberRelation = group.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
+                    for (ParseUser member : mPendingMembers) {
+                        mPendingMemberRelation.add(member);
+                    }
+                    group.saveInBackground();
 
-                ParseObject message = createMessage(group);
-                if(message == null) { //error
-                    AlertDialog.Builder builder = new AlertDialog.Builder(EditMembersActivity.this);
-                    builder.setMessage(getString(R.string.error_friend_request))
-                            .setTitle(getString(R.string.error_title))
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    Utilities.customDialog(dialog);
+                    ParseObject message = createMessage(group);
+                    if (message == null) { //error
+                        Utilities.getErrorAlertDialog();
+                    } else { //sends the message and goes to the new group
+                        send(message);
+                        finish();
+                    }
                 }
-                else { //sends the message and goes to the new group
-                    send(message);
-                    finish();
+                else {
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });
@@ -213,7 +207,7 @@ public class EditMembersActivity extends ListActivity {
                     sendPushNotifications();
                 }
                 else { //error sending message
-                    Log.e(TAG, e.getMessage());
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });

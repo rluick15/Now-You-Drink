@@ -1,7 +1,9 @@
 package com.richluick.nowyoudrink.utils;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,9 +14,6 @@ import com.richluick.nowyoudrink.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Rich on 10/1/2014.
- */
 public class Utilities {
 
     private static Context context = null;
@@ -46,6 +45,40 @@ public class Utilities {
             message.removeAll(ParseConstants.KEY_RECIPIENT_IDS, idsToRemove);
             message.saveInBackground();
         }
+    }
+
+    //standard error alert dialog
+    public static void getErrorAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(context.getString(R.string.error_title))
+            .setMessage(context.getString(R.string.alert_standard_error_message))
+            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    ((Activity) context).finish();
+                }
+            });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        customDialog(dialog);
+    }
+
+    public static void getNoGroupAlertDialog(final ParseObject message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(context.getString(R.string.message_title_nonexistent_group))
+                .setMessage(context.getString(R.string.message_nonexistent_group))
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(message != null) {
+                            deleteMessage(message);
+                        }
+                        ((Activity) context).finish();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        customDialog(dialog);
     }
 
     //set the colors for the custom dialogs

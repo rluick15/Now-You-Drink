@@ -49,7 +49,7 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
 
         if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST)) {
             holder.iconImageView.setImageResource(R.drawable.ic_action_social_add_person);
-            holder.textLabel.setText("You have a friend request!");
+            holder.textLabel.setText(mContext.getString(R.string.friend_request_message));
         }
         else if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_FRIEND_REQUEST_CONFIRM)) {
             holder.textLabel.setText(message.get(ParseConstants.KEY_SENDER_NAME)
@@ -69,7 +69,7 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
             holder.iconImageView.setImageResource(R.drawable.ic_action_social_group_adapter);
         }
         else {
-            holder.textLabel.setText("Now You Drink!");
+            holder.textLabel.setText(mContext.getString(R.string.drink_request_message));
             holder.iconImageView.setImageResource(R.drawable.ic_action_social_drink);
         }
 
@@ -77,7 +77,7 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
 
         //time label is createdAt if the object is a group in the groups fragment
         if(message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_GROUP)) {
-            holder.timeLabel.setText("Click to Drink!");
+            holder.timeLabel.setText(mContext.getString(R.string.group_adapter_subtitle));
         }
         else if (message.getString(ParseConstants.KEY_MESSAGE_TYPE).equals(ParseConstants.TYPE_DRINK_REQUEST)) {
             String text = message.get(ParseConstants.KEY_GROUP_NAME).toString();

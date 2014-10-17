@@ -1,6 +1,5 @@
 package com.richluick.nowyoudrink.ui;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -93,13 +92,7 @@ public class GroupsFragment extends android.support.v4.app.ListFragment {
                     }
                 }
                 else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setTitle(R.string.error_title)
-                            .setMessage(e.getMessage())
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    Utilities.customDialog(dialog);
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });

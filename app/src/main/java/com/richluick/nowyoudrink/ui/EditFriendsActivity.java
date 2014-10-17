@@ -1,9 +1,7 @@
 package com.richluick.nowyoudrink.ui;
 
-import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -123,13 +121,7 @@ public class EditFriendsActivity extends ListActivity {
                     setListAdapter(adapter);
                 }
                 else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(EditFriendsActivity.this);
-                    builder.setTitle(R.string.error_title)
-                            .setMessage(e.getMessage())
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    Utilities.customDialog(dialog);
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });
@@ -166,20 +158,14 @@ public class EditFriendsActivity extends ListActivity {
             @Override
             public void done(ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, e.getMessage());
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });
 
         ParseObject message = createMessage();
         if(message == null) { //error
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(getString(R.string.error_friend_request))
-                    .setTitle(getString(R.string.error_title))
-                    .setPositiveButton(android.R.string.ok, null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-            Utilities.customDialog(dialog);
+            Utilities.getErrorAlertDialog();
         }
         else { //sends the message and closes the activity
             send(message);
@@ -224,7 +210,7 @@ public class EditFriendsActivity extends ListActivity {
                     sendPushNotifications();
                 }
                 else { //error sending message
-                    Log.e(TAG, e.getMessage());
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });

@@ -5,7 +5,6 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -122,18 +121,7 @@ public class GroupActivity extends ListActivity {
                     }
                 }
                 else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
-                    builder.setTitle(getString(R.string.message_title_nonexistent_group))
-                            .setMessage(getString(R.string.message_nonexistent_group))
-                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    finish();
-                                }
-                            });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    Utilities.customDialog(dialog);
+                    Utilities.getNoGroupAlertDialog(null);
                 }
             }
         });
@@ -160,7 +148,7 @@ public class GroupActivity extends ListActivity {
                         @Override
                         public void done(ParseException e) {
                             if(e != null) {
-                                Log.e(TAG, e.getMessage());
+                                Utilities.getErrorAlertDialog();
                             }
                         }
                     });
@@ -168,13 +156,7 @@ public class GroupActivity extends ListActivity {
                     //create and send the Now you drink message
                     ParseObject message = createMessage();
                     if(message == null) { //error
-                        AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
-                        builder.setMessage(getString(R.string.message_drink_request_error))
-                                .setTitle(getString(R.string.error_message_title))
-                                .setPositiveButton(android.R.string.ok, null);
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-                        Utilities.customDialog(dialog);
+                        Utilities.getErrorAlertDialog();
                     }
                     else { //sends the message and closes the activity
                         send(message);
@@ -193,7 +175,7 @@ public class GroupActivity extends ListActivity {
     }
 
     //queries the users in the group and formats them for the list view
-    private void listViewQuery(ParseRelation<ParseUser> mMemberRelation) {
+    protected void listViewQuery(ParseRelation<ParseUser> mMemberRelation) {
         ParseQuery<ParseUser> query = mMemberRelation.getQuery();
         query.orderByAscending(ParseConstants.KEY_USERNAME);
         query.findInBackground(new FindCallback<ParseUser>() {
@@ -218,13 +200,7 @@ public class GroupActivity extends ListActivity {
                     setListAdapter(adapter);
                 }
                 else { //error message dialog if the query fails
-                    AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
-                    builder.setTitle(R.string.error_title)
-                            .setMessage(e.getMessage())
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    Utilities.customDialog(dialog);
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });
@@ -261,7 +237,7 @@ public class GroupActivity extends ListActivity {
                     sendPushNotifications();
                 }
                 else { //error sending message
-                    Log.e(TAG, e.getMessage());
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });
@@ -329,7 +305,7 @@ public class GroupActivity extends ListActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void leaveGroupMessages() {
+    protected void leaveGroupMessages() {
         if((mCurrentUser.getUsername()).equals(mCurrentDrinker)){
             AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
             builder.setTitle(R.string.error_title)

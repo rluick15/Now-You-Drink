@@ -1,10 +1,8 @@
 package com.richluick.nowyoudrink.ui;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -71,13 +69,7 @@ public class ViewFriendRequestActivity extends Activity {
                     mSender = parseUser;
                 }
                 else { //error
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ViewFriendRequestActivity.this);
-                    builder.setTitle(R.string.error_title)
-                            .setMessage(e.getMessage())
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    Utilities.customDialog(dialog);
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });
@@ -93,13 +85,7 @@ public class ViewFriendRequestActivity extends Activity {
                 ParseObject message = createMessage(type);
 
                 if(message == null) { //error
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ViewFriendRequestActivity.this);
-                    builder.setMessage(getString(R.string.error_title))
-                            .setTitle(getString(R.string.error_friend_request))
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    Utilities.customDialog(dialog);
+                    Utilities.getErrorAlertDialog();
                 }
                 else { //sends the message and closes the activity
                     send(message, type);
@@ -117,13 +103,7 @@ public class ViewFriendRequestActivity extends Activity {
                 ParseObject message = createMessage(type);
 
                 if(message == null) { //error
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ViewFriendRequestActivity.this);
-                    builder.setMessage(getString(R.string.error_title))
-                            .setTitle(getString(R.string.error_friend_request))
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    Utilities.customDialog(dialog);
+                    Utilities.getErrorAlertDialog();
                 }
                 else { //sends the message and closes the activity
                     send(message, type);
@@ -146,7 +126,7 @@ public class ViewFriendRequestActivity extends Activity {
             @Override
             public void done(ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, e.getMessage());
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });
@@ -160,7 +140,7 @@ public class ViewFriendRequestActivity extends Activity {
             @Override
             public void done(ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, e.getMessage());
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });
@@ -203,7 +183,7 @@ public class ViewFriendRequestActivity extends Activity {
                     }
                     //sendPushNotifications();
                 } else { //error sending message
-                    Log.e(TAG, e.getMessage());
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });

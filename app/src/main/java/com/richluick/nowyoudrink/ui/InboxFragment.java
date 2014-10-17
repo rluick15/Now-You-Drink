@@ -3,7 +3,6 @@ package com.richluick.nowyoudrink.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +17,8 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.richluick.nowyoudrink.R;
 import com.richluick.nowyoudrink.adapters.MessageAdapter;
-import com.richluick.nowyoudrink.utils.Utilities;
 import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.utils.Utilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,6 +108,9 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                     mMessages = mMessagesCopy;
                     listAdapter();
                 }
+                else {
+                    Utilities.getErrorAlertDialog();
+                }
             }
         });
     }
@@ -130,7 +132,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
             @Override
             public void done(ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, e.getMessage());
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });
@@ -145,7 +147,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                 @Override
                 public void done(ParseException e) {
                     if (e != null) {
-                        Log.e(TAG, e.getMessage());
+                        Utilities.getErrorAlertDialog();
                     }
                 }
             });
@@ -159,7 +161,7 @@ public class InboxFragment extends android.support.v4.app.ListFragment {
                 @Override
                 public void done(ParseException e) {
                     if (e != null) {
-                        Log.e(TAG, e.getMessage());
+                        Utilities.getErrorAlertDialog();
                     }
                 }
             });

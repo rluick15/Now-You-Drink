@@ -1,10 +1,8 @@
 package com.richluick.nowyoudrink.ui;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.util.Linkify;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -73,14 +71,7 @@ public class FriendsProfileActivity extends Activity {
                     Linkify.addLinks(mWebsiteField, Linkify.ALL);
                 }
                 else {
-                    Log.e(TAG, e.getMessage());
-                    AlertDialog.Builder builder = new AlertDialog.Builder(FriendsProfileActivity.this);
-                    builder.setTitle(R.string.error_title)
-                            .setMessage(e.getMessage())
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    Utilities.customDialog(dialog);
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });
@@ -89,7 +80,6 @@ public class FriendsProfileActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         Utilities.setContext(null); //set context to null to prevent leak
     }
 

@@ -1,8 +1,5 @@
 package com.richluick.nowyoudrink.utils;
 
-/**
- * Created by Rich on 8/27/2014.
- */
 public final class ParseConstants {
     //Class name
     public static final String CLASS_MESSAGES = "Messages";

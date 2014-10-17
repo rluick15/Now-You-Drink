@@ -1,11 +1,8 @@
 package com.richluick.nowyoudrink.ui;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -18,9 +15,9 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.richluick.nowyoudrink.utils.Utilities;
-import com.richluick.nowyoudrink.utils.ParseConstants;
 import com.richluick.nowyoudrink.R;
+import com.richluick.nowyoudrink.utils.ParseConstants;
+import com.richluick.nowyoudrink.utils.Utilities;
 
 
 public class GroupRequestActivity extends Activity {
@@ -69,8 +66,7 @@ public class GroupRequestActivity extends Activity {
                     mGroupId = mMessage.get(ParseConstants.KEY_GROUP_ID).toString();
                 }
                 else { //error is found return to previous activity
-                    Log.e(TAG, e.getMessage());
-                    finish();
+                    Utilities.getErrorAlertDialog();
                 }
 
                 //gets the full group object based on senderId from the message
@@ -91,7 +87,7 @@ public class GroupRequestActivity extends Activity {
                             mPendingMemberRelation = mGroup.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
                         }
                         else { //error. group no longer exists. finish to MainActivity
-                            deleteMessageDialog();
+                            Utilities.getNoGroupAlertDialog(mMessage);
                         }
                     }
                 });
@@ -108,7 +104,7 @@ public class GroupRequestActivity extends Activity {
                     @Override
                     public void done(ParseException e) {
                         if (e != null) {
-                            Log.e(TAG, e.getMessage());
+                            Utilities.getErrorAlertDialog();
                         }
                     }
                 });
@@ -119,7 +115,7 @@ public class GroupRequestActivity extends Activity {
                     @Override
                     public void done(ParseException e) {
                         if (e != null) {
-                            Log.e(TAG, e.getMessage());
+                            Utilities.getErrorAlertDialog();
                         }
                     }
                 });
@@ -141,7 +137,7 @@ public class GroupRequestActivity extends Activity {
                     @Override
                     public void done(ParseException e) {
                         if (e != null) {
-                            Log.e(TAG, e.getMessage());
+                            Utilities.getErrorAlertDialog();
                         }
                     }
                 });
@@ -155,21 +151,5 @@ public class GroupRequestActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         Utilities.setContext(null); //set context to null to prevent leak
-    }
-
-    private void deleteMessageDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.message_title_nonexistent_group))
-                .setMessage(getString(R.string.message_nonexistent_group))
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Utilities.deleteMessage(mMessage);
-                        finish();
-                    }
-                });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-        Utilities.customDialog(dialog);
     }
 }

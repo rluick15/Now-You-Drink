@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -89,14 +88,7 @@ public class CreateGroupActivity extends ListActivity {
                     setListAdapter(adapter);
                 }
                 else { //error message dialog if the query fails
-                    Log.e(TAG, e.getMessage());
-                    AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
-                    builder.setTitle(R.string.error_title)
-                            .setMessage(e.getMessage())
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    Utilities.customDialog (dialog);
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });
@@ -152,22 +144,18 @@ public class CreateGroupActivity extends ListActivity {
 
                     ParseObject message = createMessage(group);
                     if (message == null) { //error
-                        AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
-                        builder.setMessage(getString(R.string.error_friend_request))
-                                .setTitle(getString(R.string.error_title))
-                                .setPositiveButton(android.R.string.ok, null);
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-                        Utilities.customDialog (dialog);
-                    } else { //sends the message and goes to the new group
+                        Utilities.getErrorAlertDialog();
+                    }
+                    else { //sends the message and goes to the new group
                         send(message);
                         Intent intent = new Intent(CreateGroupActivity.this, GroupActivity.class);
                         intent.putExtra(ParseConstants.KEY_GROUP_ID, mGroupId);
                         startActivity(intent);
                         finish();
                     }
-                } else {
-                    Log.d(TAG, e.getMessage());
+                }
+                else {
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });
@@ -213,8 +201,9 @@ public class CreateGroupActivity extends ListActivity {
                     //success
                     Toast.makeText(CreateGroupActivity.this, getString(R.string.success_message_group_create), Toast.LENGTH_LONG).show();
                     sendPushNotifications();
-                } else { //error sending message
-                    Log.e(TAG, e.getMessage());
+                }
+                else { //error sending message
+                    Utilities.getErrorAlertDialog();
                 }
             }
         });
