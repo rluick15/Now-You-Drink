@@ -49,6 +49,7 @@ public class Utilities {
         push.sendInBackground();
     }
 
+
     //utilities method to delete messages after being viewed
     public static void deleteMessage(ParseObject message) {
         //Delete the message

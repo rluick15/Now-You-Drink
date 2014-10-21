@@ -141,8 +141,6 @@ public class GroupRequestActivity extends Activity {
                 });
                 Utilities.deleteMessage(mMessage);
 
-                //need to query group members to send the push
-
                 //sends a push to all group members saying the user joined
                 Utilities.sendPushNotifications(null, mGroupMembers,
                         ParseUser.getCurrentUser().getUsername() + " joined the group " + mGroupName + "!",
