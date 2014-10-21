@@ -9,21 +9,23 @@
         android:src="@drawable/ic_background"
         style="@style/auth_background_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"/>
 
     <TextView
         android:id="@+id/titleText"
         android:text="@string/app_name"
         style="@style/auth_title_text"
-        android:layout_marginTop="150dp"/>
-
+        android:layout_marginTop="150dp"
+        android:textSize="110sp"/>
 
     <LinearLayout
         android:id="@+id/editTextLayout"
         android:layout_below="@id/titleText"
         style="@style/AuthFieldContainer"
-        android:layout_width="400dp"
-        android:layout_centerHorizontal="true">
+        android:layout_width="450dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp">
 
         <EditText
             android:id="@+id/usernameField"
