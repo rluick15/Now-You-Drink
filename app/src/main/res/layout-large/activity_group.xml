@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.richluick.nowyoudrink.ui.GroupActivity">
+
+    <TextView
+        android:id="@+id/currentDrinkerTitle"
+        android:text="@string/group_current_drinker_title"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        style="@style/auth_group_titles"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:layout_marginLeft="40dp"/>
+
+    <TextView
+        android:id="@+id/currentDrinkerUser"
+        android:text=""
+        android:layout_below="@+id/currentDrinkerTitle"
+        style="@style/auth_drinker_text_box"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="175dp"
+        android:layout_marginRight="175dp"
+        android:textSize="40sp"/>
+
+    <TextView
+        android:id="@+id/previousDrinkerTitle"
+        android:text="@string/group_previous_drinker_title"
+        android:layout_below="@+id/currentDrinkerUser"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        style="@style/auth_group_titles"
+        android:textSize="20sp"
+        android:layout_marginLeft="40dp"/>
+
+    <TextView
+        android:id="@+id/previousDrinkerUser"
+        android:text=""
+        android:layout_below="@+id/previousDrinkerTitle"
+        style="@style/auth_drinker_text_box"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="175dp"
+        android:layout_marginRight="175dp"
+        android:textSize="40sp"/>
+
+    <Button
+        android:id="@+id/drinkButton"
+        android:text="@string/group_drink_button_text"
+        android:enabled="false"
+        style="@style/AuthButton"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/groupMembersTitle"
+        android:text="@string/group_members_list_title"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/previousDrinkerUser"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        style="@style/auth_group_titles"
+        android:textSize="20sp"
+        android:layout_marginLeft="40dp"/>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_below="@+id/groupMembersTitle"
+        android:layout_above="@+id/drinkButton"
+        style="@style/auth_lists_friends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:listSelector="@color/main_color"
+        android:layout_marginLeft="125dp"
+        android:layout_marginRight="125dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+</RelativeLayout>

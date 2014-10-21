@@ -5,16 +5,6 @@
     android:background="@color/background_color"
     tools:context="com.richluick.nowyoudrink.ui.EditMembersActivity">
 
-    <TextView
-        android:id="@android:id/empty"
-        android:textColor="@color/main_color"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/empty_friends_label_2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <ListView
         android:id="@android:id/list"
         style="@style/auth_lists_friends" />
