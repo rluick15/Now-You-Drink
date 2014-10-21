@@ -20,7 +20,8 @@
     <LinearLayout
         android:id="@+id/editTextLayout"
         android:layout_below="@id/titleText"
-        style="@style/AuthFieldContainer">
+        style="@style/AuthFieldContainer"
+        android:layout_centerInParent="true">
 
         <EditText
             android:id="@+id/usernameField"
@@ -50,7 +51,6 @@
         android:text="@string/sign_up_text"
         android:textSize="12sp"
         android:textColor="@android:color/white"
-        android:typeface="monospace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -62,7 +62,6 @@
         android:text="Forgot Password?"
         android:textSize="12sp"
         android:textColor="@android:color/white"
-        android:typeface="monospace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
