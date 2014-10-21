@@ -73,9 +73,6 @@
       </layout>
     </layouts>
   </component>
-  <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.richluick.nowyoudrink" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="db8bcf42-fe0b-4387-8fdb-87bac9e18fed" name="Default" comment="" />
     <ignored path="Now You Drink.iws" />
@@ -99,64 +96,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="activity_login.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large/activity_login.xml">
+      <file leaf-file-name="activity_friends_profile.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large/activity_friends_profile.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.70305675" vertical-offset="885" max-vertical-offset="1547">
-              <caret line="71" column="7" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.40611354" vertical-offset="1089" max-vertical-offset="1547">
+              <caret line="75" column="45" selection-start-line="75" selection-start-column="45" selection-end-line="75" selection-end-column="45" />
               <folding>
-                <element signature="e#1476#1504#0" expanded="true" />
+                <element signature="e#280#315#0" expanded="true" />
+                <element signature="e#341#376#0" expanded="true" />
+                <element signature="e#400#433#0" expanded="true" />
+                <element signature="e#460#493#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_sign_up.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large/activity_sign_up.xml">
+      <file leaf-file-name="activity_personal_profile.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large/activity_personal_profile.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="27.703703" vertical-offset="1173" max-vertical-offset="1972">
-              <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
-              <folding>
-                <element signature="e#612#630#0" expanded="true" />
-                <element signature="e#1107#1130#0" expanded="true" />
-                <element signature="e#1310#1333#0" expanded="true" />
-                <element signature="e#1506#1526#0" expanded="true" />
-                <element signature="e#1707#1732#0" expanded="true" />
-                <element signature="e#1910#1934#0" expanded="true" />
-                <element signature="e#2112#2135#0" expanded="true" />
-                <element signature="e#2265#2287#0" expanded="true" />
-                <element signature="e#2675#2712#0" expanded="true" />
-                <element signature="e#2788#2818#0" expanded="true" />
-                <element signature="e#3167#3196#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_forgot_password.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large/activity_forgot_password.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.555555" vertical-offset="494" max-vertical-offset="1411">
-              <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="styles.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3281">
-              <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+            <state vertical-scroll-proportion="-5.0" vertical-offset="52" max-vertical-offset="1530">
+              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="81" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -1254,8 +1219,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_forgot_password.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_group_request.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_view_friend_request.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_edit_members.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_inbox.xml" />
@@ -1305,6 +1268,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout-large/activity_sign_up.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout-large/activity_forgot_password.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout-large/activity_login.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-large/activity_personal_profile.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-large/activity_friends_profile.xml" />
       </list>
     </option>
   </component>
@@ -2002,20 +1967,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/edit_friends.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30784708" vertical-offset="0" max-vertical-offset="497">
-          <caret line="9" column="33" selection-start-line="4" selection-start-column="4" selection-end-line="9" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5814889" vertical-offset="0" max-vertical-offset="497">
-          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_view_friend_request.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -2471,10 +2422,37 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70305675" vertical-offset="885" max-vertical-offset="1547">
+        <state vertical-scroll-proportion="-11.925926" vertical-offset="885" max-vertical-offset="1547">
           <caret line="71" column="7" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="7" />
           <folding>
             <element signature="e#1476#1504#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large/activity_personal_profile.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0" vertical-offset="52" max-vertical-offset="1530">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="81" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large/activity_friends_profile.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40611354" vertical-offset="1089" max-vertical-offset="1547">
+          <caret line="75" column="45" selection-start-line="75" selection-start-column="45" selection-end-line="75" selection-end-column="45" />
+          <folding>
+            <element signature="e#280#315#0" expanded="true" />
+            <element signature="e#341#376#0" expanded="true" />
+            <element signature="e#400#433#0" expanded="true" />
+            <element signature="e#460#493#0" expanded="true" />
           </folding>
         </state>
       </provider>
