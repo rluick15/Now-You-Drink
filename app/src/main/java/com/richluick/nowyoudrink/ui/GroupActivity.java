@@ -5,6 +5,7 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -67,6 +68,27 @@ public class GroupActivity extends ListActivity {
         mCurrentUser = ParseUser.getCurrentUser();
         mGroupId = getIntent().getStringExtra(ParseConstants.KEY_GROUP_ID);
 
+        //query to get the current drinker to present them with an alert dialog
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(ParseConstants.CLASS_GROUPS);
+        query.getInBackground(mGroupId, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject group, ParseException e) {
+                String currentDrinker = group.get(ParseConstants.KEY_CURRENT_DRINKER).toString();
+                currentDrinker = Utilities.removeCharacters(currentDrinker);
+
+                //let the current drinker know they are up
+                if ((mCurrentUser.getUsername()).equals(currentDrinker)) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
+                    builder.setTitle(getString(R.string.now_you_drink_title))
+                            .setMessage(getString(R.string.now_you_drink_message))
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    Utilities.customDialog(dialog);
+                }
+            }
+        });
+
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE); //only one user can be selected
     }
 
@@ -76,53 +98,16 @@ public class GroupActivity extends ListActivity {
 
         setProgressBarIndeterminateVisibility(true);
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery(ParseConstants.CLASS_GROUPS);
-        query.getInBackground(mGroupId, new GetCallback<ParseObject>() {
+        //refresh group automatically every 5 secs with updated data
+        final Handler handler = new Handler();
+        Runnable refresh = new Runnable() {
             @Override
-            public void done(ParseObject group, ParseException e) {
-                setProgressBarIndeterminateVisibility(false);
-                if(e == null) {
-                    mGroup = group;
-                    mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
-                    mMemberOfGroupRelation = mCurrentUser.getRelation(ParseConstants.KEY_MEMBER_OF_GROUP_RELATION);
-
-                    //only the admin can delete the group
-                    mGroupAdmin = mGroup.get(ParseConstants.KEY_GROUP_ADMIN).toString();
-                    mGroupAdmin = Utilities.removeCharacters(mGroupAdmin);
-                    if ((mCurrentUser.getUsername()).equals(mGroupAdmin)) {
-                        mDeleteMenuItem.setVisible(true);
-                    }
-
-                    mGroupName = group.get(ParseConstants.KEY_GROUP_NAME).toString();
-                    mGroupName = Utilities.removeCharacters(mGroupName);
-                    setTitle(mGroupName);
-
-                    mCurrentDrinker = mGroup.get(ParseConstants.KEY_CURRENT_DRINKER).toString();
-                    mCurrentDrinker = Utilities.removeCharacters(mCurrentDrinker);
-                    mCurrentDrinkerView.setText(mCurrentDrinker);
-
-                    mPreviousDrinker = mGroup.get(ParseConstants.KEY_PREVIOUS_DRINKER).toString();
-                    mPreviousDrinker = Utilities.removeCharacters(mPreviousDrinker);
-                    mPreviousDrinkerView.setText(mPreviousDrinker);
-
-                    listViewQuery(mMemberRelation);
-
-                    //activate the button for the current drinker and let them know they are up
-                    if ((mCurrentUser.getUsername()).equals(mCurrentDrinker)) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(GroupActivity.this);
-                        builder.setTitle(getString(R.string.now_you_drink_title))
-                                .setMessage(getString(R.string.now_you_drink_message))
-                                .setPositiveButton(android.R.string.ok, null);
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-                        Utilities.customDialog(dialog);
-                    }
-                }
-                else {
-                    Utilities.getNoGroupAlertDialog(null);
-                }
+            public void run() {
+                groupQuery();
+                handler.postDelayed(this, 5000);
             }
-        });
+        };
+        handler.post(refresh);
 
         mDrinkButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,6 +146,46 @@ public class GroupActivity extends ListActivity {
                         finish();
                         startActivity(getIntent());
                     }
+                }
+            }
+        });
+    }
+
+    //queries all the info to populate the group page
+    private void groupQuery() {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(ParseConstants.CLASS_GROUPS);
+        query.getInBackground(mGroupId, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject group, ParseException e) {
+                setProgressBarIndeterminateVisibility(false);
+                if(e == null) {
+                    mGroup = group;
+                    mMemberRelation = mGroup.getRelation(ParseConstants.KEY_MEMBER_RELATION);
+                    mMemberOfGroupRelation = mCurrentUser.getRelation(ParseConstants.KEY_MEMBER_OF_GROUP_RELATION);
+
+                    //only the admin can delete the group
+                    mGroupAdmin = mGroup.get(ParseConstants.KEY_GROUP_ADMIN).toString();
+                    mGroupAdmin = Utilities.removeCharacters(mGroupAdmin);
+                    if ((mCurrentUser.getUsername()).equals(mGroupAdmin)) {
+                        mDeleteMenuItem.setVisible(true);
+                    }
+
+                    mGroupName = group.get(ParseConstants.KEY_GROUP_NAME).toString();
+                    mGroupName = Utilities.removeCharacters(mGroupName);
+                    setTitle(mGroupName);
+
+                    mCurrentDrinker = mGroup.get(ParseConstants.KEY_CURRENT_DRINKER).toString();
+                    mCurrentDrinker = Utilities.removeCharacters(mCurrentDrinker);
+                    mCurrentDrinkerView.setText(mCurrentDrinker);
+
+                    mPreviousDrinker = mGroup.get(ParseConstants.KEY_PREVIOUS_DRINKER).toString();
+                    mPreviousDrinker = Utilities.removeCharacters(mPreviousDrinker);
+                    mPreviousDrinkerView.setText(mPreviousDrinker);
+
+                    listViewQuery(mMemberRelation);
+                }
+                else {
+                    Utilities.getNoGroupAlertDialog(null);
                 }
             }
         });
