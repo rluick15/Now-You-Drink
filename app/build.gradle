@@ -13,8 +13,8 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            runProguard true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -23,8 +23,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:support-v13:20.0.0'
     compile files('libs/commons-io-2.4.jar')
-    compile files('libs/Parse-1.6.0.jar')
     compile files('libs/picasso-2.3.4.jar')
-    compile files('libs/commons-lang3-3.3.2.jar')
-    compile files('libs/Parse-1.7.0.jar')
+    compile files('libs/Parse-1.7.1.jar')
+    compile files('libs/bolts-android-1.1.3.jar')
 }

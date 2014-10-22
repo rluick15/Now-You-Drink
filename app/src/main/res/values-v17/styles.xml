@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="auth_background_image">@string/desc_background_image
-        fitXY
-        match_parent
-        match_parent
-        true
-        true
-        true
-    </style>
+
 </resources>
