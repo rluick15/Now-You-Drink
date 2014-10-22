@@ -7,6 +7,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:src="@drawable/ic_background"
+        android:contentDescription="@string/desc_background_image"
         style="@style/auth_background_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -65,7 +66,7 @@
 
     <TextView
         android:id="@+id/forgotPasswordText"
-        android:text="Forgot Password?"
+        android:text="@string/login_forgot_password_text"
         android:textSize="15sp"
         android:textColor="@android:color/white"
         android:typeface="monospace"

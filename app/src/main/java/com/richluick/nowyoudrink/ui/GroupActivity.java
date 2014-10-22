@@ -151,6 +151,12 @@ public class GroupActivity extends ListActivity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Utilities.setContext(null); //set context to null to prevent leak
+    }
+
     //queries all the info to populate the group page
     private void groupQuery() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery(ParseConstants.CLASS_GROUPS);
@@ -189,12 +195,6 @@ public class GroupActivity extends ListActivity {
                 }
             }
         });
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Utilities.setContext(null); //set context to null to prevent leak
     }
 
     //queries the users in the group and formats them for the list view

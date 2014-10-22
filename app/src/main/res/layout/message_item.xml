@@ -26,7 +26,7 @@
         <TextView
             android:id="@+id/senderLabel"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Test Name"
+            android:text=""
             android:textColor="@color/main_color"
             android:textSize="16sp"
             android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
 
         <TextView
             android:id="@+id/timeLabel"
-            android:text="New Text"
+            android:text=""
             android:textSize="12sp"
             android:textColor="@color/subtitle_text_color"
             android:layout_width="wrap_content"
