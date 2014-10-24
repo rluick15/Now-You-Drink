@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink.ui;
+package com.richluick.nowyoudrink.ui.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import com.parse.GetCallback;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.richluick.nowyoudrink.R;
+import com.richluick.nowyoudrink.ui.fragments.FriendsFragment;
 import com.richluick.nowyoudrink.utils.MD5Util;
 import com.richluick.nowyoudrink.utils.ParseConstants;
 import com.richluick.nowyoudrink.utils.Utilities;

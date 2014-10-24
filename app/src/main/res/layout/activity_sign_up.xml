@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.richluick.nowyoudrink.ui.SignUpActivity">
+    tools:context="com.richluick.nowyoudrink.ui.activities.SignUpActivity">
 
     <ImageView
         android:id="@+id/imageView"

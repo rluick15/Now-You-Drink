@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.richluick.nowyoudrink.ui.EditMembersActivity" >
+    tools:context="com.richluick.nowyoudrink.ui.activities.EditMembersActivity" >
 
     <item android:id="@+id/action_send"
         android:title="@string/menu_send_label"

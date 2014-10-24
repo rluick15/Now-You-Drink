@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink.ui;
+package com.richluick.nowyoudrink.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,11 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.richluick.nowyoudrink.R;
 import com.richluick.nowyoudrink.adapters.MessageAdapter;
+import com.richluick.nowyoudrink.ui.activities.EditFriendsActivity;
+import com.richluick.nowyoudrink.ui.activities.FriendsProfileActivity;
+import com.richluick.nowyoudrink.ui.activities.GroupActivity;
+import com.richluick.nowyoudrink.ui.activities.GroupRequestActivity;
+import com.richluick.nowyoudrink.ui.activities.ViewFriendRequestActivity;
 import com.richluick.nowyoudrink.utils.ParseConstants;
 import com.richluick.nowyoudrink.utils.Utilities;
 

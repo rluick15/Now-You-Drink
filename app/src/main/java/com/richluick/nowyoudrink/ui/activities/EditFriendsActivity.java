@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink.ui;
+package com.richluick.nowyoudrink.ui.activities;
 
 import android.app.ListActivity;
 import android.os.Bundle;

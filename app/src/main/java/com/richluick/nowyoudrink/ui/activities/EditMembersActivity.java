@@ -1,18 +1,17 @@
-package com.richluick.nowyoudrink.ui;
+package com.richluick.nowyoudrink.ui.activities;
 
-import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -27,43 +26,79 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CreateGroupActivity extends ListActivity {
+public class EditMembersActivity extends ListActivity {
 
     public static final String TAG = EditFriendsActivity.class.getSimpleName();
 
+    protected String mGroupId;
+    protected String mGroupName;
+    protected MenuItem mSendMenuItem;
     protected List<ParseUser> mFriends;
     protected ArrayList<ParseUser> mPendingMembers;
     protected ParseUser mCurrentUser;
-    protected EditText mGroupNameField;
-    protected String mGroupName;
-    protected String mGroupId;
-    protected Button mCreateGroupButton;
     protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseRelation<ParseUser> mPendingMemberRelation;
     protected ParseRelation<ParseUser> mMemberRelation;
-    ParseRelation<ParseObject> mMemberOfGroupRelation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        setContentView(R.layout.activity_create_group);
+        setContentView(R.layout.activity_edit_members);
 
         Utilities.setContext(this); //set the utilities context to this
 
-        mGroupNameField = (EditText) findViewById(R.id.groupTitleField);
-        mCreateGroupButton = (Button) findViewById(R.id.createGroupButton);
+        mGroupId = getIntent().getStringExtra(ParseConstants.KEY_GROUP_ID);
+        mGroupName = getIntent().getStringExtra(ParseConstants.KEY_GROUP_NAME);
 
+        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mCurrentUser = ParseUser.getCurrentUser();
         mCurrentUser = ParseUser.getCurrentUser();
         mPendingMembers = new ArrayList<ParseUser>();
         mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
-        mMemberOfGroupRelation = mCurrentUser.getRelation(ParseConstants.KEY_MEMBER_OF_GROUP_RELATION);
 
         setProgressBarIndeterminateVisibility(true);
 
-        //queries all the users friends in the listview
+        //this query gets the group object to exclude members from the list
+        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(ParseConstants.CLASS_GROUPS);
+        query.getInBackground(mGroupId, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject group, ParseException e) {
+                if(e == null) {
+                    mMemberRelation = group.getRelation(ParseConstants.KEY_MEMBER_RELATION);
+                    mPendingMemberRelation = group.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
+
+                    //query current users friends to populate list
+                    listQuery();
+                }
+                else {
+                    Utilities.getErrorAlertDialog();
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Utilities.setContext(null); //set context to null to prevent leak
+    }
+
+    protected void listQuery() {
         ParseQuery<ParseUser> query = mFriendsRelation.getQuery();
-        query.addAscendingOrder(ParseConstants.KEY_USERNAME);
+        query.orderByAscending(ParseConstants.KEY_USERNAME);
+        query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_USERNAME,
+                ParseConstants.KEY_USERNAME, mMemberRelation.getQuery());
+        query.whereDoesNotMatchKeyInQuery(ParseConstants.KEY_EMAIL,
+                ParseConstants.KEY_EMAIL, mPendingMemberRelation.getQuery());
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> parseUsers, ParseException e) {
@@ -80,74 +115,61 @@ public class CreateGroupActivity extends ListActivity {
 
                     //Setup List View Adapter
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                            CreateGroupActivity.this,
+                            EditMembersActivity.this,
                             android.R.layout.simple_list_item_checked,
                             usernames);
                     setListAdapter(adapter);
                 }
-                else { //error message dialog if the query fails
+                else {
                     Utilities.getErrorAlertDialog();
                 }
             }
         });
-
-        //creates groups if fields are all filled out
-        mCreateGroupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setProgressBarIndeterminateVisibility(true);
-
-                mGroupName = mGroupNameField.getText().toString();
-                if (mGroupName.isEmpty()) {
-                    setProgressBarIndeterminateVisibility(false);
-
-                    //Checks if the user left the group name field blank and displays an alert message
-                    AlertDialog.Builder builder = new AlertDialog.Builder(CreateGroupActivity.this);
-                    builder.setTitle(getString(R.string.error_title))
-                            .setMessage(getString(R.string.create_group_error_message))
-                            .setPositiveButton(android.R.string.ok, null);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    Utilities.customDialog (dialog);
-                }
-                else {
-                    createGroupAndMessage();
-                }
-            }
-        });
-
-        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Utilities.setContext(null); //set context to null to prevent leak
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.edit_members, menu);
+        mSendMenuItem = menu.getItem(0);
+        return true;
     }
 
-    private void createGroupAndMessage() {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_send) {
+            setProgressBarIndeterminateVisibility(true);
+            return createMemberRequest();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //create the group member request message and send to selected recipients
+    private boolean createMemberRequest() {
         setProgressBarIndeterminateVisibility(false);
 
-        //create the group and save it in background and add pending members
-        //get the object ID in the callback and create the new group
-        final ParseObject group = createGroup();
-        group.saveInBackground(new SaveCallback() {
+        //query the group to add relation and intent extras to request
+        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(ParseConstants.CLASS_GROUPS);
+        query.getInBackground(mGroupId, new GetCallback<ParseObject>() {
             @Override
-            public void done(ParseException e) {
-                if (e == null) {
-                    mGroupId = group.getObjectId();
-                    mMemberOfGroupRelation.add(group);
-                    mCurrentUser.saveInBackground();
+            public void done(ParseObject group, ParseException e) {
+                if(e == null) {
+                    //add selectees to mending member relation
+                    mPendingMemberRelation = group.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
+                    for (ParseUser member : mPendingMembers) {
+                        mPendingMemberRelation.add(member);
+                    }
+                    group.saveInBackground();
 
                     ParseObject message = createMessage(group);
                     if (message == null) { //error
                         Utilities.getErrorAlertDialog();
-                    }
-                    else { //sends the message and goes to the new group
+                    } else { //sends the message and goes to the new group
                         send(message);
-                        Intent intent = new Intent(CreateGroupActivity.this, GroupActivity.class);
-                        intent.putExtra(ParseConstants.KEY_GROUP_ID, mGroupId);
-                        startActivity(intent);
                         finish();
                     }
                 }
@@ -156,25 +178,8 @@ public class CreateGroupActivity extends ListActivity {
                 }
             }
         });
-    }
 
-    private ParseObject createGroup() {
-        ParseObject group = new ParseObject(ParseConstants.CLASS_GROUPS);
-        group.add(ParseConstants.KEY_GROUP_ADMIN, mCurrentUser.getUsername());
-        group.add(ParseConstants.KEY_GROUP_NAME, mGroupName);
-        group.add(ParseConstants.KEY_CURRENT_DRINKER, mCurrentUser.getUsername());
-        group.add(ParseConstants.KEY_PREVIOUS_DRINKER, "");
-        group.put(ParseConstants.KEY_MESSAGE_TYPE, ParseConstants.TYPE_GROUP);
-
-        //Add Pending members to group and add current user as group memeber
-        mMemberRelation = group.getRelation(ParseConstants.KEY_MEMBER_RELATION);
-        mMemberRelation.add(mCurrentUser);
-        mPendingMemberRelation = group.getRelation(ParseConstants.KEY_PENDING_MEMBER_RELATION);
-        for (ParseUser member : mPendingMembers) {
-            mPendingMemberRelation.add(member);
-        }
-
-        return group;
+        return true;
     }
 
     private ParseObject createMessage(ParseObject group) {
@@ -194,12 +199,12 @@ public class CreateGroupActivity extends ListActivity {
         message.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                if (e == null) {
+                if(e == null) {
                     //success
-                    Toast.makeText(CreateGroupActivity.this, getString(R.string.success_message_group_create), Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditMembersActivity.this, getString(R.string.success_group_request), Toast.LENGTH_LONG).show();
                     Utilities.sendPushNotifications(null, mPendingMembers,
                             ParseUser.getCurrentUser().getUsername()
-                                    + " invited you to join the group " +  mGroupName + "!",
+                            + " invited you to join the group " +  mGroupName + "!",
                             "mr");
                 }
                 else { //error sending message
@@ -217,8 +222,7 @@ public class CreateGroupActivity extends ListActivity {
         if (l.isItemChecked(position)) mPendingMembers.add(mFriends.get(position));
         else mPendingMembers.remove(mFriends.get(position)); //remove the user from the list
 
-        //only displays the button if at least one friend is selected
-        if(l.getCheckedItemCount() > 0) mCreateGroupButton.setEnabled(true);
-        else mCreateGroupButton.setEnabled(false);
+        if(l.getCheckedItemCount() > 0) mSendMenuItem.setVisible(true);
+        else mSendMenuItem.setVisible(false);
     }
 }

@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink.ui;
+package com.richluick.nowyoudrink.adapters;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.richluick.nowyoudrink.R;
+import com.richluick.nowyoudrink.ui.fragments.FriendsFragment;
+import com.richluick.nowyoudrink.ui.fragments.GroupsFragment;
+import com.richluick.nowyoudrink.ui.fragments.InboxFragment;
 
 import java.util.Locale;
 

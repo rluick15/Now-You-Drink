@@ -7,7 +7,7 @@ import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 import com.parse.PushService;
-import com.richluick.nowyoudrink.ui.MainActivity;
+import com.richluick.nowyoudrink.ui.activities.MainActivity;
 import com.richluick.nowyoudrink.utils.ParseConstants;
 
 import java.lang.reflect.Field;

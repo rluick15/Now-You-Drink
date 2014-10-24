@@ -22,7 +22,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Nowyoudrink" >
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -32,95 +32,95 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.activities.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".ui.SignUpActivity"
+            android:name=".ui.activities.SignUpActivity"
             android:label="@string/title_activity_sign_up"
-            android:parentActivityName=".ui.LoginActivity"
+            android:parentActivityName=".ui.activities.LoginActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.LoginActivity" />
         </activity>
         <activity
-            android:name=".ui.ForgotPasswordActivity"
+            android:name=".ui.activities.ForgotPasswordActivity"
             android:label="@string/title_activity_forgot_password"
-            android:parentActivityName=".ui.LoginActivity"
+            android:parentActivityName=".ui.activities.LoginActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.LoginActivity" />
         </activity>
         <activity
-            android:name=".ui.PersonalProfileActivity"
+            android:name=".ui.activities.PersonalProfileActivity"
             android:label="@string/title_user_profile"
-            android:parentActivityName=".ui.MainActivity"
+            android:parentActivityName=".ui.activities.MainActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.EditFriendsActivity"
+            android:name=".ui.activities.EditFriendsActivity"
             android:label="@string/title_edit_friends"
-            android:parentActivityName=".ui.MainActivity"
+            android:parentActivityName=".ui.activities.MainActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.ViewFriendRequestActivity"
+            android:name=".ui.activities.ViewFriendRequestActivity"
             android:label="@string/title_friend_request"
-            android:parentActivityName=".ui.MainActivity"
+            android:parentActivityName=".ui.activities.MainActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.FriendsProfileActivity"
+            android:name=".ui.activities.FriendsProfileActivity"
             android:label="Friends Profile"
-            android:parentActivityName=".ui.MainActivity"
+            android:parentActivityName=".ui.activities.MainActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.CreateGroupActivity"
+            android:name=".ui.activities.CreateGroupActivity"
             android:label="@string/title_activity_create_group"
-            android:parentActivityName=".ui.MainActivity"
+            android:parentActivityName=".ui.activities.MainActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.GroupActivity"
+            android:name=".ui.activities.GroupActivity"
             android:label="@string/title_activity_group"
-            android:parentActivityName=".ui.MainActivity"
+            android:parentActivityName=".ui.activities.MainActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.GroupRequestActivity"
+            android:name=".ui.activities.GroupRequestActivity"
             android:label="@string/title_activity_group_request"
-            android:parentActivityName=".ui.MainActivity"
+            android:parentActivityName=".ui.activities.MainActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.richluick.nowyoudrink.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.EditMembersActivity"
+            android:name=".ui.activities.EditMembersActivity"
             android:label="Add Members"
-            android:parentActivityName=".ui.GroupActivity"
+            android:parentActivityName=".ui.activities.GroupActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

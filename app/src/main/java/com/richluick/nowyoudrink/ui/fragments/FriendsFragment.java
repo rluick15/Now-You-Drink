@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink.ui;
+package com.richluick.nowyoudrink.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.richluick.nowyoudrink.R;
 import com.richluick.nowyoudrink.adapters.UserAdapter;
+import com.richluick.nowyoudrink.ui.activities.FriendsProfileActivity;
 import com.richluick.nowyoudrink.utils.ParseConstants;
 import com.richluick.nowyoudrink.utils.Utilities;
 

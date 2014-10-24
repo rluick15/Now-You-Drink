@@ -1,4 +1,4 @@
-package com.richluick.nowyoudrink.ui;
+package com.richluick.nowyoudrink.ui.activities;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.parse.ParseUser;
 import com.richluick.nowyoudrink.R;
+import com.richluick.nowyoudrink.adapters.SectionsPagerAdapter;
 import com.richluick.nowyoudrink.utils.Utilities;
 
 
